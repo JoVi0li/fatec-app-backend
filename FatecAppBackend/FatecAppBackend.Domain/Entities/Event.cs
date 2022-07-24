@@ -39,7 +39,7 @@ namespace FatecAppBackend.Domain.Entities
             if (IsValid)
             {
                 EventOwnerId = eventOwnerId;
-                Participants = participants;
+                _participants = participants;
                 From = from;
                 To = to;
                 Route = route;
@@ -48,7 +48,7 @@ namespace FatecAppBackend.Domain.Entities
                 Status = status;
             } else
             {
-                throw new Exception("Invalid Event props");
+                AddNotification("Event", "Invalid Event props");
             }
 
         }
@@ -56,7 +56,8 @@ namespace FatecAppBackend.Domain.Entities
         public Guid EventOwnerId { get; private set; }
         public UserCollege EventOwner { get; private set; }
 
-        public List<UserCollege> Participants { get; private set; }
+        public IReadOnlyCollection<UserCollege> Participants { get { return _participants; } }
+        public List<UserCollege> _participants { get; set; }
 
         public string From { get; private set; }
 
@@ -70,8 +71,10 @@ namespace FatecAppBackend.Domain.Entities
 
         public EnStatus Status { get; private set; }
 
+
         // Updates
-        public void addParticipant(UserCollege newParticipant)
+
+        public void AddParticipant(UserCollege newParticipant)
         {
             AddNotifications(
                 new Contract<Notification>()
@@ -81,23 +84,24 @@ namespace FatecAppBackend.Domain.Entities
 
             if (IsValid)
             {
-                bool participantAlreadyExits = Participants.Contains(newParticipant);
+                bool participantAlreadyExits = _participants.Contains(newParticipant);
 
                 if (participantAlreadyExits)
                 {
-                    throw new Exception("Participant already exits");
-                } else
+                    AddNotification("Participant", "Participant already exits");
+                }
+                else
                 {
-                    Participants.Add(newParticipant);
+                    _participants.Add(newParticipant);
                 }
             }
             else
             {
-                throw new Exception("Could not add a new Participant");
+                AddNotification("Participant", "Could not add Participant");
             }
         }
 
-        public void removeParticipant(Guid participantId)
+        public void RemoveParticipant(Guid participantId)
         {
             AddNotifications(
                 new Contract<Notification>()
@@ -107,18 +111,19 @@ namespace FatecAppBackend.Domain.Entities
 
             if (IsValid)
             {
-                UserCollege? participant = Participants.FirstOrDefault(x => x.Id == participantId);
+                UserCollege? participant = _participants.FirstOrDefault(x => x.Id == participantId);
 
                 if(participant == null)
                 {
-                    throw new Exception("Participant nonexistent");
-                } else
+                    AddNotification("Participant", "Participant nonexistent");
+                }
+                else
                 {
-                    Participants.Remove(participant);
+                    _participants.Remove(participant);
                 }
             } else
             {
-                throw new Exception("Could not remove a Participant");
+                AddNotification("Participant", "Could not remove Participant");
             }
         }
 
@@ -136,7 +141,7 @@ namespace FatecAppBackend.Domain.Entities
                 From = newFrom;
             } else
             {
-                throw new Exception("Could not update From");
+                AddNotification("From", "Could not update From");
             }
         }
 
@@ -155,7 +160,7 @@ namespace FatecAppBackend.Domain.Entities
             }
             else
             {
-                throw new Exception("Could not update To");
+                AddNotification("To", "Could not update To");
             }
         }
 
@@ -174,7 +179,7 @@ namespace FatecAppBackend.Domain.Entities
             }
             else
             {
-                throw new Exception("Could not update Route");
+                AddNotification("Route", "Could not update Route");
             }
         }
 
@@ -193,7 +198,7 @@ namespace FatecAppBackend.Domain.Entities
             }
             else
             {
-                throw new Exception("Could not update OnlyWomen");
+                AddNotification("OnlyWomen", "Could not update OnlyWomen");
             }
         }
 
@@ -212,7 +217,7 @@ namespace FatecAppBackend.Domain.Entities
             }
             else
             {
-                throw new Exception("Could not update TimeToGo");
+                AddNotification("TimeToGo", "Could not update TimeToGo");
             }
         }
 
@@ -231,8 +236,9 @@ namespace FatecAppBackend.Domain.Entities
             }
             else
             {
-                throw new Exception("Could not update Status");
+                AddNotification("Status", "Could not update Status");
             }
         }
+
     }
 }

@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "DKrJFVjfH8zEOWNPIZVLdaBFAk7jXp1hWsOqT3SFj5+lDu5YH53BUAqXyaYRODxcA4a8/Rb0FpoaRCoE3p+DMg==",
+  "dgSpecHash": "i2CQusuKLA5usi5QNflC1Y/JD3EpJaIEaKHdjaEaMN5+CQTyuB5ueSGHhdzrcPdu/QbJqlPWf7/0bcONXP+ndg==",
   "success": true,
   "projectFilePath": "C:\\Users\\jovio\\OneDrive\\Documentos\\github\\fatec-app-backend\\FatecAppBackend\\FatecAppBackend.Domain\\FatecAppBackend.Domain.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\jovio\\.nuget\\packages\\flunt\\2.0.5\\flunt.2.0.5.nupkg.sha512"
+    "C:\\Users\\jovio\\.nuget\\packages\\flunt\\2.0.5\\flunt.2.0.5.nupkg.sha512",
+    "C:\\Users\\jovio\\.nuget\\packages\\flunt.extensions.br\\1.0.1\\flunt.extensions.br.1.0.1.nupkg.sha512"
   ],
   "logs": []
 }

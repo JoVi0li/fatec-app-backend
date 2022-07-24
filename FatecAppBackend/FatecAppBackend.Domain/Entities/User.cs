@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Flunt.Extensions.Br.Validations;
 
-namespace FatecAppBackend.Domain
+namespace FatecAppBackend.Domain.Entities
 {
     public class User : Base
     {
@@ -32,7 +33,9 @@ namespace FatecAppBackend.Domain
                     .IsGreaterThan(password, 7, "Password must be greater than 7 characters")
                     .IsNotNull(photo, "Photo", "Photo cannot be null")
                     .IsNotNull(phoneNumber, "PhoneNumber", "PhoneNumber cannot be null")
+                    .IsPhoneNumber(phoneNumber, "PhoneNumber", "Invalid PhoneNumber")
                     .IsNotNull(identityDocNumber, "IdentityDocumentNumber", "IdentityDocumentNumber cannot be null")
+                    .IsCpf(identityDocNumber, "IdentityDocumentNumber", "Invalid IdentityDocumentNumber")
                     .IsNotNull(identityDocPhoto, "IdentityDocumentPhoto", "IdentityDocumentPhoto cannot be null")
                     .IsNotNull(gender, "Gender", "Gender cannot be null")
                     .IsNotNull(validatedUser, "ValidatedUser", "ValidatedUser cannot be null")
@@ -52,7 +55,7 @@ namespace FatecAppBackend.Domain
             }
             else
             {
-                throw new Exception("Invalid User props");
+                AddNotification("User", "Invalid User props");
             }
 
         }
@@ -95,7 +98,7 @@ namespace FatecAppBackend.Domain
             }
             else
             {
-                throw new Exception("Could not update Name");
+                AddNotification("Name", "Could not update Name");
             }
         }
 
@@ -115,7 +118,7 @@ namespace FatecAppBackend.Domain
             }
             else
             {
-                throw new Exception("Could not update Email");
+                AddNotification("Email", "Could not update Email");
             }
         }
 
@@ -134,7 +137,7 @@ namespace FatecAppBackend.Domain
             }
             else
             {
-                throw new Exception("Could not update Password");
+                AddNotification("Password", "Could not update Password");
             }
         }
 
@@ -153,7 +156,7 @@ namespace FatecAppBackend.Domain
             }
             else
             {
-                throw new Exception("Could not update Photo");
+                AddNotification("Photo", "Could not update Photo");
             }
         }
 
@@ -171,7 +174,44 @@ namespace FatecAppBackend.Domain
                 PhoneNumber = newPhoneNumber;
             } else
             {
-                throw new Exception("Could not update PhoneNumber");
+                AddNotification("PhoneNumber", "Could not update PhoneNumber");
+            }
+        }
+
+        public void UpdateIdentityDocumentNumber(string newIdentityDocumentNumber)
+        {
+            AddNotifications(
+                new Contract<Notification>()
+                    .Requires()
+                    .IsNotEmpty(newIdentityDocumentNumber, "IdentityDocumentNumber", "IdentityDocumentNumber cannot be empty")
+                    .AreNotEquals(newIdentityDocumentNumber, IdentityDocumentNumber, "IdentityDocumentNumber", "New IdentityDocumentNumber cannot be equal the old IdentityDocumentNumber")
+            );
+
+            if (IsValid)
+            {
+                IdentityDocumentNumber = newIdentityDocumentNumber;
+            } else
+            {
+                AddNotification("IdentityDocumentNumber", "Could not update IdentityDocumentNumber");
+            }
+        }
+
+        public void UpdateIdentityDocumentPhoto(string newIdentityDocumentPhoto)
+        {
+            AddNotifications(
+                new Contract<Notification>()
+                    .Requires()
+                    .IsNotEmpty(newIdentityDocumentPhoto, "IdentityDocumentPhoto", "IdentityDocumentPhoto cannot be empty")
+                    .AreNotEquals(newIdentityDocumentPhoto, IdentityDocumentPhoto, "IdentityDocumentPhoto", "New IdentityDocumentPhoto cannot be equal the old IdentityDocumentPhoto")
+            );
+
+            if (IsValid)
+            {
+                IdentityDocumentPhoto = newIdentityDocumentPhoto;
+            }
+            else
+            {
+                AddNotification("IdentityDocumentPhoto", "Could not update IdentityDocumentPhoto");
             }
         }
 
@@ -181,7 +221,7 @@ namespace FatecAppBackend.Domain
                 new Contract<Notification>()
                     .Requires()
                     .IsNotNull(newValidatedUser, "ValidatedUser", "ValidatedUser cannot be null")
-                    .AreNotEquals(newValidatedUser, ValidatedUser, "ValidatedUser", "New ValidatedUser number cannot be equal the old ValidatedUser")
+                    .AreNotEquals(newValidatedUser, ValidatedUser, "ValidatedUser", "New ValidatedUser cannot be equal the old ValidatedUser")
             );
 
             if (IsValid)
@@ -189,7 +229,25 @@ namespace FatecAppBackend.Domain
                 ValidatedUser = newValidatedUser;
             } else
             {
-                throw new Exception("Could not update ValidatedUser");
+                AddNotification("ValidatedUser", "Could not update ValidatedUser");
+            }
+        }
+
+        public void UpdateGender(EnGender newGender)
+        {
+            AddNotifications(
+                new Contract<Notification>()
+                    .Requires()
+                    .IsNotNull(newGender, "Gender", "Gender cannot be null")
+                    .AreNotEquals(newGender, Gender, "Gender", "New Gender cannot be equal the old Gender")
+            );
+
+            if (IsValid)
+            {
+                Gender = newGender;
+            } else
+            {
+                AddNotification("Gender", "Could not update Gender");
             }
         }
 

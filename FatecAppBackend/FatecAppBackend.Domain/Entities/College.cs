@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FatecAppBackend.Domain
+namespace FatecAppBackend.Domain.Entities
 {
     public class College : Base
     {
@@ -30,7 +30,7 @@ namespace FatecAppBackend.Domain
                 Localization = localization;
             } else
             {
-                throw new Exception("Invalid College props");
+                AddNotification("College", "Invalid College props");
             }
         }
 
@@ -61,7 +61,7 @@ namespace FatecAppBackend.Domain
                 Name = newName;
             } else
             {
-                throw new Exception("Could not update Name");
+                AddNotification("Name", "Could not update Name");
             }
         }
 
@@ -80,10 +80,9 @@ namespace FatecAppBackend.Domain
             }
             else
             {
-                throw new Exception("Could not update Course");
+                AddNotification("Course", "Could not update Course");
             }
         }
-
 
         public void UpdateTime(EnTime newTime)
         {
@@ -100,7 +99,7 @@ namespace FatecAppBackend.Domain
             }
             else
             {
-                throw new Exception("Could not update Time");
+                AddNotification("Time", "Could not update Time");
             }
         }
 
@@ -119,7 +118,7 @@ namespace FatecAppBackend.Domain
             }
             else
             {
-                throw new Exception("Could not update Localization");
+                AddNotification("Localization", "Could not update Localization");
             }
         }
 

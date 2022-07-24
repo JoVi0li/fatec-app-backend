@@ -17,6 +17,18 @@
           "lib/netstandard2.0/Flunt.dll": {}
         }
       },
+      "Flunt.Extensions.Br/1.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Flunt": "2.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/Flunt.Extensions.Br.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Flunt.Extensions.Br.dll": {}
+        }
+      },
       "Microsoft.CodeCoverage/17.1.0": {
         "type": "package",
         "compile": {
@@ -1685,7 +1697,8 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "FatecAppBackend.Shared": "1.0.0",
-          "Flunt": "2.0.5"
+          "Flunt": "2.0.5",
+          "Flunt.Extensions.Br": "1.0.1"
         },
         "compile": {
           "bin/placeholder/FatecAppBackend.Domain.dll": {}
@@ -1698,7 +1711,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "Flunt": "2.0.5"
+          "Flunt": "2.0.5",
+          "Flunt.Extensions.Br": "1.0.1"
         },
         "compile": {
           "bin/placeholder/FatecAppBackend.Shared.dll": {}
@@ -1772,6 +1786,19 @@
         "flunt.nuspec",
         "icon.png",
         "lib/netstandard2.0/Flunt.dll"
+      ]
+    },
+    "Flunt.Extensions.Br/1.0.1": {
+      "sha512": "Ff/UNcRT7hDAD8jfOD9xHULge4yAqFHghVmEuFPMFZclntwIWShyciME7k3slQ/5p94zgb2DeiG3xHTTN05Xyw==",
+      "type": "package",
+      "path": "flunt.extensions.br/1.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "flunt.extensions.br.1.0.1.nupkg.sha512",
+        "flunt.extensions.br.nuspec",
+        "icon.png",
+        "lib/netstandard2.0/Flunt.Extensions.Br.dll"
       ]
     },
     "Microsoft.CodeCoverage/17.1.0": {
@@ -6031,6 +6058,7 @@
     "net6.0": [
       "FatecAppBackend.Domain >= 1.0.0",
       "Flunt >= 2.0.5",
+      "Flunt.Extensions.Br >= 1.0.1",
       "Microsoft.NET.Test.Sdk >= 17.1.0",
       "coverlet.collector >= 3.1.2",
       "xunit >= 2.4.1",
@@ -6083,6 +6111,10 @@
           "Flunt": {
             "target": "Package",
             "version": "[2.0.5, )"
+          },
+          "Flunt.Extensions.Br": {
+            "target": "Package",
+            "version": "[1.0.1, )"
           },
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",

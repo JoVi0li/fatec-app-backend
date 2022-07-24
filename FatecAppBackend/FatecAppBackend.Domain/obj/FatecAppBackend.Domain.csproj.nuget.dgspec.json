@@ -47,6 +47,10 @@
             "Flunt": {
               "target": "Package",
               "version": "[2.0.5, )"
+            },
+            "Flunt.Extensions.Br": {
+              "target": "Package",
+              "version": "[1.0.1, )"
             }
           },
           "imports": [
@@ -107,6 +111,10 @@
             "Flunt": {
               "target": "Package",
               "version": "[2.0.5, )"
+            },
+            "Flunt.Extensions.Br": {
+              "target": "Package",
+              "version": "[1.0.1, )"
             }
           },
           "imports": [

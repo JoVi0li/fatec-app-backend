@@ -10,6 +10,18 @@
         "runtime": {
           "lib/netstandard2.0/Flunt.dll": {}
         }
+      },
+      "Flunt.Extensions.Br/1.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Flunt": "2.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/Flunt.Extensions.Br.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Flunt.Extensions.Br.dll": {}
+        }
       }
     }
   },
@@ -26,11 +38,25 @@
         "icon.png",
         "lib/netstandard2.0/Flunt.dll"
       ]
+    },
+    "Flunt.Extensions.Br/1.0.1": {
+      "sha512": "Ff/UNcRT7hDAD8jfOD9xHULge4yAqFHghVmEuFPMFZclntwIWShyciME7k3slQ/5p94zgb2DeiG3xHTTN05Xyw==",
+      "type": "package",
+      "path": "flunt.extensions.br/1.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "flunt.extensions.br.1.0.1.nupkg.sha512",
+        "flunt.extensions.br.nuspec",
+        "icon.png",
+        "lib/netstandard2.0/Flunt.Extensions.Br.dll"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "Flunt >= 2.0.5"
+      "Flunt >= 2.0.5",
+      "Flunt.Extensions.Br >= 1.0.1"
     ]
   },
   "packageFolders": {
@@ -75,6 +101,10 @@
           "Flunt": {
             "target": "Package",
             "version": "[2.0.5, )"
+          },
+          "Flunt.Extensions.Br": {
+            "target": "Package",
+            "version": "[1.0.1, )"
           }
         },
         "imports": [
