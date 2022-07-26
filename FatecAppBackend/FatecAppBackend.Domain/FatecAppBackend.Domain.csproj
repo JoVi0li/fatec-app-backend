@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Handlers\Event\" />
     <Folder Include="Handlers\UserCollege\" />
   </ItemGroup>
 

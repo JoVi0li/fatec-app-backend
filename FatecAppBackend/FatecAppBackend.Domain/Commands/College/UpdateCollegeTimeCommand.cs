@@ -12,12 +12,14 @@ namespace FatecAppBackend.Domain.Commands.College
 {
     public class UpdateCollegeTimeCommand : Notifiable<Notification>, ICommand
     {
-        public UpdateCollegeTimeCommand(EnTime time)
+        public UpdateCollegeTimeCommand(EnTime time, Guid id)
         {
             Time = time;
+            Id = id;
         }
 
         public EnTime Time { get; set; }
+        public Guid Id { get; set; }
 
         public void Execute()
         {
@@ -25,6 +27,7 @@ namespace FatecAppBackend.Domain.Commands.College
                 new Contract<Notification>()
                     .Requires()
                     .IsNotNull(Time, "Time", "Time cannot be null")
+                    .IsNotNull(Id, "Id", "Id cannot be null")
             );
         }
     }

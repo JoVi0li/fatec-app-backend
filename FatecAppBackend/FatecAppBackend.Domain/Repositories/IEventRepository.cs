@@ -30,6 +30,13 @@ namespace FatecAppBackend.Domain.Repositories
         Event GetById(Guid id);
 
         /// <summary>
+        /// Search an Event by name
+        /// </summary>
+        /// <param name="name">Event Name</param>
+        /// <returns></returns>
+        Event GetByName(string name);
+
+        /// <summary>
         /// Delete a Event by Id
         /// </summary>
         /// <param name="id">Event Id</param>

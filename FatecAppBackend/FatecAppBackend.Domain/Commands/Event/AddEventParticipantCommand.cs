@@ -12,12 +12,14 @@ namespace FatecAppBackend.Domain.Commands.Event
 {
     public class AddEventParticipantCommand : Notifiable<Notification>, ICommand
     {
-        public AddEventParticipantCommand(Entities.UserCollege participant)
+        public AddEventParticipantCommand(Entities.UserCollege participant, Guid id)
         {
             Participant = participant;
+            Id = id;
         }
 
         public Entities.UserCollege Participant { get; set; }
+        public Guid Id { get; set; }
 
         public void Execute()
         {
@@ -25,6 +27,7 @@ namespace FatecAppBackend.Domain.Commands.Event
                 new Contract<Notification>()
                     .Requires()
                     .IsNotNull(Participant, "Participant", "Participant cannot be null")
+                    .IsNotNull(Id, "Id", "Id cannot be null")
             );
         }
     }

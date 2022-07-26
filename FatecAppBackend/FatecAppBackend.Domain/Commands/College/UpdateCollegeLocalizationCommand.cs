@@ -11,12 +11,14 @@ namespace FatecAppBackend.Domain.Commands.College
 {
     public class UpdateCollegeLocalizationCommand : Notifiable<Notification>, ICommand
     {
-        public UpdateCollegeLocalizationCommand(string localization)
+        public UpdateCollegeLocalizationCommand(string localization, Guid id)
         {
             Localization = localization;
+            Id = id;
         }
 
         public string Localization { get; set; }
+        public Guid Id { get; set; }
 
         public void Execute()
         {
@@ -24,6 +26,7 @@ namespace FatecAppBackend.Domain.Commands.College
                 new Contract<Notification>()
                     .Requires()
                     .IsNotEmpty(Localization, "Localization", "Localization cannot be empty")
+                    .IsNotNull(Id, "Id", "Id cannot be null")
             );
         }
     }

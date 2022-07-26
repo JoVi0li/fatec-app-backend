@@ -12,10 +12,10 @@ namespace FatecAppBackend.Domain.Commands.Event
 {
     public class CreateEventCommand : Notifiable<Notification>, ICommand
     {
-        public CreateEventCommand(Guid eventOwnerId, List<UserCollege> participants, string from, string to, string route, bool onlyWomen, DateTime timeToGo, EnStatus status)
+        public CreateEventCommand(Guid eventOwnerId, List<Entities.UserCollege> participants, string from, string to, string route, bool onlyWomen, DateTime timeToGo, EnStatus status)
         {
             EventOwnerId = eventOwnerId;
-            _participants = participants;
+            Participants = participants;
             From = from;
             To = to;
             Route = route;
@@ -26,7 +26,7 @@ namespace FatecAppBackend.Domain.Commands.Event
 
         public Guid EventOwnerId { get; private set; }
 
-        public List<UserCollege> _participants { get; set; }
+        public List<Entities.UserCollege> Participants { get; set; }
 
         public string From { get; private set; }
 
@@ -46,7 +46,7 @@ namespace FatecAppBackend.Domain.Commands.Event
                 new Contract<Notification>()
                     .Requires()
                     .IsNotNull(EventOwnerId, "EventOwnerId", "EventOwnerId cannot be null")
-                    .IsNotNull(_participants, "Participants", "Participants cannot be null")
+                    .IsNotNull(Participants, "Participants", "Participants cannot be null")
                     .IsNotEmpty(From, "From", "From cannot be empty")
                     .IsNotEmpty(To, "To", "To cannot be empty")
                     .IsNotEmpty(Route, "Route", "Route cannot be empty")

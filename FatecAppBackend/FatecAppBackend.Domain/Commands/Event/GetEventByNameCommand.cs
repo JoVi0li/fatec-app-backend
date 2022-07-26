@@ -7,18 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FatecAppBackend.Domain.Commands.College
+namespace FatecAppBackend.Domain.Commands.Event
 {
-    public class UpdateCollegeNameCommand : Notifiable<Notification>, ICommand
+    internal class GetEventByNameCommand : Notifiable<Notification>, ICommand
     {
-        public UpdateCollegeNameCommand(string name, Guid id)
+        public GetEventByNameCommand(string name)
         {
             Name = name;
-            Id = id;
         }
 
         public string Name { get; set; }
-        public Guid Id { get; set; }
 
         public void Execute()
         {
@@ -26,7 +24,6 @@ namespace FatecAppBackend.Domain.Commands.College
                 new Contract<Notification>()
                     .Requires()
                     .IsNotEmpty(Name, "Name", "Name cannot be empty")
-                    .IsNotNull(Id, "Id", "Id cannot be null")
             );
         }
     }

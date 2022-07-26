@@ -11,12 +11,14 @@ namespace FatecAppBackend.Domain.Commands.College
 {
     public class UpdateCollegeCourseCommand : Notifiable<Notification> , ICommand
     {
-        public UpdateCollegeCourseCommand(string course)
+        public UpdateCollegeCourseCommand(string course, Guid id)
         {
             Course = course;
+            Id = id;
         }
 
         public string Course { get; set; }
+        public Guid Id { get; set; }
 
         public void Execute()
         {
@@ -24,6 +26,7 @@ namespace FatecAppBackend.Domain.Commands.College
                 new Contract<Notification>()
                     .Requires()
                     .IsNotEmpty(Course, "Course", "Course cannot be empty")
+                    .IsNotNull(Id, "Id", "Id cannot be null")
             );
         }
     }

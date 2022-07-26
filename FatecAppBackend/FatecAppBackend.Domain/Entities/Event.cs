@@ -57,7 +57,7 @@ namespace FatecAppBackend.Domain.Entities
         public UserCollege EventOwner { get; private set; }
 
         public IReadOnlyCollection<UserCollege> Participants { get { return _participants; } }
-        public List<UserCollege> _participants { get; set; }
+        private List<UserCollege> _participants { get; set; }
 
         public string From { get; private set; }
 
