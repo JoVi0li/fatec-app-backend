@@ -11,12 +11,14 @@ namespace FatecAppBackend.Domain.Commands.Event
 {
     public class UpdateEventFromCommand : Notifiable<Notification>, ICommand
     {
-        public UpdateEventFromCommand(string from)
+        public UpdateEventFromCommand(string from, Guid id)
         {
             From = from;
+            Id = id;
         }
 
         public string From { get; set; }
+        public Guid Id { get; set; }
 
         public void Execute()
         {

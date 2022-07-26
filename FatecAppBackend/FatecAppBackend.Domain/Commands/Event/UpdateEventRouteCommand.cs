@@ -11,12 +11,14 @@ namespace FatecAppBackend.Domain.Commands.Event
 {
     public class UpdateEventRouteCommand : Notifiable<Notification>, ICommand
     {
-        public UpdateEventRouteCommand(string route)
+        public UpdateEventRouteCommand(string route, Guid id)
         {
             Route = route;
+            Id = id;
         }
 
         public string Route { get; set; }
+        public Guid Id { get; set; }
 
         public void Execute()
         {

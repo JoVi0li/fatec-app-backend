@@ -11,12 +11,14 @@ namespace FatecAppBackend.Domain.Commands.Event
 {
     public class UpdateEventToCommand : Notifiable<Notification>, ICommand
     {
-        public UpdateEventToCommand(string to)
+        public UpdateEventToCommand(string to, Guid id)
         {
             To = to;
+            Id = id;
         }
 
         public string To { get; set; }
+        public Guid Id { get; set; }
 
         public void Execute()
         {
@@ -24,6 +26,7 @@ namespace FatecAppBackend.Domain.Commands.Event
                 new Contract<Notification>()
                     .Requires()
                     .IsNotEmpty(To, "To", "To cannot be empty")
+                    .IsNotNull(Id, "Id", "Id cannot be null")
             );
         }
     }

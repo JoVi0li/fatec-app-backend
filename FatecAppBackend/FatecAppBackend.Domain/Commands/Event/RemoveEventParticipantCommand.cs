@@ -12,12 +12,14 @@ namespace FatecAppBackend.Domain.Commands.Event
 {
     public class RemoveEventParticipantCommand : Notifiable<Notification>, ICommand
     {
-        public RemoveEventParticipantCommand(Guid id)
+        public RemoveEventParticipantCommand(Guid idEvent, Guid idParticipant)
         {
-            Id = id;
+            Id = idEvent;
+            IdParticipant = idParticipant;
         }
 
         public Guid Id { get; set; }
+        public Guid IdParticipant { get; set; }
 
         public void Execute()
         {
@@ -25,6 +27,7 @@ namespace FatecAppBackend.Domain.Commands.Event
                 new Contract<Notification>()
                     .Requires()
                     .IsNotNull(Id, "Id", "Id cannot be null")
+                    .IsNotNull(IdParticipant, "IdParticipant", "IdParticipant cannot be null")
 
             );
         }

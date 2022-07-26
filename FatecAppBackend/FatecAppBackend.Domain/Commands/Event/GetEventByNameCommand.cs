@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FatecAppBackend.Domain.Commands.Event
 {
-    internal class GetEventByNameCommand : Notifiable<Notification>, ICommand
+    public class GetEventByNameCommand : Notifiable<Notification>, ICommand
     {
         public GetEventByNameCommand(string name)
         {

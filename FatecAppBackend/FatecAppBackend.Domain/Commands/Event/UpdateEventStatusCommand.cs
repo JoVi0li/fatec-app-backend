@@ -12,12 +12,14 @@ namespace FatecAppBackend.Domain.Commands.Event
 {
     public class UpdateEventStatusCommand : Notifiable<Notification>, ICommand
     {
-        public UpdateEventStatusCommand(EnStatus status)
+        public UpdateEventStatusCommand(EnStatus status, Guid id)
         {
             Status = status;
+            Id = id;
         }
 
         public EnStatus Status { get; set; }
+        public Guid Id { get; set; }
 
         public void Execute()
         {
@@ -25,6 +27,7 @@ namespace FatecAppBackend.Domain.Commands.Event
                 new Contract<Notification>()
                     .Requires()
                     .IsNotNull(Status, "Status", "Status cannot be null")
+                    .IsNotNull(Id, "Id", "Id cannot be null")
             );
         }
     }

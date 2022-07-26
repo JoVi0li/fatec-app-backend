@@ -11,12 +11,14 @@ namespace FatecAppBackend.Domain.Commands.Event
 {
     public class UpdateEventOnlyWomenCommand : Notifiable<Notification>, ICommand
     {
-        public UpdateEventOnlyWomenCommand(bool onlyWomen)
+        public UpdateEventOnlyWomenCommand(bool onlyWomen, Guid id)
         {
             OnlyWomen = onlyWomen;
+            Id = id;
         }
 
         public bool OnlyWomen { get; set; }
+        public Guid Id { get; set; }
 
         public void Execute()
         {
@@ -24,6 +26,7 @@ namespace FatecAppBackend.Domain.Commands.Event
                 new Contract<Notification>()
                     .Requires()
                     .IsNotNull(OnlyWomen, "OnlyWomen", "OnlyWomen cannot be null")
+                    .IsNotNull(Id, "Id", "Id cannot be null")
             );
         }
     }

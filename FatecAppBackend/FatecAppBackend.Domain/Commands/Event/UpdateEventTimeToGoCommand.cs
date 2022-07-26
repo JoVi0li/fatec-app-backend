@@ -11,12 +11,14 @@ namespace FatecAppBackend.Domain.Commands.Event
 {
     public class UpdateEventTimeToGoCommand : Notifiable<Notification>, ICommand
     {
-        public UpdateEventTimeToGoCommand(DateTime timeToGo)
+        public UpdateEventTimeToGoCommand(DateTime timeToGo, Guid id)
         {
             TimeToGo = timeToGo;
+            Id = id;
         }
 
         public DateTime TimeToGo { get; set; }
+        public Guid Id { get; set; }
 
         public void Execute()
         {

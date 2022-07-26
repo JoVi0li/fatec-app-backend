@@ -34,7 +34,7 @@ namespace FatecAppBackend.Domain.Repositories
         /// </summary>
         /// <param name="name">Event Name</param>
         /// <returns></returns>
-        Event GetByName(string name);
+        IReadOnlyCollection<Event> GetByName(string name);
 
         /// <summary>
         /// Delete a Event by Id
@@ -57,37 +57,37 @@ namespace FatecAppBackend.Domain.Repositories
         /// <summary>
         /// Updathe the From
         /// </summary>
-        /// <param name="from">New From</param>
-        void UpdateFrom(string from);
+        /// <param name="event">Event with the new From</param>
+        void UpdateFrom(Event @event);
 
         /// <summary>
         /// Update the To
         /// </summary>
-        /// <param name="to">New To</param>
-        void UpdateTo(string to);
+        /// <param name="event">Event with the new To</param>
+        void UpdateTo(Event @event);
         
         /// <summary>
         /// Update the OnlyWomen
         /// </summary>
-        /// <param name="onlyWomen">New OnlyWomen</param>
-        void UpdateOnlyWomen(bool onlyWomen);
+        /// <param name=event">Event with the new OnlyWomen</param>
+        void UpdateOnlyWomen(Event @event);
 
         /// <summary>
         /// Update the Route
         /// </summary>
-        /// <param name="route">New Route</param>
-        void UpdateRoute(string route);
+        /// <param name="event">Event with the new Route</param>
+        void UpdateRoute(Event @event);
 
         /// <summary>
         /// Update the TimeToGo
         /// </summary>
-        /// <param name="timeToGo">New TimeToGo</param>
-        void UpdateTimeToGo(DateTime timeToGo);
+        /// <param name="event">Event with the new TimeToGo</param>
+        void UpdateTimeToGo(Event @event);
 
         /// <summary>
         /// Update the Status
         /// </summary>
-        /// <param name="status">New Status</param>
-        void UpdateStatus(EnStatus status);
+        /// <param name="event">Event with the new Status</param>
+        void UpdateStatus(Event @event);
     }
 }
