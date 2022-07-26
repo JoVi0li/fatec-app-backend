@@ -49,25 +49,25 @@ namespace FatecAppBackend.Domain.Repositories
         /// <summary>
         /// Update the GraduationDate
         /// </summary>
-        /// <param name="graduationDate">New GraduationDate</param>
-        void UpdateGraduationDate(DateTime graduationDate);
+        /// <param name="userCollege">UserCollege with the new GraduationDate</param>
+        void UpdateGraduationDate(UserCollege userCollege);
 
         /// <summary>
-        /// Update the ProofDocumen
+        /// Update the ProofDocument
         /// </summary>
-        /// <param name="proofDocument">New ProofDocument</param>
-        void UpdateProofDocument(string proofDocument);
+        /// <param name="userCollege">UserCollege with the new ProofDocument</param>
+        void UpdateProofDocument(UserCollege userCollege);
 
         /// <summary>
         /// Update the StudentNumber
         /// </summary>
-        /// <param name="studentNumber">New StudentNumber</param>
-        void UpdateStudentNumber(string studentNumber);
+        /// <param name="userCollege">UserCollege with the new StudentNumber</param>
+        void UpdateStudentNumber(UserCollege userCollege);
 
         /// <summary>
         /// Update the ValidatedUser
         /// </summary>
-        /// <param name="validatedUser">New ValidatedUser</param>
-        void UpdateValidatedUser(bool validatedUser);
+        /// <param name="userCollege">UserCollege with the new ValidatedUser</param>
+        void UpdateValidatedUser(UserCollege userCollege);
     }
 }
