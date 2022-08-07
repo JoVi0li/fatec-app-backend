@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FatecAppBackend.Domain.Handlers.User
 {
-    internal class UpdateUserIdentityDocumentNumberHandler : Notifiable<Notification>, IHandler<UpdateUserIdentityDocumentNumberCommand>
+    public class UpdateUserIdentityDocumentNumberHandler : Notifiable<Notification>, IHandler<UpdateUserIdentityDocumentNumberCommand>
     {
         private readonly IUserRepository _userRepository;
 

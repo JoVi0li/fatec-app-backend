@@ -26,14 +26,14 @@ namespace FatecAppBackend.Domain.Repositories
         /// </summary>
         /// <param name="id">User Id</param>
         /// <returns>A User</returns>
-        User GetById(Guid id);
+        User? GetById(Guid id);
 
         /// <summary>
         /// Search an User by Email
         /// </summary>
-        /// <param name="name">User Email</param>
+        /// <param name="email">User Email</param>
         /// <returns>An User</returns>
-        User GetByEmail(string name);
+        User? GetByEmail(string email);
 
         /// <summary>
         /// Delete an user with the Id

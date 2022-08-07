@@ -26,7 +26,7 @@ namespace FatecAppBackend.Domain.Repositories
         /// </summary>
         /// <param name="id">UserCollege Id</param>
         /// <returns>An UserCollege</returns>
-        UserCollege GetById(Guid id);
+        UserCollege? GetById(Guid id);
 
         /// <summary>
         /// Delete an UserCollege by Id
@@ -37,14 +37,14 @@ namespace FatecAppBackend.Domain.Repositories
         /// <summary>
         /// Update the CollegeId
         /// </summary>
-        /// <param name="id">New CollegeId</param>
-        void UpdateCollegeId(Guid id);
+        /// <param name="userCollege">New CollegeId</param>
+        void UpdateCollegeId(UserCollege userCollege);
 
         /// <summary>
         /// Update the UserId
         /// </summary>
-        /// <param name="id">New UserId</param>
-        void UpdateUserId(Guid id);
+        /// <param name="userCollege">New UserId</param>
+        void UpdateUserId(UserCollege userCollege);
 
         /// <summary>
         /// Update the GraduationDate

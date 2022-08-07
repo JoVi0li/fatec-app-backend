@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "9tgUlSOHmbYQooedfyi5X903WUROhjDzrvDPk7z7Ma0=",
+  "Source": "FatecAppBackend.API",
+  "BasePath": "_content/FatecAppBackend.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

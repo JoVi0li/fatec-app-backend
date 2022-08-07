@@ -27,14 +27,14 @@ namespace FatecAppBackend.Domain.Repositories
         /// </summary>
         /// <param name="id">College Id</param>
         /// <returns>A College</returns>
-        College GetById(Guid id);
+        College? GetById(Guid id);
 
         /// <summary>
         /// Search a College by Name
         /// </summary>
         /// <param name="name"></param>
-        /// <returns></returns>
-        College GetByName(string name);
+        /// <returns>A list of Colleges</returns>
+        College? GetByName(string name);
 
         /// <summary>
         /// Delete a College with the Id

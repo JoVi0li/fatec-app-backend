@@ -20,39 +20,20 @@ namespace FatecAppBackend.Domain.Repositories
         /// Get a list of all Events
         /// </summary>
         /// <returns>A list of Events</returns>
-        ICollection<Event> GetAll();
+        IReadOnlyCollection<Event> GetAll();
 
         /// <summary>
         /// Search an Event by Id
         /// </summary>
         /// <param name="id">Event Id</param>
         /// <returns>An Event</returns>
-        Event GetById(Guid id);
-
-        /// <summary>
-        /// Search an Event by name
-        /// </summary>
-        /// <param name="name">Event Name</param>
-        /// <returns></returns>
-        IReadOnlyCollection<Event> GetByName(string name);
+        Event? GetById(Guid id);
 
         /// <summary>
         /// Delete a Event by Id
         /// </summary>
         /// <param name="id">Event Id</param>
         void Delete(Guid id);
-
-        /// <summary>
-        /// Add a participant to the Event
-        /// </summary>
-        /// <param name="participant">Participant props</param>
-        void AddParticipant(UserCollege participant);
-
-        /// <summary>
-        /// Remove a participant from the Event
-        /// </summary>
-        /// <param name="id">Participant Id</param>
-        void RemoveParticipant(Guid id);
 
         /// <summary>
         /// Updathe the From

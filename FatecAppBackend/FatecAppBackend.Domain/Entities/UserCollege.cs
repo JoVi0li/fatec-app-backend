@@ -4,6 +4,7 @@ using Flunt.Notifications;
 using Flunt.Validations;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,11 @@ namespace FatecAppBackend.Domain.Entities
 {
     public class UserCollege : Base
     {
+        public UserCollege()
+        {
+
+        }
+
         public UserCollege(
             Guid userId,
             Guid collegeId,
@@ -46,9 +52,11 @@ namespace FatecAppBackend.Domain.Entities
             }
         }
 
+        [ForeignKey("User")]
         public Guid UserId { get; private set; }
         public User User { get; private set; }
 
+        [ForeignKey("College")]
         public Guid CollegeId { get; private set; }
         public College College { get; private set; }
 
@@ -60,10 +68,10 @@ namespace FatecAppBackend.Domain.Entities
 
         public DateTime GraduationDate { get; private set; }
 
-        public IReadOnlyCollection<Event> Events { get { return _events; } }
-        private List<Event> _events { get; set; }
-
+        public ICollection<Event> Events { get; set; }
         
+        public virtual ICollection<Participant> Participants { get; set; } 
+
         // Updates
 
         public void UpdateStudentNumber(string newStudentNumber)
@@ -140,14 +148,14 @@ namespace FatecAppBackend.Domain.Entities
 
         public void AddEvent(Event @event)
         {
-            if(_events.Any(x => x.Id == @event.Id))
+            if(Events.Any(x => x.Id == @event.Id))
             {
                 AddNotification("Event", "Event already exists");
             } else
             {
                 if (IsValid)
                 {
-                    _events.Add(@event);
+                    Events.Add(@event);
                 } else
                 {
                     AddNotification("Event", "Could not add Event");
@@ -157,7 +165,7 @@ namespace FatecAppBackend.Domain.Entities
 
         public void RemoveEvent(Guid id)
         {
-            Event? @event = _events.FirstOrDefault(x => x.Id == id);
+            Event? @event = Events.FirstOrDefault(x => x.Id == id);
 
             if (IsValid)
             {
@@ -167,7 +175,7 @@ namespace FatecAppBackend.Domain.Entities
                 }
                 else
                 {
-                    _events.Remove(@event);
+                    Events.Remove(@event);
                 }
             } else
             {

@@ -11,6 +11,11 @@ namespace FatecAppBackend.Domain.Entities
 {
     public class College : Base
     {
+        public College()
+        {
+
+        }
+
         public College(string name, string course, EnTime time, string localization)
         {
             AddNotifications(

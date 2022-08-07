@@ -12,6 +12,11 @@ namespace FatecAppBackend.Domain.Entities
 {
     public class User : Base
     {
+        public User()
+        {
+
+        }
+
         public User(
             string name,
             string email,

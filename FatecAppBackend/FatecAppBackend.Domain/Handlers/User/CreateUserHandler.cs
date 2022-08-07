@@ -2,6 +2,7 @@
 using FatecAppBackend.Domain.Repositories;
 using FatecAppBackend.Shared.Commands;
 using FatecAppBackend.Shared.Handlers.Contracts;
+using FatecAppBackend.Shared.Utils;
 using Flunt.Notifications;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,8 @@ namespace FatecAppBackend.Domain.Handlers.User
             {
                 return new GenericCommandsResult(false, "User already Exists", command.Notifications);
             }
+
+            command.Password = PasswordEncryption.Encrypt(command.Password);
 
             Entities.User newUser = new(
                 command.Name,

@@ -25,23 +25,23 @@ namespace FatecAppBackend.Domain.Commands.User
             ValidatedUser = validatedUser;
         }
 
-        public string Name { get; private set; }
+        public string Name { get;  set; }
 
-        public string Email { get; private set; }
+        public string Email { get;  set; }
 
-        public string Password { get; private set; }
+        public string Password { get;  set; }
 
-        public string Photo { get; private set; }
+        public string Photo { get;  set; }
 
-        public string PhoneNumber { get; private set; }
+        public string PhoneNumber { get;  set; }
 
-        public string IdentityDocumentNumber { get; private set; }
+        public string IdentityDocumentNumber { get;  set; }
 
-        public string IdentityDocumentPhoto { get; private set; }
+        public string IdentityDocumentPhoto { get;  set; }
 
-        public EnGender Gender { get; private set; }
+        public EnGender Gender { get;  set; }
 
-        public bool ValidatedUser { get; private set; }
+        public bool ValidatedUser { get;  set; }
 
         public void Execute()
         {

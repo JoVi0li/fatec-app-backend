@@ -4,6 +4,7 @@ using Flunt.Notifications;
 using Flunt.Validations;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,9 +13,13 @@ namespace FatecAppBackend.Domain.Entities
 {
     public class Event : Base
     {
+        public Event()
+        {
+
+        }
+
         public Event(
             Guid eventOwnerId,
-            List<UserCollege> participants,
             string from,
             string to,
             string route,
@@ -27,7 +32,6 @@ namespace FatecAppBackend.Domain.Entities
                 new Contract<Notification>()
                     .Requires()
                     .IsNotNull(eventOwnerId, "EventOwnerId", "EventOwnerId cannot be null")
-                    .IsNotNull(participants, "Participants", "Participants cannot be null")
                     .IsNotEmpty(from, "From", "From cannot be empty")
                     .IsNotEmpty(to, "To", "To cannot be empty")
                     .IsNotEmpty(route, "Route", "Route cannot be empty")
@@ -39,7 +43,6 @@ namespace FatecAppBackend.Domain.Entities
             if (IsValid)
             {
                 EventOwnerId = eventOwnerId;
-                _participants = participants;
                 From = from;
                 To = to;
                 Route = route;
@@ -53,11 +56,9 @@ namespace FatecAppBackend.Domain.Entities
 
         }
 
+        [ForeignKey("UserCollege")]
         public Guid EventOwnerId { get; private set; }
         public UserCollege EventOwner { get; private set; }
-
-        public IReadOnlyCollection<UserCollege> Participants { get { return _participants; } }
-        private List<UserCollege> _participants { get; set; }
 
         public string From { get; private set; }
 
@@ -71,61 +72,10 @@ namespace FatecAppBackend.Domain.Entities
 
         public EnStatus Status { get; private set; }
 
+        public virtual ICollection<Participant> Participants { get; set; }
+
 
         // Updates
-
-        public void AddParticipant(UserCollege newParticipant)
-        {
-            AddNotifications(
-                new Contract<Notification>()
-                    .Requires()
-                    .IsNotNull(newParticipant, "Participant", "Participant cannot be null")
-            );
-
-            if (IsValid)
-            {
-                bool participantAlreadyExits = _participants.Contains(newParticipant);
-
-                if (participantAlreadyExits)
-                {
-                    AddNotification("Participant", "Participant already exits");
-                }
-                else
-                {
-                    _participants.Add(newParticipant);
-                }
-            }
-            else
-            {
-                AddNotification("Participant", "Could not add Participant");
-            }
-        }
-
-        public void RemoveParticipant(Guid participantId)
-        {
-            AddNotifications(
-                new Contract<Notification>()
-                     .Requires()
-                     .IsNotNull(participantId, "Id", "Id cannot be null")
-            );
-
-            if (IsValid)
-            {
-                UserCollege? participant = _participants.FirstOrDefault(x => x.Id == participantId);
-
-                if(participant == null)
-                {
-                    AddNotification("Participant", "Participant nonexistent");
-                }
-                else
-                {
-                    _participants.Remove(participant);
-                }
-            } else
-            {
-                AddNotification("Participant", "Could not remove Participant");
-            }
-        }
 
         public void UpdateFrom(string newFrom)
         {

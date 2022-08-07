@@ -40,7 +40,6 @@ namespace FatecAppBackend.Domain.Handlers.Event
 
             Entities.Event @event = new(
                 command.EventOwnerId,
-                command.Participants,
                 command.From,
                 command.To,
                 command.Route,

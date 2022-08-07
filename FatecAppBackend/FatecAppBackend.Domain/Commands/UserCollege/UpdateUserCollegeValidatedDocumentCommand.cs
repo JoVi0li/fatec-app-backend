@@ -11,12 +11,14 @@ namespace FatecAppBackend.Domain.Commands.UserCollege
 {
     public class UpdateUserCollegeValidatedDocumentCommand : Notifiable<Notification>, ICommand
     {
-        public UpdateUserCollegeValidatedDocumentCommand(bool validatedDocument)
+        public UpdateUserCollegeValidatedDocumentCommand(bool validatedDocument, Guid id)
         {
             ValidatedDocument = validatedDocument;
+            Id = id;
         }
 
         public bool ValidatedDocument { get; set; }
+        public Guid Id { get; set; }
 
         public void Execute()
         {
@@ -24,6 +26,7 @@ namespace FatecAppBackend.Domain.Commands.UserCollege
                 new Contract<Notification>()
                     .Requires()
                     .IsNotNull(ValidatedDocument, "ValidatedDocument", "ValidatedDocument cannot be null")
+                    .IsNotNull(Id, "Id", "Id cannot be null")
             );
         }
     }
