@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FatecAppBackend.Domain.Handlers.User
 {
-    public class UpdateUserPhoneNumberHandler : Notifiable<Notification>, IHandler<UpdateUserPhoneNumberCommand>
+    public class UpdateUserPhoneNumberHandler : Notifiable<Notification>, IHandlerCommand<UpdateUserPhoneNumberCommand>
     {
         private readonly IUserRepository _userRepository;
 

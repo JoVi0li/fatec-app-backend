@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FatecAppBackend.Domain.Handlers.College
 {
-    public class CreateCollegeHandler : Notifiable<Notification>, IHandler<CreateCollegeCommand>
+    public class CreateCollegeHandler : Notifiable<Notification>, IHandlerCommand<CreateCollegeCommand>
     {
         private ICollegeRepository _collegeRepository;
 

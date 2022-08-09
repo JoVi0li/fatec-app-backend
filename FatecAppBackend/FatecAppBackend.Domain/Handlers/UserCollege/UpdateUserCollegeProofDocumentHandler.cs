@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FatecAppBackend.Domain.Handlers.UserCollege
 {
-    public class UpdateUserCollegeProofDocumentHandler : Notifiable<Notification>, IHandler<UpdateUserCollegeProofDocumentCommand>
+    public class UpdateUserCollegeProofDocumentHandler : Notifiable<Notification>, IHandlerCommand<UpdateUserCollegeProofDocumentCommand>
     {
         private readonly IUserCollegeRepository _userCollegeRepository;
 

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FatecAppBackend.Domain.Handlers.Event
 {
-    public class UpdateEventRouteHandler : Notifiable<Notification>, IHandler<UpdateEventRouteCommand>
+    public class UpdateEventRouteHandler : Notifiable<Notification>, IHandlerCommand<UpdateEventRouteCommand>
     {
         private readonly IEventRepository _eventRepository;
 

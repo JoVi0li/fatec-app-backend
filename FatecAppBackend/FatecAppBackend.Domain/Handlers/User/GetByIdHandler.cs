@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FatecAppBackend.Domain.Handlers.User
 {
-    public class GetByIdHandler : Notifiable<Notification>, IHandler<GetUserByIdCommand>
+    public class GetByIdHandler : Notifiable<Notification>, IHandlerCommand<GetUserByIdCommand>
     {
         private readonly IUserRepository _userRepository;
 

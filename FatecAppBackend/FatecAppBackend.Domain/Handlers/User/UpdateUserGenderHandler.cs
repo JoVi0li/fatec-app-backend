@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FatecAppBackend.Domain.Handlers.User
 {
-    public class UpdateUserGenderHandler : Notifiable<Notification>, IHandler<UpdateUserGenderCommand>
+    public class UpdateUserGenderHandler : Notifiable<Notification>, IHandlerCommand<UpdateUserGenderCommand>
     {
         private readonly IUserRepository _userRepository;
 

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FatecAppBackend.Domain.Handlers.Participant
 {
-    public class GetParticipantByUserCollegeIdHandler : Notifiable<Notification>, IHandler<GetParticipantByUserCollegeIdCommand>
+    public class GetParticipantByUserCollegeIdHandler : Notifiable<Notification>, IHandlerCommand<GetParticipantByUserCollegeIdCommand>
     {
         private IParticipantRepository _participantRepository;
 

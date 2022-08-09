@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FatecAppBackend.Domain.Handlers.Event
 {
-    public class CreateEventHandler : Notifiable<Notification>, IHandler<CreateEventCommand>
+    public class CreateEventHandler : Notifiable<Notification>, IHandlerCommand<CreateEventCommand>
     {
         private readonly IEventRepository _eventRepository;
         private readonly IUserCollegeRepository _userCollegeRepository;

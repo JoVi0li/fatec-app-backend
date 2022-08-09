@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FatecAppBackend.Domain.Handlers.User
 {
-    public class UpdateUserValidatedUserHandler : Notifiable<Notification>, IHandler<UpdateUserValidatedUserCommand>
+    public class UpdateUserValidatedUserHandler : Notifiable<Notification>, IHandlerCommand<UpdateUserValidatedUserCommand>
     {
         private readonly IUserRepository _userRepository;
 

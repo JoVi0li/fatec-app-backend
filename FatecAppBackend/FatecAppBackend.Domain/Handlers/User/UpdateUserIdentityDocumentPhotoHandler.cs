@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FatecAppBackend.Domain.Handlers.User
 {
-    public class UpdateUserIdentityDocumentPhotoHandler : Notifiable<Notification>, IHandler<UpdateUserIdentityDocumentPhotoCommand>
+    public class UpdateUserIdentityDocumentPhotoHandler : Notifiable<Notification>, IHandlerCommand<UpdateUserIdentityDocumentPhotoCommand>
     {
         private readonly IUserRepository _userRepository;
 

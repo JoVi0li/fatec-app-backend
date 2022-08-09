@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FatecAppBackend.Domain.Handlers.User
 {
-    public class RemoveUserHandler : Notifiable<Notification>, IHandler<RemoveUserCommand>
+    public class RemoveUserHandler : Notifiable<Notification>, IHandlerCommand<RemoveUserCommand>
     {
         private readonly IUserRepository _userRepository;
 

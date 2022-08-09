@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace FatecAppBackend.Domain.Handlers.Authentication
 {
-    public class SignInHandler : Notifiable<Notification>, IHandler<SignInCommand>
+    public class SignInHandler : Notifiable<Notification>, IHandlerCommand<SignInCommand>
     {
         private readonly IUserRepository _userRepository;
 
@@ -35,6 +35,11 @@ namespace FatecAppBackend.Domain.Handlers.Authentication
             if(user == null)
             {
                 return new GenericCommandsResult(false, "Invalid props", 0);
+            }
+
+            if (!user.IsValid)
+            {
+                return new GenericCommandsResult(false, "Invalid user", 0);
             }
 
             if(!PasswordEncryption.IsValid(command.Password, user.Password))

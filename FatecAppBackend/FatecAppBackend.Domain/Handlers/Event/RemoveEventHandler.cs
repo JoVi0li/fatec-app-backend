@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FatecAppBackend.Domain.Handlers.Event
 {
-    public class RemoveEventHandler : Notifiable<Notification>, IHandler<RemoveEventCommand>
+    public class RemoveEventHandler : Notifiable<Notification>, IHandlerCommand<RemoveEventCommand>
     {
         private readonly IEventRepository _eventRepository;
 

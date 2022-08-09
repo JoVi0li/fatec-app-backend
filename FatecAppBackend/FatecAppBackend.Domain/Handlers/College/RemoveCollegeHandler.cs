@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FatecAppBackend.Domain.Handlers.College
 {
-    public class RemoveCollegeHandler : Notifiable<Notification>, IHandler<RemoveCollegeCommand>
+    public class RemoveCollegeHandler : Notifiable<Notification>, IHandlerCommand<RemoveCollegeCommand>
     {
         private readonly ICollegeRepository _collegeRepository;
 
@@ -33,12 +33,12 @@ namespace FatecAppBackend.Domain.Handlers.College
 
             if(college == null)
             {
-                return new GenericCommandsResult(false, "User not found", "Inform another Id");
+                return new GenericCommandsResult(false, "College not found", "Inform another Id");
             }
 
             _collegeRepository.Delete(college.Id);
 
-            return new GenericCommandsResult(false, "User removed", college.Id);
+            return new GenericCommandsResult(true, "College removed", college.Id);
         }
     }
 }

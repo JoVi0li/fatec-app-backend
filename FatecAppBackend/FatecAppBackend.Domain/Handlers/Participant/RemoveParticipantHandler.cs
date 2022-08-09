@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FatecAppBackend.Domain.Handlers.Participant
 {
-    public class RemoveParticipantHandler : Notifiable<Notification>, IHandler<RemoveParticipantCommand>
+    public class RemoveParticipantHandler : Notifiable<Notification>, IHandlerCommand<RemoveParticipantCommand>
     {
         private IParticipantRepository _participantRepository;
 

@@ -1,5 +1,6 @@
 ﻿using FatecAppBackend.Domain.Commands.College;
 using FatecAppBackend.Domain.Handlers.College;
+using FatecAppBackend.Domain.Repositories;
 using FatecAppBackend.Shared.Commands;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +11,12 @@ namespace FatecAppBackend.API.Controllers
     [ApiController]
     public class CollegeController : ControllerBase
     {
+        private readonly ICollegeRepository _collegeRepository;
+
+        public CollegeController(ICollegeRepository collegeRepository)
+        {
+            _collegeRepository = collegeRepository;
+        }
 
         [Route("create")]
         [HttpPost]
@@ -17,5 +24,27 @@ namespace FatecAppBackend.API.Controllers
         {
             return (GenericCommandsResult)handler.Execute(command);
         }
+
+        [Route("delete")]
+        [HttpDelete]
+        public GenericCommandsResult Delete(RemoveCollegeCommand command, [FromServices] RemoveCollegeHandler handler)
+        {
+            return (GenericCommandsResult)handler.Execute(command);
+        }
+
+        [Route("get")]
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok(_collegeRepository.GetAll());
+        }
+
+        [Route("get/byid")]
+        [HttpGet]
+        public GenericCommandsResult GetById(GetCollegeByIdCommand command, [FromServices] GetCollegeByIdHandler handler)
+        {
+            return (GenericCommandsResult)handler.Execute(command);
+        }
+
     }
 }

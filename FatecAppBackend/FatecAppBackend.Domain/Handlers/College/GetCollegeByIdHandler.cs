@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FatecAppBackend.Domain.Handlers.College
 {
-    public class GetCollegeByIdHandler : Notifiable<Notification>, IHandler<GetCollegeByIdCommand>
+    public class GetCollegeByIdHandler : Notifiable<Notification>, IHandlerCommand<GetCollegeByIdCommand>
     {
         private readonly ICollegeRepository _collegeRepository;
 

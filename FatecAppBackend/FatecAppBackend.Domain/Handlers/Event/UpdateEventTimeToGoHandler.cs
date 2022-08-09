@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FatecAppBackend.Domain.Handlers.Event
 {
-    public class UpdateEventTimeToGoHandler : Notifiable<Notification>, IHandler<UpdateEventTimeToGoCommand>
+    public class UpdateEventTimeToGoHandler : Notifiable<Notification>, IHandlerCommand<UpdateEventTimeToGoCommand>
     {
         private readonly IEventRepository _eventRepository;
 

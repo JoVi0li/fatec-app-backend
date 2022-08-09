@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FatecAppBackend.Domain.Handlers.Event
 {
-    public class UpdateEventOnlyWomenHandler : Notifiable<Notification>, IHandler<UpdateEventOnlyWomenCommand>
+    public class UpdateEventOnlyWomenHandler : Notifiable<Notification>, IHandlerCommand<UpdateEventOnlyWomenCommand>
     {
         private readonly IEventRepository _eventRepository;
 

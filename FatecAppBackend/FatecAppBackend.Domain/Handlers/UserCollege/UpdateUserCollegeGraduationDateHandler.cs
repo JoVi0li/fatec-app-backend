@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FatecAppBackend.Domain.Handlers.UserCollege
 {
-    public class UpdateUserCollegeGraduationDateHandler : Notifiable<Notification>, IHandler<UpdateUserCollegeGraduationDateCommand>
+    public class UpdateUserCollegeGraduationDateHandler : Notifiable<Notification>, IHandlerCommand<UpdateUserCollegeGraduationDateCommand>
     {
         private readonly IUserCollegeRepository _userCollegeRepository;
 

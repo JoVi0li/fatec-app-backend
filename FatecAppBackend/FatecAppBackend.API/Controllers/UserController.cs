@@ -3,6 +3,7 @@ using FatecAppBackend.Domain.Commands.User;
 using FatecAppBackend.Domain.Entities;
 using FatecAppBackend.Domain.Handlers.Authentication;
 using FatecAppBackend.Domain.Handlers.User;
+using FatecAppBackend.Domain.Repositories;
 using FatecAppBackend.Shared.Commands;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +18,13 @@ namespace FatecAppBackend.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        private readonly IUserRepository _userRepository;
+
+        public UserController(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
+
         [Route("signup")]
         [HttpPost]
         public GenericCommandsResult SignUp(CreateUserCommand createUserCommand, [FromServices] CreateUserHandler handler)
@@ -37,6 +45,34 @@ namespace FatecAppBackend.API.Controllers
             }
 
             return new GenericCommandsResult(result.Success, result.Message, 0);
+        }
+
+        [Route("delete")]
+        [HttpDelete]
+        public GenericCommandsResult Delete(RemoveUserCommand command, [FromServices] RemoveUserHandler handler)
+        {
+            return (GenericCommandsResult)handler.Execute(command);
+        }
+
+        [Route("get")]
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok(_userRepository.GetAll());
+        }
+
+        [Route("get/byid")]
+        [HttpGet]
+        public GenericCommandsResult GetById(GetUserByIdCommand command, [FromServices] GetByIdHandler handler)
+        {
+            return (GenericCommandsResult)handler.Execute(command);
+        }
+
+        [Route("get/byemail")]
+        [HttpGet]
+        public GenericCommandsResult GetByEmail(GetUserByEmailCommand command, [FromServices] GetUserByEmailHandler handler)
+        {
+            return (GenericCommandsResult)handler.Execute(command);
         }
 
         private string GenerateJSONWebToken(User user)

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace FatecAppBackend.Domain.Handlers.User
 {
-    public class CreateUserHandler : Notifiable<Notification>, IHandler<CreateUserCommand>
+    public class CreateUserHandler : Notifiable<Notification>, IHandlerCommand<CreateUserCommand>
     {
         private readonly IUserRepository _userRepository;
 

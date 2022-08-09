@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FatecAppBackend.Shared.Handlers.Contracts
 {
-    public interface IHandler<T> where T : ICommand
+    public interface IHandlerCommand<T> where T : ICommand
     {
         ICommandResult Execute(T command);
     }

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FatecAppBackend.Domain.Handlers.College
 {
-    public class UpdateCollegeLocalizationHandler : Notifiable<Notification>, IHandler<UpdateCollegeLocalizationCommand>
+    public class UpdateCollegeLocalizationHandler : Notifiable<Notification>, IHandlerCommand<UpdateCollegeLocalizationCommand>
     {
         private readonly ICollegeRepository _collegeRepository;
 

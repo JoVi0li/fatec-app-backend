@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FatecAppBackend.Domain.Handlers.User
 {
-    public class UpdateUserPasswordHandler : Notifiable<Notification>, IHandler<UpdateUserPasswordCommand>
+    public class UpdateUserPasswordHandler : Notifiable<Notification>, IHandlerCommand<UpdateUserPasswordCommand>
     {
         private readonly IUserRepository _userRepository;
 
