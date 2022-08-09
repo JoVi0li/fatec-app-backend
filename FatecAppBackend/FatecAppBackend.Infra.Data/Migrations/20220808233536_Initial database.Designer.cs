@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FatecAppBackend.Infra.Data.Migrations
 {
     [DbContext(typeof(FatecAppBackendContext))]
-    [Migration("20220807221033_Initial Database")]
-    partial class InitialDatabase
+    [Migration("20220808233536_Initial database")]
+    partial class Initialdatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -161,12 +161,13 @@ namespace FatecAppBackend.Infra.Data.Migrations
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(12)
+                        .HasColumnType("varchar(12)");
 
                     b.Property<string>("Photo")
                         .IsRequired()
-                        .HasMaxLength(11)
-                        .HasColumnType("varchar(11)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("varchar(1000)");
 
                     b.Property<bool>("ValidatedUser")
                         .HasColumnType("bit");

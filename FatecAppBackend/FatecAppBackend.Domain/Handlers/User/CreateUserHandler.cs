@@ -48,7 +48,7 @@ namespace FatecAppBackend.Domain.Handlers.User
                 command.IdentityDocumentNumber,
                 command.IdentityDocumentPhoto,
                 command.Gender,
-                command.ValidatedUser
+                false
             );
 
             if (!newUser.IsValid)

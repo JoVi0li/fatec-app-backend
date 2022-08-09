@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FatecAppBackend.Infra.Data.Migrations
 {
-    public partial class InitialDatabase : Migration
+    public partial class Initialdatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -33,8 +33,8 @@ namespace FatecAppBackend.Infra.Data.Migrations
                     Name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
                     Email = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false),
                     Password = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false),
-                    Photo = table.Column<string>(type: "varchar(11)", maxLength: 11, nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Photo = table.Column<string>(type: "varchar(1000)", maxLength: 1000, nullable: false),
+                    PhoneNumber = table.Column<string>(type: "varchar(12)", maxLength: 12, nullable: false),
                     IdentityDocumentNumber = table.Column<string>(type: "varchar(11)", maxLength: 11, nullable: false),
                     IdentityDocumentPhoto = table.Column<string>(type: " varchar(1000)", maxLength: 1000, nullable: false),
                     Gender = table.Column<string>(type: "varchar(100)", nullable: false),

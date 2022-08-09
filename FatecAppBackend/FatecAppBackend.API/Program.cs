@@ -1,3 +1,4 @@
+using FatecAppBackend.Domain.Handlers.Authentication;
 using FatecAppBackend.Domain.Handlers.College;
 using FatecAppBackend.Domain.Handlers.Event;
 using FatecAppBackend.Domain.Handlers.Participant;
@@ -34,8 +35,8 @@ var builder = WebApplication.CreateBuilder(args);
                 ValidateAudience = true,
                 ValidateLifetime = true,
                 ValidateIssuerSigningKey = true,
-                ValidIssuer = "FatecApp",
-                ValidAudience = "FatecApp",
+                ValidIssuer = "FatecAppBackend",
+                ValidAudience = "FatecAppMobile",
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("fatec-app-key-jwt-16-25-05-08-20-22"))
             };
         });
@@ -59,6 +60,11 @@ builder.Services.AddTransient<IUserCollegeRepository, UserCollegeRepository>();
 builder.Services.AddTransient<ICollegeRepository, CollegeRepository>();
 builder.Services.AddTransient<IEventRepository, EventRepository>();
 builder.Services.AddTransient<IParticipantRepository, ParticipantRepository>();
+
+#endregion
+
+#region Authentication
+builder.Services.AddTransient<SignInHandler, SignInHandler>();
 
 #endregion
 

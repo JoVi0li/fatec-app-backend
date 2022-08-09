@@ -62,9 +62,9 @@ namespace FatecAppBackend.Infra.Data.Contexts
             modelBuilder.Entity<User>().Property(x => x.Photo).IsRequired();
 
             // PhoneNumber
-            modelBuilder.Entity<User>().Property(x => x.Photo).HasMaxLength(11);
-            modelBuilder.Entity<User>().Property(x => x.Photo).HasColumnType("varchar(11)");
-            modelBuilder.Entity<User>().Property(x => x.Photo).IsRequired();
+            modelBuilder.Entity<User>().Property(x => x.PhoneNumber).HasMaxLength(12);
+            modelBuilder.Entity<User>().Property(x => x.PhoneNumber).HasColumnType("varchar(12)");
+            modelBuilder.Entity<User>().Property(x => x.PhoneNumber).IsRequired();
 
             // IdentityDocumentNumber
             modelBuilder.Entity<User>().Property(x => x.IdentityDocumentNumber).HasMaxLength(11);
