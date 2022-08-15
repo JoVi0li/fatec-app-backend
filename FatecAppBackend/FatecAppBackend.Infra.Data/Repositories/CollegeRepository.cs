@@ -46,28 +46,9 @@ namespace FatecAppBackend.Infra.Data.Repositories
             return _context.Colleges.FirstOrDefault(x => x.Name == name);
         }
 
-        public void UpdateCourse(College college)
+        public void Update(College college)
         {
             _context.Entry(college).State = EntityState.Modified;
-            _context.SaveChanges();
-        }
-
-        public void UpdateLocalization(College college)
-        {
-            _context.Entry(college).State = EntityState.Modified;
-            _context.SaveChanges();
-        }
-
-        public void UpdateName(College college)
-        {
-            _context.Entry(college).State = EntityState.Modified;
-            _context.SaveChanges();
-        }
-
-        public void UpdateTime(College college)
-        {
-            _context.Entry(college).State = EntityState.Modified;
-            _context.SaveChanges();
         }
     }
 }

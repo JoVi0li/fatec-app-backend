@@ -36,45 +36,24 @@ namespace FatecAppBackend.Infra.Data.Repositories
             return _context.UserColleges.ToList();
         }
 
+        public UserCollege? GetByCollegeId(Guid collegeId)
+        {
+            throw new NotImplementedException();
+        }
+
         public UserCollege? GetById(Guid id)
         {
             return _context.UserColleges.FirstOrDefault(x => x.Id == id);
         }
 
-        public void UpdateCollegeId(UserCollege userCollege)
+        public UserCollege? GetByUserId(Guid userId)
         {
-            _context.Entry(userCollege).State = EntityState.Modified;
-            _context.SaveChanges();
+            return _context.UserColleges.FirstOrDefault(x => x.UserId == userId);
         }
 
-        public void UpdateGraduationDate(UserCollege userCollege)
+        public void Update(UserCollege userCollege)
         {
             _context.Entry(userCollege).State = EntityState.Modified;
-            _context.SaveChanges();
-        }
-
-        public void UpdateProofDocument(UserCollege userCollege)
-        {
-            _context.Entry(userCollege).State = EntityState.Modified;
-            _context.SaveChanges();
-        }
-
-        public void UpdateStudentNumber(UserCollege userCollege)
-        {
-            _context.Entry(userCollege).State = EntityState.Modified;
-            _context.SaveChanges();
-        }
-
-        public void UpdateUserId(UserCollege userCollege)
-        {
-            _context.Entry(userCollege).State = EntityState.Modified;
-            _context.SaveChanges();
-        }
-
-        public void UpdateValidatedUser(UserCollege userCollege)
-        {
-            _context.Entry(userCollege).State = EntityState.Modified;
-            _context.SaveChanges();
         }
     }
 }

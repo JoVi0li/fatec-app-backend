@@ -17,20 +17,18 @@ namespace FatecAppBackend.Domain.Commands.Authentication
             Password = password;
         }
 
-        public string Email { get; set; }
+        public string Email { get; private set; }
 
-        public string Password { get; set; }
+        public string Password { get; private set; }
 
         public void Execute()
         {
             AddNotifications(
                 new Contract<Notification>()
                     .Requires()
-                    .IsNotEmpty(Email, "Email", "Email cannot be empty")
-                    .IsEmail(Email, "Email", "Invalid Email")
+                    .IsEmail(Email, "Email", "Invalid E-mail")
                     .Contains(Email, "@fatec.sp.gov.br", "Email", "Invalid Email")
-                    .IsNotEmpty(Password, "Password", "Password cannot be empty")
-                    .IsGreaterThan(Password, 7, "Password", "Invalid Password")
+                    .IsGreaterThan(Password, 7, "Password must be greater than 7 characters")
             );
         }
     }

@@ -1,6 +1,7 @@
 ﻿using FatecAppBackend.Domain.Entities;
 using FatecAppBackend.Domain.Repositories;
 using FatecAppBackend.Infra.Data.Contexts;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +44,11 @@ namespace FatecAppBackend.Infra.Data.Repositories
         {
             _context.Participants.Remove(GetById(id));
             _context.SaveChanges();
+        }
+
+        public void Update(Participant participant)
+        {
+            _context.Entry(participant).State = EntityState.Modified;
         }
     }
 }

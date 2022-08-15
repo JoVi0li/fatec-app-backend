@@ -1,56 +1,59 @@
 ﻿using FatecAppBackend.Domain.Commands.Participant;
-using FatecAppBackend.Domain.Handlers.Participant;
-using FatecAppBackend.Domain.Repositories;
+using FatecAppBackend.Domain.Handlers.Commands.Participant;
+using FatecAppBackend.Domain.Handlers.Queries.Participant;
+using FatecAppBackend.Domain.Queries.Participant;
 using FatecAppBackend.Shared.Commands;
+using FatecAppBackend.Shared.Queries;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FatecAppBackend.API.Controllers
 {
-    [Route("v1/participant")]
+    [Route("api/v1/participant")]
     [ApiController]
     public class ParticipantController : ControllerBase
     {
-        private readonly IParticipantRepository _participantRepository;
-
-        public ParticipantController(IParticipantRepository participantRepository)
-        {
-            _participantRepository = participantRepository;
-        }
-
         [Route("create")]
         [HttpPost]
-        public GenericCommandsResult Create(CreateParticipantCommand command, [FromServices] CreateParticipantHandler handler)
+        public GenericCommandsResult Create([FromBody] CreateParticipantCommand command, [FromServices] CreateParticipantHandler handler)
         {
             return (GenericCommandsResult)handler.Execute(command);
         }
 
         [Route("delete")]
-        [HttpDelete]
-        public GenericCommandsResult Delete(RemoveParticipantCommand command, [FromServices] RemoveParticipantHandler handler)
+        [HttpDelete("{id}")]
+        public GenericCommandsResult Delete([FromRoute] RemoveParticipantCommand id, [FromServices] RemoveParticipantHandler handler)
+        {
+            return (GenericCommandsResult)handler.Execute(id);
+        }
+
+        [Route("update")]
+        [HttpPatch]
+        public GenericCommandsResult Update([FromBody] UpdateParticipantCommand command, [FromServices] UpdateParticipantHandler handler)
         {
             return (GenericCommandsResult)handler.Execute(command);
         }
 
-        [Route("get/byid")]
-        [HttpGet]
-        public GenericCommandsResult GetById(GetParticipantByIdCommand command, [FromServices] GetParticipantByIdHandler handler)
+        [Route("get/id")]
+        [HttpGet("{id}")]
+        public GenericQueryResult GetById([FromRoute] GetParticipantByIdQuery id, [FromServices] GetParticipantByIdHandler handler)
         {
-            return (GenericCommandsResult)handler.Execute(command);
+            return (GenericQueryResult)handler.Execute(id);
         }
 
         [Route("get/eventid")]
-        [HttpGet]
-        public GenericCommandsResult GetByEventId(GetParticipantByEventIdCommand command, [FromServices] GetParticipantByEventIdHandler handler)
+        [HttpGet("{eventId}")]
+        public GenericQueryResult GetByEventId([FromRoute] GetParticipantByEventIdQuery eventId, [FromServices] GetParticipantByEventIdHandler handler)
         {
-            return (GenericCommandsResult)handler.Execute(command);
+            return (GenericQueryResult)handler.Execute(eventId);
         }
 
         [Route("get/usercollegeid")]
-        [HttpGet]
-        public GenericCommandsResult GetByUserCollegeId(GetParticipantByUserCollegeIdCommand command, [FromServices] GetParticipantByUserCollegeIdHandler handler)
+        [HttpGet("{userCollegeId}")]
+        public GenericQueryResult GetByUserCollegeId([FromRoute] GetParticipantByUserCollegeIdQuery userCollegeId, [FromServices] GetParticipantByUserCollegeIdHandler handler)
         {
-            return (GenericCommandsResult)handler.Execute(command);
+            return (GenericQueryResult)handler.Execute(userCollegeId);
         }
+
     }
 }

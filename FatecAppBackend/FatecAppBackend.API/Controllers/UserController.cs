@@ -1,102 +1,66 @@
-﻿using FatecAppBackend.Domain.Commands.Authentication;
-using FatecAppBackend.Domain.Commands.User;
-using FatecAppBackend.Domain.Entities;
-using FatecAppBackend.Domain.Handlers.Authentication;
-using FatecAppBackend.Domain.Handlers.User;
-using FatecAppBackend.Domain.Repositories;
+﻿using FatecAppBackend.Domain.Commands.User;
+using FatecAppBackend.Domain.Handlers.Commands.User;
+using FatecAppBackend.Domain.Handlers.Queries.User;
+using FatecAppBackend.Domain.Queries.User;
 using FatecAppBackend.Shared.Commands;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 
 namespace FatecAppBackend.API.Controllers
 {
-    [Route("v1/user")]
+    [Route("api/v1/user")]
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserRepository _userRepository;
-
-        public UserController(IUserRepository userRepository)
-        {
-            _userRepository = userRepository;
-        }
 
         [Route("signup")]
         [HttpPost]
-        public GenericCommandsResult SignUp(CreateUserCommand createUserCommand, [FromServices] CreateUserHandler handler)
+        public GenericCommandsResult Create([FromBody] CreateUserCommand command, [FromServices] CreateUserHandler handler)
         {
-            return (GenericCommandsResult)handler.Execute(createUserCommand);
-        }
-
-        [Route("signin")]
-        [HttpPost]
-        public GenericCommandsResult SignIn(SignInCommand signInCommand, [FromServices] SignInHandler handler)
-        {
-            var result = (GenericCommandsResult)handler.Execute(signInCommand);
-
-            if (result.Success)
-            {
-                var token = GenerateJSONWebToken((User)result.Data);
-                return new GenericCommandsResult(result.Success, result.Message, new { Token = token });
-            }
-
-            return new GenericCommandsResult(result.Success, result.Message, 0);
+            return (GenericCommandsResult)handler.Execute(command);
         }
 
         [Route("delete")]
-        [HttpDelete]
-        public GenericCommandsResult Delete(RemoveUserCommand command, [FromServices] RemoveUserHandler handler)
+        [HttpDelete("{id}")]
+        public GenericCommandsResult Delete([FromRoute] RemoveUserCommand id, [FromServices] RemoveUserHandler handler)
+        {
+            return (GenericCommandsResult)handler.Execute(id);
+        }
+
+        [Route("update")]
+        [HttpPatch]
+        public GenericCommandsResult Update(UpdateUserCommand command, [FromServices] UpdateUserHandler handler)
         {
             return (GenericCommandsResult)handler.Execute(command);
         }
 
         [Route("get")]
         [HttpGet]
-        public IActionResult Get()
+        public GenericCommandsResult Get([FromRoute] GetUserQuery query, [FromServices] GetUserHandler handler)
         {
-            return Ok(_userRepository.GetAll());
+            return (GenericCommandsResult)handler.Execute(query);
         }
 
-        [Route("get/byid")]
-        [HttpGet]
-        public GenericCommandsResult GetById(GetUserByIdCommand command, [FromServices] GetByIdHandler handler)
+        [Route("get/id")]
+        [HttpGet("{id}")]
+        public GenericCommandsResult GetById([FromRoute] GetUserByIdQuery id, [FromServices] GetUserByIdHandler handler)
         {
-            return (GenericCommandsResult)handler.Execute(command);
+            return (GenericCommandsResult)handler.Execute(id);
         }
 
-        [Route("get/byemail")]
-        [HttpGet]
-        public GenericCommandsResult GetByEmail(GetUserByEmailCommand command, [FromServices] GetUserByEmailHandler handler)
+        [Route("get/email")]
+        [HttpGet("{email}")]
+        public GenericCommandsResult GetByEmail([FromRoute] GetUserByEmailQuery email, [FromServices] GetUserByEmailHandler handler)
         {
-            return (GenericCommandsResult)handler.Execute(command);
+            return (GenericCommandsResult)handler.Execute(email);
         }
 
-        private string GenerateJSONWebToken(User user)
+        [Route("get/name")]
+        [HttpGet("{name}")]
+        public GenericCommandsResult GetByName([FromRoute] GetUserByNameQuery name, [FromServices] GetUserByNameHandler handler)
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("fatec-app-key-jwt-16-25-05-08-20-22"));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-            var claims = new[]
-            {
-                new Claim(JwtRegisteredClaimNames.FamilyName, user.Name),
-                new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim(JwtRegisteredClaimNames.Jti, user.Id.ToString()),
-            };
-
-            var token = new JwtSecurityToken
-                (
-                    "FatecAppBackend",
-                    "FatecAppMobile",
-                    claims,
-                    expires: DateTime.Now.AddDays(7),
-                    signingCredentials: credentials
-                );
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            return (GenericCommandsResult)handler.Execute(name);
         }
+
     }
 }

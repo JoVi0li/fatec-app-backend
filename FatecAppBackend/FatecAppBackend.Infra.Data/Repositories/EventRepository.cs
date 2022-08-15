@@ -31,50 +31,24 @@ namespace FatecAppBackend.Infra.Data.Repositories
             _context.SaveChanges();
         }
 
-        public IReadOnlyCollection<Event> GetAll()
-        {
-            return _context.Events.ToList();
-        }
-
         public Event? GetById(Guid id)
         {
             return _context.Events.FirstOrDefault(x => x.Id == id);
         }
 
-        public void UpdateFrom(Event @event)
+        public ICollection<Event> GetByName(string name)
         {
-            _context.Entry(@event).State = EntityState.Modified;
-            _context.SaveChanges();
+            return _context.Events.Where(x => x.To == name).ToList();
         }
 
-        public void UpdateOnlyWomen(Event @event)
+        public void Update(Event @event)
         {
             _context.Entry(@event).State = EntityState.Modified;
-            _context.SaveChanges();
         }
 
-        public void UpdateRoute(Event @event)
+        public ICollection<Event> GetAll()
         {
-            _context.Entry(@event).State = EntityState.Modified;
-            _context.SaveChanges();
-        }
-
-        public void UpdateStatus(Event @event)
-        {
-            _context.Entry(@event).State = EntityState.Modified;
-            _context.SaveChanges();
-        }
-
-        public void UpdateTimeToGo(Event @event)
-        {
-            _context.Entry(@event).State = EntityState.Modified;
-            _context.SaveChanges();
-        }
-
-        public void UpdateTo(Event @event)
-        {
-            _context.Entry(@event).State = EntityState.Modified;
-            _context.SaveChanges();
+            return _context.Events.ToList();
         }
     }
 }

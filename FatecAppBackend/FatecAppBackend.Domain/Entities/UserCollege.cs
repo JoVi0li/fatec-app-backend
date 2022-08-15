@@ -74,112 +74,34 @@ namespace FatecAppBackend.Domain.Entities
 
         // Updates
 
-        public void UpdateStudentNumber(string newStudentNumber)
+        /// <summary>
+        /// Update the entity
+        /// </summary>
+        /// <param name="collegeId">New CollegeId</param>
+        /// <param name="studentNumber">New StudentNumber</param>
+        /// <param name="proofDoc">New ProofDocument</param>
+        /// <param name="graduationDate">New GraduationDate</param>
+        public void Update(Guid collegeId, string studentNumber, string proofDoc, DateTime graduationDate)
         {
             AddNotifications(
                 new Contract<Notification>()
                     .Requires()
-                    .IsNotEmpty(newStudentNumber, "StudentNumber", "StudentNumber cannot be empty")
-                    .AreNotEquals(newStudentNumber, StudentNumber, "StudentNumber", "New StudentNumber cannot be equal the old StudentNumber")
+                    .IsNotNull(collegeId, "CollegeId", "CollegeId cannnot be null")
+                    .IsNotEmpty(studentNumber, "StudentNumber", "StudentNumber cannot be empty")
+                    .IsNotNull(proofDoc, "ProofDocument", "ProofDocument cannot be null")
+                    .IsNotNull(graduationDate, "GraduationDate", "GraduationDate cannot be null")
             );
 
             if (IsValid)
             {
-                StudentNumber = newStudentNumber;
-            } else
-            {
-                AddNotification("StudentNumber", "Could not update StudentNumber");
+                CollegeId = collegeId;
+                StudentNumber = studentNumber;
+                ProofDocument = proofDoc;
+                GraduationDate = graduationDate;
             }
-        }
-
-        public void UpdateValidatedDocument(bool newValidatedDocument)
-        {
-            AddNotifications(
-                new Contract<Notification>()
-                    .Requires()
-                    .IsNotNull(newValidatedDocument, "ValidatedDocument", "ValidatedDocument cannot be null")
-                    .AreNotEquals(newValidatedDocument, ValidatedDocument, "ValidatedDocument", "New ValidatedDocument cannot be equal the old ValidatedDocument")
-            );
-
-            if (IsValid)
+            else
             {
-                ValidatedDocument = newValidatedDocument;
-            } else
-            {
-                AddNotification("ValidatedDocument", "Could not update ValidatedDocument");
-            }
-        }
-
-        public void UpdateProofDocument(string newProofDocument)
-        {
-            AddNotifications(
-                new Contract<Notification>()
-                    .Requires()
-                    .IsNotEmpty(newProofDocument, "ProofDocument", "ProofDocument cannot be empty")
-                    .AreNotEquals(newProofDocument, ProofDocument, "ProofDocument", "New ProofDocument cannot be equal the old ProofDocument")
-            );
-
-            if (IsValid)
-            {
-                ProofDocument = newProofDocument;
-            } else
-            {
-                AddNotification("ProofDocument", "Could not update ProofDocument");
-            }
-        }
-
-        public void UpdateGraduationDate(DateTime newGraduationDate)
-        {
-            AddNotifications(
-                new Contract<Notification>()
-                    .Requires()
-                    .IsNotNull(newGraduationDate, "GraduationDate", "GraduationDate cannot be null")
-                    .AreNotEquals(newGraduationDate, GraduationDate, "GraduationDate", "New GraduationDate cannot be equal the old GraduationDate")
-            );
-
-            if (IsValid)
-            {
-                GraduationDate = newGraduationDate;
-            } else
-            {
-                AddNotification("GraduationDate", "Could not update GraduationDate");
-            }
-        }
-
-        public void AddEvent(Event @event)
-        {
-            if(Events.Any(x => x.Id == @event.Id))
-            {
-                AddNotification("Event", "Event already exists");
-            } else
-            {
-                if (IsValid)
-                {
-                    Events.Add(@event);
-                } else
-                {
-                    AddNotification("Event", "Could not add Event");
-                }
-            }
-        }
-
-        public void RemoveEvent(Guid id)
-        {
-            Event? @event = Events.FirstOrDefault(x => x.Id == id);
-
-            if (IsValid)
-            {
-                if (@event == null)
-                {
-                    AddNotification("Event", "Event nonexistent");
-                }
-                else
-                {
-                    Events.Remove(@event);
-                }
-            } else
-            {
-                AddNotification("Event", "Could not remove Event");
+                AddNotification("UserCollege", "Invalid UserCollege props");
             }
         }
 

@@ -75,118 +75,69 @@ namespace FatecAppBackend.Domain.Entities
         public virtual ICollection<Participant> Participants { get; set; }
 
 
-        // Updates
-
-        public void UpdateFrom(string newFrom)
+        /// <summary>
+        /// Update the entity
+        /// </summary>
+        /// <param name="from">New From</param>
+        /// <param name="to">New To</param>
+        /// <param name="route">New Route</param>
+        /// <param name="onlyWomen">New OnlyWomen</param>
+        /// <param name="timeToGo">New TimeToGo</param>
+        /// <param name="status">New Status</param>
+        public void Update(string? from, string? to, string? route, bool? onlyWomen, DateTime? timeToGo, EnStatus? status)
         {
-            AddNotifications(
-                new Contract<Notification>()
-                     .Requires()
-                     .IsNotEmpty(newFrom, "From", "From cannot be empty")
-                     .AreNotEquals(newFrom, From, "From", "New From cannot be equal the old From")
-            );
-
-            if (IsValid)
+            if(from != null && from.Length > 0 && from != From)
             {
-                From = newFrom;
-            } else
-            {
-                AddNotification("From", "Could not update From");
-            }
-        }
-
-        public void UpdateTo(string newTo)
-        {
-            AddNotifications(
-                new Contract<Notification>()
-                     .Requires()
-                     .IsNotEmpty(newTo, "To", "To cannot be empty")
-                     .AreNotEquals(newTo, To, "To", "New To cannot be equal the old To")
-            );
-
-            if (IsValid)
-            {
-                To = newTo;
+                From = from;
             }
             else
             {
-                AddNotification("To", "Could not update To");
+                AddNotification("From", "Could not update, invalid value");
             }
-        }
 
-        public void UpdateRoute(string newRoute)
-        {
-            AddNotifications(
-                new Contract<Notification>()
-                     .Requires()
-                     .IsNotEmpty(newRoute, "Route", "Route cannot be empty")
-                     .AreNotEquals(newRoute, Route, "Route", "New Route cannot be equal the old Route")
-            );
-
-            if (IsValid)
+            if (to != null && to.Length > 0 && to != To)
             {
-                Route = newRoute;
+                To = to;
             }
             else
             {
-                AddNotification("Route", "Could not update Route");
+                AddNotification("To", "Could not update, invalid value");
             }
-        }
 
-        public void UpdateOnlyWomen(bool newOnlyWomen)
-        {
-            AddNotifications(
-                new Contract<Notification>()
-                     .Requires()
-                     .IsNotNull(newOnlyWomen, "OnlyWomen", "OnlyWomen cannot be null")
-                     .AreNotEquals(newOnlyWomen, OnlyWomen, "Route", "New OnlyWomen cannot be equal the old OnlyWomen")
-            );
-
-            if (IsValid)
+            if (route != null && route.Length > 0 && route != Route)
             {
-                OnlyWomen = newOnlyWomen;
+                Route = route;
             }
             else
             {
-                AddNotification("OnlyWomen", "Could not update OnlyWomen");
+                AddNotification("Route", "Could not update, invalid value");
             }
-        }
 
-        public void UpdateTimeToGo(DateTime newTimeToGo)
-        {
-            AddNotifications(
-                new Contract<Notification>()
-                     .Requires()
-                     .IsNotNull(newTimeToGo, "TimeToGo", "TimeToGo cannot be null")
-                     .AreNotEquals(newTimeToGo, TimeToGo, "TimeToGo", "New TimeToGo cannot be equal the old TimeToGo")
-            );
-
-            if (IsValid)
+            if (onlyWomen != null && onlyWomen != OnlyWomen && onlyWomen != OnlyWomen)
             {
-                TimeToGo = newTimeToGo;
+                OnlyWomen = (bool)onlyWomen;
             }
             else
             {
-                AddNotification("TimeToGo", "Could not update TimeToGo");
+                AddNotification("OnlyWomen", "Could not update, invalid value");
             }
-        }
 
-        public void UpdateStatus(EnStatus newStatus)
-        {
-            AddNotifications(
-                new Contract<Notification>()
-                     .Requires()
-                     .IsNotNull(newStatus, "Status", "Status cannot be null")
-                     .AreNotEquals(newStatus, Status, "Status", "New Status cannot be equal the old Status")
-            );
-
-            if (IsValid)
+            if (timeToGo != null && timeToGo != TimeToGo)
             {
-                Status = newStatus;
+                TimeToGo = (DateTime)timeToGo;
             }
             else
             {
-                AddNotification("Status", "Could not update Status");
+                AddNotification("TimeToGo", "Could not update, invalid value");
+            }
+
+            if (status != null && status != Status)
+            {
+                Status = (EnStatus)status;
+            }
+            else
+            {
+                AddNotification("Status", "Could not update, invalid value");
             }
         }
 

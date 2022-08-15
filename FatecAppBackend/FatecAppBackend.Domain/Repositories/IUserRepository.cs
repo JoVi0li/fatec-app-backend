@@ -36,63 +36,23 @@ namespace FatecAppBackend.Domain.Repositories
         User? GetByEmail(string email);
 
         /// <summary>
+        /// Get list of Users with the name
+        /// </summary>
+        /// <param name="name">YUser name</param>
+        /// <returns></returns>
+        ICollection<User> GetByName(string name);
+
+        /// <summary>
         /// Delete an user with the Id
         /// </summary>
         /// <param name="id">User Id</param>
         void Delete(Guid id);
 
         /// <summary>
-        /// Update the Email
+        /// Update an User
         /// </summary>
-        /// <param name="user">User with new Email</param>
-        void UpdateEmail(User user);
+        /// <param name="user">User props</param>
+        void Update(User user);
 
-        /// <summary>
-        /// Update the Password
-        /// </summary>
-        /// <param name="user">User with the new Password</param>
-        void UpdatePassword(User user);
-
-        /// <summary>
-        /// Update the PhoneNumber
-        /// </summary>
-        /// <param name="user">User with the new PhoneNumber</param>
-        void UpdatePhoneNumber(User user);
-
-        /// <summary>
-        /// Update the Gender
-        /// </summary>
-        /// <param name="user">User with the new Gender</param>
-        void UpdateGender(User user);
-
-        /// <summary>
-        /// Update the IdentityDocumentNumber
-        /// </summary>
-        /// <param name="user">User with the new IdentityDocumentNumber</param>
-        void UpdateIdentityDocumentNumber(User user);
-
-        /// <summary>
-        /// Update the IdentityDocumentPhoto
-        /// </summary>
-        /// <param name="user">User with the new IdentityDocumentPhoto</param>
-        void UpdateIdentityDocumentPhoto(User User);
-
-        /// <summary>
-        /// Update the Name
-        /// </summary>
-        /// <param name="user">User with the new Name</param>
-        void UpdateName(User user);
-
-        /// <summary>
-        /// Update the Photo
-        /// </summary>
-        /// <param name="user">User with the new Photo</param>
-        void UpdatePhoto(User user);
-
-        /// <summary>
-        /// Update the ValidatedUser
-        /// </summary>
-        /// <param name="user">User with the new ValidatedUser</param>
-        void UpdateValidatedUser(User user);
     }
 }

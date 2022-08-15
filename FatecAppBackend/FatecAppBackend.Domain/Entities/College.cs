@@ -49,81 +49,49 @@ namespace FatecAppBackend.Domain.Entities
 
         public IReadOnlyCollection<UserCollege> UserCollege { get; set; }
 
-
-        //Updates
-
-        public void UpdateName(string newName)
+        /// <summary>
+        /// Update the entity
+        /// </summary>
+        /// <param name="name">New Name</param>
+        /// <param name="course">New Course</param>
+        /// <param name="time">New Time</param>
+        /// <param name="localization">New Localization</param>
+        public void Update(string? name, string? course, EnTime? time, string? localization)
         {
-            AddNotifications(
-                new Contract<Notification>()
-                    .Requires()
-                    .IsNotEmpty(newName, "Name", "Name cannot be empty")
-                    .AreNotEquals(newName, Name, "Name", "New Name cannot be equal the old Name")
-            );
-
-            if (IsValid)
+            if(name != null && name.Length > 0 && name != Name)
             {
-                Name = newName;
-            } else
+                Name = name;
+            } 
+            else
             {
-                AddNotification("Name", "Could not update Name");
+                AddNotification("Name", "Could not update, invalid value");
             }
-        }
 
-        public void UpdateCourse(string newCourse)
-        {
-            AddNotifications(
-                new Contract<Notification>()
-                    .Requires()
-                    .IsNotEmpty(newCourse, "Course", "Course cannot be empty")
-                    .AreNotEquals(newCourse, Course, "Course", "New Course cannot be equal the old Course")
-            );
-
-            if (IsValid)
+            if(course != null && course.Length > 0 && course != Course)
             {
-                Course = newCourse;
+                Course = course;
             }
             else
             {
-                AddNotification("Course", "Could not update Course");
+                AddNotification("Course", "Could not update, invalid value");
             }
-        }
 
-        public void UpdateTime(EnTime newTime)
-        {
-            AddNotifications(
-                new Contract<Notification>()
-                    .Requires()
-                    .IsNotNull(newTime, "Time", "Time cannot be empty")
-                    .AreNotEquals(newTime, Time, "Time", "New Time cannot be equal the old Time")
-            );
-
-            if (IsValid)
+            if (time != null && time != Time && time != Time)
             {
-                Time = newTime;
+                Time = (EnTime)time;
             }
             else
             {
-                AddNotification("Time", "Could not update Time");
+                AddNotification("Time", "Could not update, invalid value");
             }
-        }
 
-        public void UpdateLocalization(string newLocalization)
-        {
-            AddNotifications(
-                new Contract<Notification>()
-                    .Requires()
-                    .IsNotEmpty(newLocalization, "Localization", "Localization cannot be empty")
-                    .AreNotEquals(newLocalization, Localization, "Localization", "New Localization cannot be equal the old Localization")
-            );
-
-            if (IsValid)
+            if (localization != null && localization.Length > 0 && localization != Localization)
             {
-                Localization = newLocalization;
+                Localization = localization;
             }
             else
             {
-                AddNotification("Localization", "Could not update Localization");
+                AddNotification("Localization", "Could not update, invalid value");
             }
         }
 

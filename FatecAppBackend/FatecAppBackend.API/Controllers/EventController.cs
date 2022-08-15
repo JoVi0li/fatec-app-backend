@@ -1,23 +1,18 @@
 ﻿using FatecAppBackend.Domain.Commands.Event;
-using FatecAppBackend.Domain.Handlers.Event;
-using FatecAppBackend.Domain.Repositories;
+using FatecAppBackend.Domain.Handlers.Commands.Event;
+using FatecAppBackend.Domain.Handlers.Queries.Event;
+using FatecAppBackend.Domain.Queries.Event;
 using FatecAppBackend.Shared.Commands;
+using FatecAppBackend.Shared.Queries;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FatecAppBackend.API.Controllers
 {
-    [Route("v1/event")]
+    [Route("api/v1/event")]
     [ApiController]
     public class EventController : ControllerBase
     {
-        private readonly IEventRepository _eventRepository;
-
-        public EventController(IEventRepository eventRepository)
-        {
-            _eventRepository = eventRepository;
-        }
-
         [Route("create")]
         [HttpPost]
         public GenericCommandsResult Create(CreateEventCommand command, [FromServices] CreateEventHandler handler)
@@ -26,24 +21,38 @@ namespace FatecAppBackend.API.Controllers
         }
 
         [Route("delete")]
-        [HttpDelete]
-        public GenericCommandsResult Delete(RemoveEventCommand command, [FromServices] RemoveEventHandler handler)
+        [HttpDelete("{id}")]
+        public GenericCommandsResult Delete([FromRoute] RemoveEventCommand command, [FromServices] RemoveEventHandler handler)
+        {
+            return (GenericCommandsResult)handler.Execute(command);
+        }
+
+        [Route("update")]
+        [HttpPatch]
+        public GenericCommandsResult Update([FromBody] UpdateEventCommand command, [FromServices] UpdateEventHandler handler)
         {
             return (GenericCommandsResult)handler.Execute(command);
         }
 
         [Route("get")]
         [HttpGet]
-        public IActionResult Get()
+        public GenericQueryResult Get([FromRoute] GetEventQuery query, [FromServices] GetEventHandler handler)
         {
-            return Ok(_eventRepository.GetAll());
+            return (GenericQueryResult)handler.Execute(query);
         }
 
-        [Route("get/byid")]
-        [HttpGet]
-        public GenericCommandsResult GetById(GetEventByIdCommand command, [FromServices] GetEventByIdHandler handler)
+        [Route("get/id")]
+        [HttpGet("{id}")]
+        public GenericQueryResult GetById([FromRoute] GetEventByIdQuery id, [FromServices] GetEventByIdHandler handler)
         {
-            return (GenericCommandsResult)handler.Execute(command);
+            return (GenericQueryResult)handler.Execute(id);
+        }
+
+        [Route("get/name")]
+        [HttpGet("{name}")]
+        public GenericQueryResult GetByName([FromRoute] GetEventByNameQuery name, [FromServices] GetEventByNameHandler handler)
+        {
+            return (GenericQueryResult)handler.Execute(name);
         }
     }
 }

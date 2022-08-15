@@ -29,45 +29,30 @@ namespace FatecAppBackend.Domain.Repositories
         UserCollege? GetById(Guid id);
 
         /// <summary>
+        /// Search an UserCollege by CollegeId
+        /// </summary>
+        /// <param name="collegeId"></param>
+        /// <returns>An UserCollege</returns>
+        UserCollege? GetByCollegeId(Guid collegeId);
+
+        /// <summary>
+        /// Search an UserCollege by UserId
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns>An UserCollege</returns>
+        UserCollege? GetByUserId(Guid userId);
+
+        /// <summary>
         /// Delete an UserCollege by Id
         /// </summary>
         /// <param name="id">UserCollege Id</param>
         void Delete(Guid id);
 
         /// <summary>
-        /// Update the CollegeId
+        /// Update an UserCollege
         /// </summary>
-        /// <param name="userCollege">New CollegeId</param>
-        void UpdateCollegeId(UserCollege userCollege);
+        /// <param name="userCollege">UserCollege props</param>
+        void Update(UserCollege userCollege);
 
-        /// <summary>
-        /// Update the UserId
-        /// </summary>
-        /// <param name="userCollege">New UserId</param>
-        void UpdateUserId(UserCollege userCollege);
-
-        /// <summary>
-        /// Update the GraduationDate
-        /// </summary>
-        /// <param name="userCollege">UserCollege with the new GraduationDate</param>
-        void UpdateGraduationDate(UserCollege userCollege);
-
-        /// <summary>
-        /// Update the ProofDocument
-        /// </summary>
-        /// <param name="userCollege">UserCollege with the new ProofDocument</param>
-        void UpdateProofDocument(UserCollege userCollege);
-
-        /// <summary>
-        /// Update the StudentNumber
-        /// </summary>
-        /// <param name="userCollege">UserCollege with the new StudentNumber</param>
-        void UpdateStudentNumber(UserCollege userCollege);
-
-        /// <summary>
-        /// Update the ValidatedUser
-        /// </summary>
-        /// <param name="userCollege">UserCollege with the new ValidatedUser</param>
-        void UpdateValidatedUser(UserCollege userCollege);
     }
 }

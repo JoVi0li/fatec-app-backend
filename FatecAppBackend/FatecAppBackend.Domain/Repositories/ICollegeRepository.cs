@@ -43,27 +43,9 @@ namespace FatecAppBackend.Domain.Repositories
         void Delete(Guid id);
 
         /// <summary>
-        /// Update the Course
+        /// Update a College
         /// </summary>
-        /// <param name="college">College with the new Course</param>
-        void UpdateCourse(College college);
-
-        /// <summary>
-        /// Update the Localization
-        /// </summary>
-        /// <param name="college">College with the new Localization</param>
-        void UpdateLocalization(College college);
-
-        /// <summary>
-        /// Update the Name
-        /// </summary>
-        /// <param name="college">College with the new Name</param>
-        void UpdateName(College college);
-
-        /// <summary>
-        /// Update the Time
-        /// </summary>
-        /// <param name="college">College with the new Time</param>
-        void UpdateTime(College college);
+        /// <param name="college">College props</param>
+        void Update(College college);
     }
 }

@@ -20,7 +20,7 @@ namespace FatecAppBackend.Domain.Repositories
         /// Get a list of all Events
         /// </summary>
         /// <returns>A list of Events</returns>
-        IReadOnlyCollection<Event> GetAll();
+        ICollection<Event> GetAll();
 
         /// <summary>
         /// Search an Event by Id
@@ -30,45 +30,22 @@ namespace FatecAppBackend.Domain.Repositories
         Event? GetById(Guid id);
 
         /// <summary>
-        /// Delete a Event by Id
+        /// Get a list of Events with the name
+        /// </summary>
+        /// <param name="name">Event name</param>
+        /// <returns></returns>
+        ICollection<Event> GetByName(string name);
+
+        /// <summary>
+        /// Delete an Event by Id
         /// </summary>
         /// <param name="id">Event Id</param>
         void Delete(Guid id);
 
         /// <summary>
-        /// Updathe the From
+        /// Update an Event
         /// </summary>
-        /// <param name="event">Event with the new From</param>
-        void UpdateFrom(Event @event);
-
-        /// <summary>
-        /// Update the To
-        /// </summary>
-        /// <param name="event">Event with the new To</param>
-        void UpdateTo(Event @event);
-        
-        /// <summary>
-        /// Update the OnlyWomen
-        /// </summary>
-        /// <param name=event">Event with the new OnlyWomen</param>
-        void UpdateOnlyWomen(Event @event);
-
-        /// <summary>
-        /// Update the Route
-        /// </summary>
-        /// <param name="event">Event with the new Route</param>
-        void UpdateRoute(Event @event);
-
-        /// <summary>
-        /// Update the TimeToGo
-        /// </summary>
-        /// <param name="event">Event with the new TimeToGo</param>
-        void UpdateTimeToGo(Event @event);
-
-        /// <summary>
-        /// Update the Status
-        /// </summary>
-        /// <param name="event">Event with the new Status</param>
-        void UpdateStatus(Event @event);
+        /// <param name="event">Event props</param>
+        void Update(Event @event);
     }
 }

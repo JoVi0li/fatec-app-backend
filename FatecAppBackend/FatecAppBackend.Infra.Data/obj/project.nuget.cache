@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "I5v/8nBfrfEm3xj4GZ8VfDfYDQo1IUpUYKg+oZ/tvOiMd8bGoR84EaGN6nlEtrrwLJ5d8awfv44l44fI9XOT6A==",
+  "dgSpecHash": "mHn40oGE9x0bimYOGiePr4QGfj64zan5newwyhou4PO9NYQOsySKMxXD18BFxE/gdl8eFqDBuJtwc7Z54pNPhA==",
   "success": true,
   "projectFilePath": "C:\\Users\\jovio\\OneDrive\\Documentos\\github\\fatec-app-backend\\FatecAppBackend\\FatecAppBackend.Infra.Data\\FatecAppBackend.Infra.Data.csproj",
   "expectedPackageFiles": [

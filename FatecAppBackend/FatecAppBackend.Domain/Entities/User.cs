@@ -86,175 +86,142 @@ namespace FatecAppBackend.Domain.Entities
         public UserCollege UserCollege { get; set; }
 
 
-        //Updates
 
-        public void UpdateName(string newName)
+        /// <summary>
+        /// Update the entity
+        /// </summary>
+        /// <param name="name">New </param>
+        /// <param name="email">New Email</param>
+        /// <param name="password">New Password</param>
+        /// <param name="photo">New Photo</param>
+        /// <param name="phoneNumber">New PhoneNumber</param>
+        /// <param name="identityDocumentNumber">New IdentityDocumentNumber</param>
+        /// <param name="identityDocumentPhoto">New IdentityDocumentPhoto</param>
+        /// <param name="validatedUser">New ValidatedUser</param>
+        /// <param name="gender">New Gender</param>
+        public void Update(string? name, string? email, string? photo, string? phoneNumber, string? identityDocumentNumber, string? identityDocumentPhoto, bool? validatedUser, EnGender? gender)
         {
-            AddNotifications(
-                new Contract<Notification>()
-                    .Requires()
-                    .IsNotEmpty(newName, "Name", "Name cannot be empty")
-                    .AreNotEquals(newName, Name, "Name", "New Name cannot be equal the old name")
-            );
-
-            if (IsValid)
+            if(name != null && name.Length > 3 && name != Name)
             {
-                Name = newName;
-            }
-            else
-            {
-                AddNotification("Name", "Could not update Name");
-            }
-        }
-
-        public void UpdateEmail(string newEmail)
-        {
-            AddNotifications(
-                new Contract<Notification>()
-                    .Requires()
-                    .IsEmail(newEmail, "Email", "Email cannot be null")
-                    .Contains(newEmail, "@fatec.sp.gov.br", "Email", "Invalid Email")
-                    .AreNotEquals(newEmail, Email, "Email", "New Email number cannot be equal the old Email")
-            );
-
-            if (IsValid)
-            {
-                Email = newEmail;
-            }
-            else
-            {
-                AddNotification("Email", "Could not update Email");
-            }
-        }
-
-        public void UpdatePassword(string newPassword)
-        {
-            AddNotifications(
-                new Contract<Notification>()
-                    .Requires()
-                    .IsGreaterThan(newPassword, 7, "Password", "Password must be greater than 7 characters")
-                    .AreNotEquals(newPassword, Password, "Password", "New Password cannot be equal the old password")
-            );
-
-            if (IsValid)
-            {
-                Password = newPassword;
-            }
-            else
-            {
-                AddNotification("Password", "Could not update Password");
-            }
-        }
-
-        public void UpdatePhoto(string newPhoto)
-        {
-            AddNotifications(
-                new Contract<Notification>()
-                    .Requires()
-                    .IsNotNull(newPhoto, "Photo", "Photo cannot be null")
-                    .AreNotEquals(newPhoto, Photo, "New Photo cannot be equal the old photo")
-            );
-
-            if (IsValid)
-            {
-                Photo = newPhoto;
-            }
-            else
-            {
-                AddNotification("Photo", "Could not update Photo");
-            }
-        }
-
-        public void UpdatePhoneNumber(string newPhoneNumber)
-        {
-            AddNotifications(
-                new Contract<Notification>()
-                    .Requires()
-                    .IsNotEmpty(newPhoneNumber, "PhoneNumber", "PhoneNumber cannot be empty")
-                    .AreNotEquals(newPhoneNumber, PhoneNumber, "PhoneNumber", "New PhoneNumber cannot be equal the old PhoneNumber")
-            );
-
-            if (IsValid)
-            {
-                PhoneNumber = newPhoneNumber;
+                Name = name;
             } else
             {
-                AddNotification("PhoneNumber", "Could not update PhoneNumber");
+                AddNotification("Name", "Cold not update Name, invalid prop");
             }
-        }
 
-        public void UpdateIdentityDocumentNumber(string newIdentityDocumentNumber)
-        {
-            AddNotifications(
-                new Contract<Notification>()
-                    .Requires()
-                    .IsNotEmpty(newIdentityDocumentNumber, "IdentityDocumentNumber", "IdentityDocumentNumber cannot be empty")
-                    .AreNotEquals(newIdentityDocumentNumber, IdentityDocumentNumber, "IdentityDocumentNumber", "New IdentityDocumentNumber cannot be equal the old IdentityDocumentNumber")
-            );
-
-            if (IsValid)
+            if(email != null && email.Length > 0 && email != Email)
             {
-                IdentityDocumentNumber = newIdentityDocumentNumber;
-            } else
-            {
-                AddNotification("IdentityDocumentNumber", "Could not update IdentityDocumentNumber");
-            }
-        }
+                AddNotifications(
+                    new Contract<Notification>()
+                        .Requires()
+                        .IsEmail(email, "Email", "Invalid E-mail")
+                        .Contains(email, "@fatec.sp.gov.br", "Email", "Invalid Email")
+                );
 
-        public void UpdateIdentityDocumentPhoto(string newIdentityDocumentPhoto)
-        {
-            AddNotifications(
-                new Contract<Notification>()
-                    .Requires()
-                    .IsNotEmpty(newIdentityDocumentPhoto, "IdentityDocumentPhoto", "IdentityDocumentPhoto cannot be empty")
-                    .AreNotEquals(newIdentityDocumentPhoto, IdentityDocumentPhoto, "IdentityDocumentPhoto", "New IdentityDocumentPhoto cannot be equal the old IdentityDocumentPhoto")
-            );
+                if (IsValid)
+                {
+                    Email = email;
+                }
+                else
+                {
+                    AddNotification("Email", "Could not update, invalid value");
 
-            if (IsValid)
-            {
-                IdentityDocumentPhoto = newIdentityDocumentPhoto;
+                }
             }
             else
             {
-                AddNotification("IdentityDocumentPhoto", "Could not update IdentityDocumentPhoto");
+                AddNotification("Email", "Could not update, invalid value");
+            }
+
+            if (photo != null && photo.Length > 0 && photo != Photo)
+            {
+                Photo = photo;
+            }
+            else
+            {
+                AddNotification("Photo", "Could not update, invalid value");
+            }
+
+            if (phoneNumber != null && phoneNumber.Length > 9 && phoneNumber != PhoneNumber)
+            {
+                AddNotifications(
+                    new Contract<Notification>()
+                        .Requires()
+                        .IsNotNull(phoneNumber, "PhoneNumber", "PhoneNumber cannot be null")
+                        .IsPhoneNumber(phoneNumber, "PhoneNumber", "Invalid PhoneNumber")
+                );
+
+                if(IsValid)
+                {
+                    PhoneNumber = phoneNumber;
+                }
+                else
+                {
+                    AddNotification("PhoneNumber", "Could not update, invalid value");
+                }
+            }
+            else
+            {
+                AddNotification("PhoneNumber", "Could not update, invalid value");
+            }
+
+            if(identityDocumentNumber != null && identityDocumentNumber.Length > 11 && identityDocumentNumber != IdentityDocumentNumber)
+            {
+                AddNotifications(
+                    new Contract<Notification>()
+                        .Requires()
+                        .IsNotNull(identityDocumentNumber, "IdentityDocumentNumber", "IdentityDocumentNumber cannot be null")
+                        .IsCpf(identityDocumentNumber, "IdentityDocumentNumber", "Invalid IdentityDocumentNumber")
+                );
+
+                if (IsValid)
+                {
+                    IdentityDocumentNumber = identityDocumentNumber;
+                }
+                else
+                {
+                    AddNotification("IdentityDocumentNumber", "Could not update, invalid value");
+                }
+            }
+
+            if (identityDocumentPhoto != null && identityDocumentPhoto.Length > 0 && identityDocumentNumber != IdentityDocumentPhoto)
+            {
+                IdentityDocumentPhoto = identityDocumentPhoto;
+            }
+            else
+            {
+                AddNotification("IdentityDocumentPhoto", "Could not update, invalid value");
+            }
+
+            if(validatedUser != null && validatedUser != ValidatedUser)
+            {
+                ValidatedUser = (bool)validatedUser;
+            }else
+            {
+                AddNotification("ValidatedUser", "Could not update, invalid value");
+            }
+
+            if(gender != null && gender != Gender)
+            {
+                Gender = (EnGender)gender;
+            }
+            else
+            {
+                AddNotification("Gender", "Could not update, invalid value");
             }
         }
 
-        public void UpdateValidatedUser(bool newValidatedUser)
+
+        public void UpdatePassword(string password)
         {
-            AddNotifications(
-                new Contract<Notification>()
-                    .Requires()
-                    .IsNotNull(newValidatedUser, "ValidatedUser", "ValidatedUser cannot be null")
-                    .AreNotEquals(newValidatedUser, ValidatedUser, "ValidatedUser", "New ValidatedUser cannot be equal the old ValidatedUser")
-            );
-
-            if (IsValid)
+            if (password != null && password.Length > 7 && password != Password)
             {
-                ValidatedUser = newValidatedUser;
-            } else
+                Password = password;
+            }
+            else
             {
-                AddNotification("ValidatedUser", "Could not update ValidatedUser");
+                AddNotification("Password", "Could not update, invalid value");
             }
         }
-
-        public void UpdateGender(EnGender newGender)
-        {
-            AddNotifications(
-                new Contract<Notification>()
-                    .Requires()
-                    .IsNotNull(newGender, "Gender", "Gender cannot be null")
-                    .AreNotEquals(newGender, Gender, "Gender", "New Gender cannot be equal the old Gender")
-            );
-
-            if (IsValid)
-            {
-                Gender = newGender;
-            } else
-            {
-                AddNotification("Gender", "Could not update Gender");
-            }
-        }
-
     }
 }

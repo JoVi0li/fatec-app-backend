@@ -46,58 +46,14 @@ namespace FatecAppBackend.Infra.Data.Repositories
             return _context.Users.FirstOrDefault(x => x.Id == id);
         }
 
-        public void UpdateEmail(User user)
+        public ICollection<User> GetByName(string name)
         {
-            _context.Entry(user).State = EntityState.Modified;
-            _context.SaveChanges();
+            return _context.Users.Where(x => x.Name == name).ToList();
         }
 
-        public void UpdateGender(User user)
+        public void Update(User user)
         {
             _context.Entry(user).State = EntityState.Modified;
-            _context.SaveChanges();
-        }
-
-        public void UpdateIdentityDocumentNumber(User user)
-        {
-            _context.Entry(user).State = EntityState.Modified;
-            _context.SaveChanges();
-        }
-
-        public void UpdateIdentityDocumentPhoto(User user)
-        {
-            _context.Entry(user).State = EntityState.Modified;
-            _context.SaveChanges();
-        }
-
-        public void UpdateName(User user)
-        {
-            _context.Entry(user).State = EntityState.Modified;
-            _context.SaveChanges();
-        }
-
-        public void UpdatePassword(User user)
-        {
-            _context.Entry(user).State = EntityState.Modified;
-            _context.SaveChanges();
-        }
-
-        public void UpdatePhoneNumber(User user)
-        {
-            _context.Entry(user).State = EntityState.Modified;
-            _context.SaveChanges();
-        }
-
-        public void UpdatePhoto(User user)
-        {
-            _context.Entry(user).State = EntityState.Modified;
-            _context.SaveChanges();
-        }
-
-        public void UpdateValidatedUser(User user)
-        {
-            _context.Entry(user).State = EntityState.Modified;
-            _context.SaveChanges();
         }
     }
 }

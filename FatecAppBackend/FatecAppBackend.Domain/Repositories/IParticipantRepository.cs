@@ -41,5 +41,11 @@ namespace FatecAppBackend.Domain.Repositories
         /// <param name="id">UserCollegeId</param>
         /// <returns>A list of Participants</returns>
         ICollection<Participant>? GetByUserCollegeId(Guid id);
+
+        /// <summary>
+        /// Update a Participant
+        /// </summary>
+        /// <param name="participant">Participant props</param>
+        void Update(Participant participant);
     }
 }

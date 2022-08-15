@@ -1,49 +1,51 @@
 ﻿using FatecAppBackend.Domain.Commands.College;
-using FatecAppBackend.Domain.Handlers.College;
-using FatecAppBackend.Domain.Repositories;
+using FatecAppBackend.Domain.Handlers.Commands.College;
+using FatecAppBackend.Domain.Handlers.Queries.Event;
+using FatecAppBackend.Domain.Queries.Event;
 using FatecAppBackend.Shared.Commands;
+using FatecAppBackend.Shared.Queries;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FatecAppBackend.API.Controllers
 {
-    [Route("v1/college")]
+    [Route("api/v1/college")]
     [ApiController]
     public class CollegeController : ControllerBase
     {
-        private readonly ICollegeRepository _collegeRepository;
-
-        public CollegeController(ICollegeRepository collegeRepository)
-        {
-            _collegeRepository = collegeRepository;
-        }
-
         [Route("create")]
         [HttpPost]
-        public GenericCommandsResult Create(CreateCollegeCommand command, [FromServices] CreateCollegeHandler handler)
+        public GenericCommandsResult Create([FromBody] CreateCollegeCommand command, [FromServices] CreateCollegeHandler handler)
         {
             return (GenericCommandsResult)handler.Execute(command);
         }
 
         [Route("delete")]
-        [HttpDelete]
-        public GenericCommandsResult Delete(RemoveCollegeCommand command, [FromServices] RemoveCollegeHandler handler)
+        [HttpDelete("{id}")]
+        public GenericCommandsResult Delete([FromRoute] RemoveCollegeCommand id, [FromServices] RemoveCollegeHandler handler)
+        {
+            return (GenericCommandsResult)handler.Execute(id);
+        }
+
+        [Route("update")]
+        [HttpPatch]
+        public GenericCommandsResult Update([FromBody] UpdateCollegeCommand command, [FromServices] UpdateCollegeHandler handler)
         {
             return (GenericCommandsResult)handler.Execute(command);
         }
 
         [Route("get")]
         [HttpGet]
-        public IActionResult Get()
+        public GenericQueryResult Get([FromRoute] GetEventQuery query, [FromServices] GetEventHandler handler)
         {
-            return Ok(_collegeRepository.GetAll());
+            return (GenericQueryResult)handler.Execute(query);
         }
 
-        [Route("get/byid")]
-        [HttpGet]
-        public GenericCommandsResult GetById(GetCollegeByIdCommand command, [FromServices] GetCollegeByIdHandler handler)
+        [Route("get/id")]
+        [HttpGet("{id}")]
+        public GenericQueryResult GetById([FromRoute] GetEventByIdQuery id, [FromServices] GetEventByIdHandler handler)
         {
-            return (GenericCommandsResult)handler.Execute(command);
+            return (GenericQueryResult)handler.Execute(id);
         }
 
     }
