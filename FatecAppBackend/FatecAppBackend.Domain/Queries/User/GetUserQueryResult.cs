@@ -9,7 +9,7 @@ namespace FatecAppBackend.Domain.Queries.User
 {
     public class GetUserQueryResult
     {
-        public GetUserQueryResult(Guid id, Guid userCollegeId, string name, string email, string photo, string phoneNumber, string identityDocumentNumber, EnGender gender, bool validatedUser, bool validatedDoc)
+        public GetUserQueryResult(Guid id, Guid? userCollegeId, string name, string email, string photo, string phoneNumber, string identityDocumentNumber, EnGender gender, bool validatedUser, bool? validatedDoc)
         {
             Id = id;
             UserCollegeId = userCollegeId;
@@ -25,7 +25,7 @@ namespace FatecAppBackend.Domain.Queries.User
 
         public Guid Id { get; private set; }
 
-        public Guid UserCollegeId { get; private set; }
+        public Guid? UserCollegeId { get; private set; }
 
         public string Name { get; private set; }
 
@@ -41,6 +41,6 @@ namespace FatecAppBackend.Domain.Queries.User
 
         public bool ValidatedUser { get; private set; }
 
-        public bool ValidatedDoc { get; private set; }
+        public bool? ValidatedDoc { get; private set; }
     }
 }

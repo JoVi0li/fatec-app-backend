@@ -29,23 +29,23 @@ namespace FatecAppBackend.Domain.Handlers.Commands.User
                 return new GenericCommandsResult(false, "Invalid props", command.Notifications);
             }
 
-            var user = _userRepository.GetById(command.User.Id);
+            var user = _userRepository.GetById(command.Id);
 
             if (user == null)
             {
                 return new GenericCommandsResult(false, "User not found", "Inform another Id");
             }
 
-            user.Update(command.User.Name, command.User.Email, command.User.Photo, command.User.PhoneNumber, command.User.IdentityDocumentNumber, command.User.IdentityDocumentPhoto, command.User.ValidatedUser, command.User.Gender);
+            user.Update(command.Name, command.Email, command.Photo, command.PhoneNumber, command.IdentityDocumentNumber, command.IdentityDocumentPhoto, command.ValidatedUser, command.Gender);
 
             if (!user.IsValid)
             {
-                return new GenericCommandsResult(false, "Could not update, invalid props", user.Notifications);
+                return new GenericCommandsResult(false, "Could not update, invalid propsa", user.Notifications);
             }
 
             _userRepository.Update(user);
 
-            return new GenericCommandsResult(true, "User updated", user);
+            return new GenericCommandsResult(true, "User updated", user.Id);
         }
     }
 }

@@ -41,7 +41,7 @@ namespace FatecAppBackend.Domain.Handlers.Queries.User
                 return new GenericQueryResult(false, "Invalid props", user.Notifications);
             }
 
-            var result = new GetUserQueryResult(user.Id, user.UserCollege.Id, user.Name, user.Email, user.Photo, user.PhoneNumber, user.IdentityDocumentNumber, user.Gender, user.ValidatedUser, user.UserCollege.ValidatedDocument);
+            var result = new GetUserQueryResult(user.Id, user.UserCollege?.Id, user.Name, user.Email, user.Photo, user.PhoneNumber, user.IdentityDocumentNumber, user.Gender, user.ValidatedUser, user.UserCollege?.ValidatedDocument);
             
             return new GenericQueryResult(true, "User found", result);
         }

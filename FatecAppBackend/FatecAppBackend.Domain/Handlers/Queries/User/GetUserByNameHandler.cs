@@ -39,7 +39,7 @@ namespace FatecAppBackend.Domain.Handlers.Queries.User
             var result = users.Select(
                 x =>
                 {
-                    return new GetUserQueryResult(x.Id, x.UserCollege.Id, x.Name, x.Email, x.Photo, x.PhoneNumber, x.IdentityDocumentNumber, x.Gender, x.ValidatedUser, x.UserCollege.ValidatedDocument);
+                    return new GetUserQueryResult(x.Id, x.UserCollege?.Id, x.Name, x.Email, x.Photo, x.PhoneNumber, x.IdentityDocumentNumber, x.Gender, x.ValidatedUser, x.UserCollege?.ValidatedDocument);
 
                 }
             );

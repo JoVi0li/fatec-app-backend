@@ -3,7 +3,7 @@ using FatecAppBackend.Domain.Handlers.Commands.User;
 using FatecAppBackend.Domain.Handlers.Queries.User;
 using FatecAppBackend.Domain.Queries.User;
 using FatecAppBackend.Shared.Commands;
-using Microsoft.AspNetCore.Http;
+using FatecAppBackend.Shared.Queries;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FatecAppBackend.API.Controllers
@@ -22,44 +22,46 @@ namespace FatecAppBackend.API.Controllers
 
         [Route("delete")]
         [HttpDelete("{id}")]
-        public GenericCommandsResult Delete([FromRoute] RemoveUserCommand id, [FromServices] RemoveUserHandler handler)
+        public GenericCommandsResult Delete([FromQuery] Guid id, [FromServices] RemoveUserHandler handler)
         {
-            return (GenericCommandsResult)handler.Execute(id);
+            var command = new RemoveUserCommand(id);
+            return (GenericCommandsResult)handler.Execute(command);
         }
 
         [Route("update")]
         [HttpPatch]
-        public GenericCommandsResult Update(UpdateUserCommand command, [FromServices] UpdateUserHandler handler)
+        public GenericCommandsResult Update([FromBody] UpdateUserCommand command, [FromServices] UpdateUserHandler handler)
         {
             return (GenericCommandsResult)handler.Execute(command);
         }
 
         [Route("get")]
         [HttpGet]
-        public GenericCommandsResult Get([FromRoute] GetUserQuery query, [FromServices] GetUserHandler handler)
+        public GenericQueryResult Get([FromRoute] GetUserQuery query, [FromServices] GetUserHandler handler)
         {
-            return (GenericCommandsResult)handler.Execute(query);
+            return (GenericQueryResult)handler.Execute(query);
         }
 
         [Route("get/id")]
         [HttpGet("{id}")]
-        public GenericCommandsResult GetById([FromRoute] GetUserByIdQuery id, [FromServices] GetUserByIdHandler handler)
+        public GenericQueryResult GetById([FromQuery] Guid id, [FromServices] GetUserByIdHandler handler)
         {
-            return (GenericCommandsResult)handler.Execute(id);
+            return (GenericQueryResult)handler.Execute(new GetUserByIdQuery(id));
         }
 
         [Route("get/email")]
         [HttpGet("{email}")]
-        public GenericCommandsResult GetByEmail([FromRoute] GetUserByEmailQuery email, [FromServices] GetUserByEmailHandler handler)
+        public GenericQueryResult GetByEmail([FromQuery] string email, [FromServices] GetUserByEmailHandler handler)
         {
-            return (GenericCommandsResult)handler.Execute(email);
+
+            return (GenericQueryResult)handler.Execute(new GetUserByEmailQuery(email));
         }
 
         [Route("get/name")]
         [HttpGet("{name}")]
-        public GenericCommandsResult GetByName([FromRoute] GetUserByNameQuery name, [FromServices] GetUserByNameHandler handler)
+        public GenericQueryResult GetByName([FromQuery] string name, [FromServices] GetUserByNameHandler handler)
         {
-            return (GenericCommandsResult)handler.Execute(name);
+            return (GenericQueryResult)handler.Execute(new GetUserByNameQuery(name));
         }
 
     }

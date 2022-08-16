@@ -33,7 +33,7 @@ namespace FatecAppBackend.Infra.Data.Repositories
 
         public ICollection<User> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Users.ToList();
         }
 
         public User? GetByEmail(string email)
@@ -48,12 +48,13 @@ namespace FatecAppBackend.Infra.Data.Repositories
 
         public ICollection<User> GetByName(string name)
         {
-            return _context.Users.Where(x => x.Name == name).ToList();
+            return _context.Users.Where(x => x.Name.Contains(name)).ToList();
         }
 
         public void Update(User user)
         {
             _context.Entry(user).State = EntityState.Modified;
+            _context.SaveChanges();
         }
     }
 }

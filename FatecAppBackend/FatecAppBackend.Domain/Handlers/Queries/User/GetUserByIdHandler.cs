@@ -33,7 +33,7 @@ namespace FatecAppBackend.Domain.Handlers.Queries.User
 
             if (user == null)
             {
-                return new GenericQueryResult(false, "User not found", "Inform another Id");
+                return new GenericQueryResult(false, "User not found", query.Id);
             }
 
             if (!user.IsValid)
@@ -41,7 +41,7 @@ namespace FatecAppBackend.Domain.Handlers.Queries.User
                 return new GenericQueryResult(false, "Invalid props", user.Notifications);
             }
 
-            var result = new GetUserQueryResult(user.Id, user.UserCollege.Id, user.Name, user.Email, user.Photo, user.PhoneNumber, user.IdentityDocumentNumber, user.Gender, user.ValidatedUser, user.UserCollege.ValidatedDocument);
+            var result = new GetUserQueryResult(user.Id, user.UserCollege?.Id, user.Name, user.Email, user.Photo, user.PhoneNumber, user.IdentityDocumentNumber, user.Gender, user.ValidatedUser, user.UserCollege?.ValidatedDocument);
 
             return new GenericQueryResult(true, "User found", result);
         }

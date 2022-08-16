@@ -92,7 +92,6 @@ namespace FatecAppBackend.Domain.Entities
         /// </summary>
         /// <param name="name">New </param>
         /// <param name="email">New Email</param>
-        /// <param name="password">New Password</param>
         /// <param name="photo">New Photo</param>
         /// <param name="phoneNumber">New PhoneNumber</param>
         /// <param name="identityDocumentNumber">New IdentityDocumentNumber</param>
@@ -101,15 +100,19 @@ namespace FatecAppBackend.Domain.Entities
         /// <param name="gender">New Gender</param>
         public void Update(string? name, string? email, string? photo, string? phoneNumber, string? identityDocumentNumber, string? identityDocumentPhoto, bool? validatedUser, EnGender? gender)
         {
-            if(name != null && name.Length > 3 && name != Name)
+            if(name != null)
             {
-                Name = name;
-            } else
-            {
-                AddNotification("Name", "Cold not update Name, invalid prop");
+                if (name.Length > 3 && name != Name)
+                {
+                    Name = name;
+                }
+                else
+                {
+                    AddNotification("Name", "Cold not update Name, invalid prop");
+                }
             }
 
-            if(email != null && email.Length > 0 && email != Email)
+            if(email != null)
             {
                 AddNotifications(
                     new Contract<Notification>()
@@ -128,21 +131,20 @@ namespace FatecAppBackend.Domain.Entities
 
                 }
             }
-            else
+
+            if (photo != null )
             {
-                AddNotification("Email", "Could not update, invalid value");
+                if (photo.Length > 0 && photo != Photo)
+                {
+                    Photo = photo;
+                }
+                else
+                {
+                    AddNotification("Photo", "Could not update, invalid value");
+                }
             }
 
-            if (photo != null && photo.Length > 0 && photo != Photo)
-            {
-                Photo = photo;
-            }
-            else
-            {
-                AddNotification("Photo", "Could not update, invalid value");
-            }
-
-            if (phoneNumber != null && phoneNumber.Length > 9 && phoneNumber != PhoneNumber)
+            if (phoneNumber != null)
             {
                 AddNotifications(
                     new Contract<Notification>()
@@ -160,12 +162,8 @@ namespace FatecAppBackend.Domain.Entities
                     AddNotification("PhoneNumber", "Could not update, invalid value");
                 }
             }
-            else
-            {
-                AddNotification("PhoneNumber", "Could not update, invalid value");
-            }
 
-            if(identityDocumentNumber != null && identityDocumentNumber.Length > 11 && identityDocumentNumber != IdentityDocumentNumber)
+            if(identityDocumentNumber != null)
             {
                 AddNotifications(
                     new Contract<Notification>()
@@ -184,31 +182,42 @@ namespace FatecAppBackend.Domain.Entities
                 }
             }
 
-            if (identityDocumentPhoto != null && identityDocumentPhoto.Length > 0 && identityDocumentNumber != IdentityDocumentPhoto)
+            if (identityDocumentPhoto != null)
             {
-                IdentityDocumentPhoto = identityDocumentPhoto;
-            }
-            else
-            {
-                AddNotification("IdentityDocumentPhoto", "Could not update, invalid value");
-            }
-
-            if(validatedUser != null && validatedUser != ValidatedUser)
-            {
-                ValidatedUser = (bool)validatedUser;
-            }else
-            {
-                AddNotification("ValidatedUser", "Could not update, invalid value");
+                if (identityDocumentPhoto.Length > 0 && identityDocumentNumber != IdentityDocumentPhoto)
+                {
+                    IdentityDocumentPhoto = identityDocumentPhoto;
+                }
+                else
+                {
+                    AddNotification("IdentityDocumentPhoto", "Could not update, invalid value");
+                }
             }
 
-            if(gender != null && gender != Gender)
+            if(validatedUser != null)
             {
-                Gender = (EnGender)gender;
+                if(validatedUser != ValidatedUser)
+                {
+                    ValidatedUser = (bool)validatedUser;
+                }
+                else
+                {
+                    AddNotification("ValidatedUser", "Could not update, invalid value");
+                }
             }
-            else
+
+            if(gender != null)
             {
-                AddNotification("Gender", "Could not update, invalid value");
+                if(gender != Gender)
+                {
+                    Gender = (EnGender)gender;
+                }
+                else
+                {
+                    AddNotification("Gender", "Could not update, invalid value");
+                }
             }
+
         }
 
 
