@@ -36,7 +36,7 @@ namespace FatecAppBackend.Domain.Handlers.Commands.Event
                 return new GenericCommandsResult(false, "Event not found", "Inform another Id");
             }
 
-            @event.Update(command.Event.From, command.Event.To, command.Event.Route, command.Event.OnlyWomen, command.Event.TimeToGo, command.Event.Status);
+            @event.Update(command.Event);
 
             if (!@event.IsValid)
             {
@@ -45,7 +45,7 @@ namespace FatecAppBackend.Domain.Handlers.Commands.Event
 
             _eventRepository.Update(@event);
 
-            return new GenericCommandsResult(true, "Event updated", @event);
+            return new GenericCommandsResult(true, "Event updated", @event.Id);
         }
     }
 }

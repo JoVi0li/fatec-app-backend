@@ -17,14 +17,17 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 #region Services
 
-    builder.Services.AddControllers();
+    builder.Services.AddControllers()
+                    .AddJsonOptions(x =>
+                            x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
-    builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddEndpointsApiExplorer();
 
     builder.Services.AddSwaggerGen(c => {
         c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
@@ -105,7 +108,6 @@ builder.Services.AddTransient<CreateEventHandler, CreateEventHandler>();
 builder.Services.AddTransient<GetEventByIdHandler, GetEventByIdHandler>();
 builder.Services.AddTransient<RemoveEventHandler, RemoveEventHandler>();
 builder.Services.AddTransient<UpdateEventHandler, UpdateEventHandler>();
-builder.Services.AddTransient<GetEventByNameHandler, GetEventByNameHandler>();
 builder.Services.AddTransient<GetEventHandler, GetEventHandler>();
 #endregion
 
@@ -126,7 +128,6 @@ builder.Services.AddTransient<GetParticipantByIdHandler, GetParticipantByIdHandl
 builder.Services.AddTransient<GetParticipantByEventIdHandler, GetParticipantByEventIdHandler>();
 builder.Services.AddTransient<GetParticipantByUserCollegeIdHandler, GetParticipantByUserCollegeIdHandler>();
 builder.Services.AddTransient<RemoveParticipantHandler, RemoveParticipantHandler>();
-builder.Services.AddTransient<UpdateParticipantHandler, UpdateParticipantHandler>();
 #endregion
 
 #endregion

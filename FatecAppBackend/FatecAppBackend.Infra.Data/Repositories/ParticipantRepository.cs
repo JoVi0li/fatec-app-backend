@@ -27,17 +27,26 @@ namespace FatecAppBackend.Infra.Data.Repositories
 
         public ICollection<Participant>? GetByEventId(Guid id)
         {
-            return _context.Participants.Where(x => x.EventId == id).ToList();
+            return _context.Participants
+                .Include(x => x.UserCollege)
+                .Include(x => x.Event)
+                .Where(x => x.EventId == id).ToList();
         }
 
         public Participant? GetById(Guid id)
         {
-            return _context.Participants.FirstOrDefault(x => x.Id == id);
+            return _context.Participants
+                .Include(x => x.UserCollege)
+                .Include(x => x.Event)
+                .FirstOrDefault(x => x.Id == id);
         }
 
         public ICollection<Participant>? GetByUserCollegeId(Guid id)
         {
-            return _context.Participants.Where(x => x.UserCollegeId == id).ToList();
+            return _context.Participants
+                .Include(x => x.UserCollege)
+                .Include(x => x.Event)
+                .Where(x => x.UserCollegeId == id).ToList();
         }
 
         public void Remove(Guid id)
@@ -49,6 +58,7 @@ namespace FatecAppBackend.Infra.Data.Repositories
         public void Update(Participant participant)
         {
             _context.Entry(participant).State = EntityState.Modified;
+            _context.SaveChanges();
         }
     }
 }

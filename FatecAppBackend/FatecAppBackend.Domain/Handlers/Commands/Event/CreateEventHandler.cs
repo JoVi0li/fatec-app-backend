@@ -40,11 +40,11 @@ namespace FatecAppBackend.Domain.Handlers.Commands.Event
 
             Entities.Event @event = new(
                 command.EventOwnerId,
-                command.From,
+                command.From, 
                 command.To,
                 command.Route,
                 command.OnlyWomen,
-                command.TimeToGo,
+                DateTime.Parse(command.TimeToGo),
                 command.Status
             );
 

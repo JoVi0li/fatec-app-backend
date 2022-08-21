@@ -45,32 +45,5 @@ namespace FatecAppBackend.Domain.Entities
         public Guid UserCollegeId { get; set; }
         public virtual UserCollege UserCollege { get; set; }
 
-
-        /// <summary>
-        /// Update the entity
-        /// </summary>
-        /// <param name="eventId">New EventId</param>
-        /// <param name="userCollegeId">New UserCollegeId</param>
-        public void Update(Guid? eventId, Guid? userCollegeId)
-        {
-            if(eventId != null && eventId != EventId)
-            {
-                EventId = (Guid)eventId;
-            }
-            else
-            {
-                AddNotification("EventId", "Could not update, invalid value");
-            }
-
-            if (userCollegeId != null && userCollegeId != UserCollegeId)
-            {
-                UserCollegeId = (Guid)userCollegeId;
-            }
-            else
-            {
-                AddNotification("UserCollegeId", "Could not update, invalid value");
-            }
-
-        }
     }
 }

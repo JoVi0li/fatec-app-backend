@@ -1,4 +1,5 @@
 ﻿using FatecAppBackend.Domain.Entities;
+using FatecAppBackend.Domain.Queries.Participant;
 using FatecAppBackend.Domain.Repositories;
 using FatecAppBackend.Infra.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
@@ -33,22 +34,20 @@ namespace FatecAppBackend.Infra.Data.Repositories
 
         public Event? GetById(Guid id)
         {
-            return _context.Events.FirstOrDefault(x => x.Id == id);
-        }
-
-        public ICollection<Event> GetByName(string name)
-        {
-            return _context.Events.Where(x => x.To == name).ToList();
-        }
-
-        public void Update(Event @event)
-        {
-            _context.Entry(@event).State = EntityState.Modified;
+            return _context.Events
+                .Include(x => x.Participants)
+                .FirstOrDefault(x => x.Id == id);
         }
 
         public ICollection<Event> GetAll()
         {
             return _context.Events.ToList();
+        }
+
+        public void Update(Event @event)
+        {
+            _context.Entry(@event).State = EntityState.Modified;
+            _context.SaveChanges();
         }
     }
 }

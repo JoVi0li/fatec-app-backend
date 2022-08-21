@@ -2,6 +2,7 @@
 using FatecAppBackend.Domain.Entities;
 using FatecAppBackend.Domain.Handlers.Commands.Authentication;
 using FatecAppBackend.Shared.Commands;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -12,6 +13,7 @@ using System.Text;
 namespace FatecAppBackend.API.Controllers
 {
     [Route("api/v1/auth")]
+    [Produces("application/json")]
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
@@ -30,6 +32,7 @@ namespace FatecAppBackend.API.Controllers
             return new GenericCommandsResult(result.Success, result.Message, 0);
         }
 
+        [Authorize]
         [Route("password")]
         [HttpPatch]
         public GenericCommandsResult UpdatePassword([FromBody] ChangePasswordCommand command, [FromServices] ChangePasswordHandler handler)

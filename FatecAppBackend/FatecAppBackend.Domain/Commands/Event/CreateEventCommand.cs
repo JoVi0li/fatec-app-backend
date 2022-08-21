@@ -12,7 +12,7 @@ namespace FatecAppBackend.Domain.Commands.Event
 {
     public class CreateEventCommand : Notifiable<Notification>, ICommand
     {
-        public CreateEventCommand(Guid eventOwnerId, string from, string to, string route, bool onlyWomen, DateTime timeToGo, EnStatus status)
+        public CreateEventCommand(Guid eventOwnerId, string from, string to, string route, bool onlyWomen, string timeToGo, EnStatus status)
         {
             EventOwnerId = eventOwnerId;
             From = from;
@@ -33,7 +33,7 @@ namespace FatecAppBackend.Domain.Commands.Event
 
         public bool OnlyWomen { get; private set; }
 
-        public DateTime TimeToGo { get; private set; }
+        public string TimeToGo { get; private set; }
 
         public EnStatus Status { get; private set; }
 
@@ -47,7 +47,7 @@ namespace FatecAppBackend.Domain.Commands.Event
                     .IsNotEmpty(To, "To", "To cannot be empty")
                     .IsNotEmpty(Route, "Route", "Route cannot be empty")
                     .IsNotNull(OnlyWomen, "OnlyWomen", "OnlyWomen cannot be null")
-                    .IsNotNull(TimeToGo, "TimeToGo", "TimeToGo cannot be null")
+                    .IsNotEmpty(TimeToGo, "TimeToGo", "TimeToGo cannot be empty")
                     .IsNotNull(Status, "Status", "Status cannot be null")
             );
         }

@@ -9,7 +9,7 @@ namespace FatecAppBackend.Domain.Queries.Event
 {
     public class GetEventQueryResult
     {
-        public GetEventQueryResult(Guid id, Guid eventOwnerId, string from, string to, string route, bool onlyWomen, DateTime timeToGo, EnStatus status)
+        public GetEventQueryResult(Guid id, Guid eventOwnerId, string from, string to, string route, bool onlyWomen, DateTime timeToGo, EnStatus status, ICollection<Entities.Participant>? participants)
         {
             Id = id;
             EventOwnerId = eventOwnerId;
@@ -19,6 +19,7 @@ namespace FatecAppBackend.Domain.Queries.Event
             OnlyWomen = onlyWomen;
             TimeToGo = timeToGo;
             Status = status;
+            Participants = participants;
         }
 
         public Guid Id { get; private set; }
@@ -36,5 +37,7 @@ namespace FatecAppBackend.Domain.Queries.Event
         public DateTime TimeToGo { get; private set; }
 
         public EnStatus Status { get; private set; }
+
+        public ICollection<Entities.Participant>? Participants { get; private set; }
     }
 }

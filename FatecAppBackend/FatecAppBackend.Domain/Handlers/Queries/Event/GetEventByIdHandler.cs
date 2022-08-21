@@ -36,7 +36,7 @@ namespace FatecAppBackend.Domain.Handlers.Queries.Event
                 return new GenericQueryResult(false, "Event not found", "Inform another Id");
             }
 
-            var result = new GetEventQueryResult(@event.Id, @event.EventOwnerId, @event.From, @event.To, @event.Route, @event.OnlyWomen, @event.TimeToGo, @event.Status);
+            var result = new GetEventQueryResult(@event.Id, @event.EventOwnerId, @event.From, @event.To, @event.Route, @event.OnlyWomen, @event.TimeToGo, @event.Status, @event.Participants);
 
             return new GenericQueryResult(true, "College found", result);
         }

@@ -4,12 +4,15 @@ using FatecAppBackend.Domain.Handlers.Queries.Event;
 using FatecAppBackend.Domain.Queries.Event;
 using FatecAppBackend.Shared.Commands;
 using FatecAppBackend.Shared.Queries;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FatecAppBackend.API.Controllers
 {
     [Route("api/v1/event")]
+    [Produces("application/json")]
+    [Authorize]
     [ApiController]
     public class EventController : ControllerBase
     {
@@ -22,9 +25,9 @@ namespace FatecAppBackend.API.Controllers
 
         [Route("delete")]
         [HttpDelete("{id}")]
-        public GenericCommandsResult Delete([FromRoute] RemoveEventCommand command, [FromServices] RemoveEventHandler handler)
+        public GenericCommandsResult Delete([FromQuery] Guid id, [FromServices] RemoveEventHandler handler)
         {
-            return (GenericCommandsResult)handler.Execute(command);
+            return (GenericCommandsResult)handler.Execute(new RemoveEventCommand(id));
         }
 
         [Route("update")]
@@ -36,23 +39,16 @@ namespace FatecAppBackend.API.Controllers
 
         [Route("get")]
         [HttpGet]
-        public GenericQueryResult Get([FromRoute] GetEventQuery query, [FromServices] GetEventHandler handler)
+        public GenericQueryResult Get([FromQuery] GetEventQuery query, [FromServices] GetEventHandler handler)
         {
             return (GenericQueryResult)handler.Execute(query);
         }
 
         [Route("get/id")]
         [HttpGet("{id}")]
-        public GenericQueryResult GetById([FromRoute] GetEventByIdQuery id, [FromServices] GetEventByIdHandler handler)
+        public GenericQueryResult GetById([FromQuery] Guid id, [FromServices] GetEventByIdHandler handler)
         {
-            return (GenericQueryResult)handler.Execute(id);
-        }
-
-        [Route("get/name")]
-        [HttpGet("{name}")]
-        public GenericQueryResult GetByName([FromRoute] GetEventByNameQuery name, [FromServices] GetEventByNameHandler handler)
-        {
-            return (GenericQueryResult)handler.Execute(name);
+            return (GenericQueryResult)handler.Execute(new GetEventByIdQuery(id));
         }
     }
 }

@@ -32,7 +32,7 @@ namespace FatecAppBackend.Domain.Handlers.Queries.Event
             var result = events.Select(
                 x =>
                 {
-                    return new GetEventQueryResult(x.Id, x.EventOwnerId, x.From, x.To, x.Route, x.OnlyWomen, x.TimeToGo, x.Status);
+                    return new GetEventQueryResult(x.Id, x.EventOwnerId, x.From, x.To, x.Route, x.OnlyWomen, x.TimeToGo, x.Status, x.Participants);
                 }
             );
 

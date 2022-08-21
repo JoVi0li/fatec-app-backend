@@ -6,12 +6,15 @@ using FatecAppBackend.Domain.Queries.College;
 using FatecAppBackend.Domain.Queries.Event;
 using FatecAppBackend.Shared.Commands;
 using FatecAppBackend.Shared.Queries;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FatecAppBackend.API.Controllers
 {
     [Route("api/v1/college")]
+    [Produces("application/json")]
+    [Authorize]
     [ApiController]
     public class CollegeController : ControllerBase
     {

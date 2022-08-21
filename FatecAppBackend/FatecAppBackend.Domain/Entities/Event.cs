@@ -1,9 +1,10 @@
 ﻿using FatecAppBackend.Shared;
+using FatecAppBackend.Shared.DTOs.Event;
 using FatecAppBackend.Shared.Enums;
 using Flunt.Notifications;
 using Flunt.Validations;
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -78,65 +79,86 @@ namespace FatecAppBackend.Domain.Entities
         public Guid EventOwnerId { get; private set; }
         public UserCollege EventOwner { get; private set; }
 
-        public virtual ICollection<Participant> Participants { get; set; }
+        public virtual ICollection<Participant> Participants { get; private set; }
 
 
         // Update
 
-        public void Update(string? from, string? to, string? route, bool? onlyWomen, DateTime? timeToGo, EnStatus? status)
+        public void Update(UpdateEventDTO @event)
         {
-            if(from != null && from.Length > 0 && from != From)
+            if(@event.From != null)
             {
-                From = from;
-            }
-            else
-            {
-                AddNotification("From", "Could not update, invalid value");
-            }
-
-            if (to != null && to.Length > 0 && to != To)
-            {
-                To = to;
-            }
-            else
-            {
-                AddNotification("To", "Could not update, invalid value");
+                if (@event.From.Length > 0 && @event.From != From)
+                {
+                    From = @event.From;
+                }
+                else
+                {
+                    AddNotification("From", "Could not update, invalid value");
+                }
             }
 
-            if (route != null && route.Length > 0 && route != Route)
+
+            if (@event.To != null)
             {
-                Route = route;
+                if (@event.To.Length > 0 && @event.To != To)
+                {
+                    To = @event.To;
+                }
+                else
+                {
+                    AddNotification("To", "Could not update, invalid value");
+                }
             }
-            else
+        
+
+            if (@event.Route != null)
             {
-                AddNotification("Route", "Could not update, invalid value");
+                if (@event.Route.Length > 0 && @event.Route != Route)
+                {
+                    Route = @event.Route;
+                }
+                else
+                {
+                    AddNotification("Route", "Could not update, invalid value");
+                }
             }
 
-            if (onlyWomen != null && onlyWomen != OnlyWomen && onlyWomen != OnlyWomen)
+            if (@event.OnlyWomen != null)
             {
-                OnlyWomen = (bool)onlyWomen;
-            }
-            else
-            {
-                AddNotification("OnlyWomen", "Could not update, invalid value");
-            }
-
-            if (timeToGo != null && timeToGo != TimeToGo)
-            {
-                TimeToGo = (DateTime)timeToGo;
-            }
-            else
-            {
-                AddNotification("TimeToGo", "Could not update, invalid value");
+                if (@event.OnlyWomen != OnlyWomen && @event.OnlyWomen != OnlyWomen)
+                {
+                    OnlyWomen = (bool)@event.OnlyWomen;
+                }
+                else
+                {
+                    AddNotification("OnlyWomen", "Could not update, invalid value");
+                }
             }
 
-            if (status != null && status != Status)
+
+            if (@event.TimeToGo != null)
             {
-                Status = (EnStatus)status;
+                if (@event.TimeToGo != TimeToGo)
+                {
+                    TimeToGo = (DateTime)@event.TimeToGo;
+                }
+                else
+                {
+                    AddNotification("TimeToGo", "Could not update, invalid value");
+                }
             }
-            else
+
+            if (@event.Status != null)
             {
-                AddNotification("Status", "Could not update, invalid value");
+                if (@event.Status != Status)
+                {
+                    Status = (EnStatus)@event.Status;
+                }
+                else
+                {
+                    AddNotification("Status", "Could not update, invalid value");
+                }
             }
         }
 
