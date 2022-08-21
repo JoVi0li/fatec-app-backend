@@ -1,5 +1,6 @@
 ﻿using FatecAppBackend.Shared;
 using FatecAppBackend.Shared.Commands;
+using FatecAppBackend.Shared.DTOs.User;
 using Flunt.Extensions.Br.Validations;
 using Flunt.Notifications;
 using Flunt.Validations;
@@ -13,99 +14,75 @@ namespace FatecAppBackend.Domain.Commands.User
 {
     public class UpdateUserCommand : Notifiable<Notification>, ICommand
     {
-        public UpdateUserCommand(Guid id, string? name, string? email, string? photo, string? phoneNumber, string? identityDocumentNumber, string? identityDocumentPhoto, bool? validatedUser, EnGender? gender)
+        public UpdateUserCommand(UpdateUserDTO updateUser)
         {
-            Id = id;
-            Name = name;
-            Email = email;
-            Photo = photo;
-            PhoneNumber = phoneNumber;
-            IdentityDocumentNumber = identityDocumentNumber;
-            IdentityDocumentPhoto = identityDocumentPhoto;
-            Gender = gender;
-            ValidatedUser = validatedUser;
+            UpdateUser = updateUser;
         }
 
-        public Guid Id { get; private set; }
-
-        public string? Name { get; private set; }
-
-        public string? Email { get; private set; }
-
-        public string? Photo { get; private set; }
-
-        public string? PhoneNumber { get; private set; }
-
-        public string? IdentityDocumentNumber { get; private set; }
-
-        public string? IdentityDocumentPhoto { get; private set; }
-
-        public EnGender? Gender { get; private set; }
-
-        public bool? ValidatedUser { get; private set; }
+        public UpdateUserDTO UpdateUser { get; set; }
 
         public void Execute()
         {
-            if(Email != null)
+            if(UpdateUser.Email != null)
             {
                 AddNotifications(
                     new Contract<Notification>()
                         .Requires()
-                        .IsEmail(Email, "Email", "Invalid E-mail")
-                        .Contains(Email, "@fatec.sp.gov.br", "Email", "Invalid Email")
+                        .IsEmail(UpdateUser.Email, "Email", "Invalid E-mail")
+                        .Contains(UpdateUser.Email, "@fatec.sp.gov.br", "Email", "Invalid Email")
                 );
             }
 
-            if(Name != null)
+            if(UpdateUser.Name != null)
             {
                 AddNotifications(
                     new Contract<Notification>()
                         .Requires()
-                        .IsNotEmpty(Name, "Name", "Name cannot be empty")
-                        .IsGreaterThan(Name, 3, "Name", "Name must be greater than 3 characters")
+                        .IsNotEmpty(UpdateUser.Name, "Name", "Name cannot be empty")
+                        .IsGreaterThan(UpdateUser.Name, 3, "Name", "Name must be greater than 3 characters")
                 );
             }
 
-            if(Photo != null)
+            if(UpdateUser.Photo != null)
             {
                 AddNotifications(
                     new Contract<Notification>()
                         .Requires()
-                        .IsNotEmpty(Photo, "Photo", "Photo cannot be empty")
+                        .IsNotEmpty(UpdateUser.Photo, "Photo", "Photo cannot be empty")
                 );
             }
 
-            if(PhoneNumber != null)
+            if(UpdateUser.PhoneNumber != null)
             {
                 AddNotifications(
                     new Contract<Notification>()
                         .Requires()
-                        .IsNotEmpty(PhoneNumber, "PhoneNumber", "PhoneNumber cannot be empty")
-                        .IsPhoneNumber(PhoneNumber, "PhoneNumber", "Invalid PhoneNumber")
+                        .IsNotEmpty(UpdateUser.PhoneNumber, "PhoneNumber", "PhoneNumber cannot be empty")
+                        .IsPhoneNumber(UpdateUser.PhoneNumber, "PhoneNumber", "Invalid PhoneNumber")
 
                 );
             }
 
-            if(IdentityDocumentNumber != null)
+            if(UpdateUser.IdentityDocumentNumber != null)
             {
                 AddNotifications(
                     new Contract<Notification>()
                         .Requires()
-                        .IsNotEmpty(IdentityDocumentNumber, "IdentityDocumentNumber", "IdentityDocumentNumber cannot be empty")
-                        .IsCpf(IdentityDocumentNumber, "IdentityDocumentNumber", "Invalid IdentityDocumentNumber")
+                        .IsNotEmpty(UpdateUser.IdentityDocumentNumber, "IdentityDocumentNumber", "IdentityDocumentNumber cannot be empty")
+                        .IsCpf(UpdateUser.IdentityDocumentNumber, "IdentityDocumentNumber", "Invalid IdentityDocumentNumber")
                 );
             }
 
-            if(IdentityDocumentPhoto != null)
+            if(UpdateUser.IdentityDocumentPhoto != null)
             {
                 AddNotifications(
                     new Contract<Notification>()
                         .Requires()
-                        .IsNotEmpty(IdentityDocumentPhoto, "IdentityDocumentPhoto", "IdentityDocumentPhoto cannot be empty")
+                        .IsNotEmpty(UpdateUser.IdentityDocumentPhoto, "IdentityDocumentPhoto", "IdentityDocumentPhoto cannot be empty")
                 );
             }
 
-            if(Gender != null)
+            if(UpdateUser.Gender != null)
             {
                 AddNotifications(
                     new Contract<Notification>()
@@ -113,7 +90,7 @@ namespace FatecAppBackend.Domain.Commands.User
                 );
             }
 
-            if (ValidatedUser != null)
+            if (UpdateUser.ValidatedUser != null)
             {
                 AddNotifications(
                     new Contract<Notification>()

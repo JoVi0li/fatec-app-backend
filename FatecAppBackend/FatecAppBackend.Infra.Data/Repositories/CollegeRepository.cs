@@ -49,6 +49,7 @@ namespace FatecAppBackend.Infra.Data.Repositories
         public void Update(College college)
         {
             _context.Entry(college).State = EntityState.Modified;
+            _context.SaveChanges();
         }
     }
 }

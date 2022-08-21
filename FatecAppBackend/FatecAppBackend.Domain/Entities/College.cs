@@ -1,4 +1,5 @@
 ﻿using FatecAppBackend.Shared;
+using FatecAppBackend.Shared.DTOs.College;
 using Flunt.Notifications;
 using Flunt.Validations;
 using System;
@@ -39,6 +40,9 @@ namespace FatecAppBackend.Domain.Entities
             }
         }
 
+
+        // Props
+
         public string Name { get; private set; }
 
         public string Course { get; private set; }
@@ -47,52 +51,67 @@ namespace FatecAppBackend.Domain.Entities
 
         public string Localization { get; private set; }
 
-        public IReadOnlyCollection<UserCollege> UserCollege { get; set; }
 
-        /// <summary>
-        /// Update the entity
-        /// </summary>
-        /// <param name="name">New Name</param>
-        /// <param name="course">New Course</param>
-        /// <param name="time">New Time</param>
-        /// <param name="localization">New Localization</param>
-        public void Update(string? name, string? course, EnTime? time, string? localization)
+        // Composition
+
+        public virtual ICollection<UserCollege> UserCollege { get; set; }
+
+
+        // Update
+
+        public void Update(UpdateCollegeDTO college)
         {
-            if(name != null && name.Length > 0 && name != Name)
+            if(college.Name != null)
             {
-                Name = name;
+                if(Name != college.Name)
+                {
+                    Name = college.Name;
+                }
+                else
+                {
+                    AddNotification("Name", "Could not update, invalid value");
+                }
             } 
-            else
+
+            if(college.Course != null )
             {
-                AddNotification("Name", "Could not update, invalid value");
+                if(Course != college.Course && college.Course.Length > 0)
+                {
+                    Course = college.Course;
+                }
+                else
+                {
+                    AddNotification("Course", "Could not update, invalid value");
+                }
+            }
+  
+
+            if (college.Time != null)
+            {
+                if(Time != college.Time)
+                {
+                    Time = (EnTime)college.Time;
+
+                }
+                else
+                {
+                    AddNotification("Time", "Could not update, invalid value");
+                }
             }
 
-            if(course != null && course.Length > 0 && course != Course)
+
+            if (college.Localization != null )
             {
-                Course = course;
-            }
-            else
-            {
-                AddNotification("Course", "Could not update, invalid value");
+                if(college.Localization != Localization && college.Localization.Length > 0)
+                {
+                    Localization = college.Localization;
+                }
+                else
+                {
+                    AddNotification("Localization", "Could not update, invalid value");
+                }
             }
 
-            if (time != null && time != Time && time != Time)
-            {
-                Time = (EnTime)time;
-            }
-            else
-            {
-                AddNotification("Time", "Could not update, invalid value");
-            }
-
-            if (localization != null && localization.Length > 0 && localization != Localization)
-            {
-                Localization = localization;
-            }
-            else
-            {
-                AddNotification("Localization", "Could not update, invalid value");
-            }
         }
 
     }

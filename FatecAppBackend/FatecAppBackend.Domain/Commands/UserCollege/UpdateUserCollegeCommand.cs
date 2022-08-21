@@ -1,4 +1,5 @@
 ﻿using FatecAppBackend.Shared.Commands;
+using FatecAppBackend.Shared.DTOs.UserCollege;
 using Flunt.Notifications;
 using Flunt.Validations;
 using System;
@@ -11,20 +12,60 @@ namespace FatecAppBackend.Domain.Commands.UserCollege
 {
     public class UpdateUserCollegeCommand : Notifiable<Notification> , ICommand
     {
-        public UpdateUserCollegeCommand(Entities.UserCollege userCollege)
+        public UpdateUserCollegeCommand(UpdateUserCollegeDTO userCollege)
         {
             UserCollege = userCollege;
         }
 
-        public Entities.UserCollege UserCollege { get; set; }
+        public UpdateUserCollegeDTO UserCollege { get; set; }
 
         public void Execute()
         {
-            AddNotifications(
-                new Contract<Notification>()
-                    .Requires()
-                    .IsNotNull(UserCollege, "UserCollege", "UserCollege cannot be null")
-            );
+            if(UserCollege.CollegeId != null)
+            {
+           
+                AddNotifications(
+                    new Contract<Notification>()
+                        .Requires()
+                        .IsNotNull(UserCollege.CollegeId, "CollegeId", "CollegeId cannot be null")
+                );
+            }
+
+            if(UserCollege.StudentNumber != null)
+            {
+                AddNotifications(
+                    new Contract<Notification>()
+                        .Requires()
+                        .IsNotEmpty(UserCollege.StudentNumber, "StudentNumber", "StudentNumber cannot be empty")
+                );
+            }
+
+            if(UserCollege.ValidatedDocument != null)
+            {
+                AddNotifications(
+                    new Contract<Notification>()
+                        .Requires()
+                        .IsNotNull(UserCollege.ValidatedDocument, "ValidatedDocument", "ValidatedDocument cannot be null")
+                );
+            }
+
+            if(UserCollege.ProofDocument != null)
+            {
+                AddNotifications(
+                    new Contract<Notification>()
+                        .Requires()
+                        .IsNotEmpty(UserCollege.ProofDocument, "ProofDocument", "ProofDocument cannot be empty")
+                );
+            }
+
+            if(UserCollege.GraduationDate != null)
+            {
+                AddNotifications(
+                    new Contract<Notification>()
+                        .Requires()
+                        .IsNotNull(UserCollege.GraduationDate, "GraduationDate", "GraduationDate cannot be null")
+                );
+            }
         }
     }
 }

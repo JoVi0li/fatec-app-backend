@@ -33,22 +33,30 @@ namespace FatecAppBackend.Infra.Data.Repositories
 
         public ICollection<User> GetAll()
         {
-            return _context.Users.ToList();
+            return _context.Users
+                .Include(x => x.UserCollege)
+                .ToList();
         }
 
         public User? GetByEmail(string email)
         {
-            return _context.Users.FirstOrDefault(x => x.Email == email);
+            return _context.Users
+                .Include(x => x.UserCollege)
+                .FirstOrDefault(x => x.Email == email);
         }
 
         public User? GetById(Guid id)
         {
-            return _context.Users.FirstOrDefault(x => x.Id == id);
+            return _context.Users
+                .Include(x => x.UserCollege)
+                .FirstOrDefault(x => x.Id == id);
         }
 
         public ICollection<User> GetByName(string name)
         {
-            return _context.Users.Where(x => x.Name.Contains(name)).ToList();
+            return _context.Users
+                .Include(x => x.UserCollege)
+                .Where(x => x.Name.Contains(name)).ToList();
         }
 
         public void Update(User user)

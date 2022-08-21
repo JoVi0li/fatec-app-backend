@@ -1,4 +1,5 @@
 ﻿using FatecAppBackend.Shared.Commands;
+using FatecAppBackend.Shared.DTOs.College;
 using Flunt.Notifications;
 using Flunt.Validations;
 using System;
@@ -11,20 +12,51 @@ namespace FatecAppBackend.Domain.Commands.College
 {
     public class UpdateCollegeCommand : Notifiable<Notification>, ICommand
     {
-        public UpdateCollegeCommand(Entities.College college)
+        public UpdateCollegeCommand(UpdateCollegeDTO college)
         {
             College = college;
         }
 
-        public Entities.College College { get; set; }
+        public UpdateCollegeDTO College { get; set; }
 
         public void Execute()
         {
-            AddNotifications(
-                new Contract<Notification>()
-                    .Requires()
-                    .IsNotNull(College, "College", "College cannot be null")
-            );
+
+            if(College.Name != null)
+            {
+                AddNotifications(
+                    new Contract<Notification>()
+                        .Requires()
+                        .IsNotEmpty(College.Name, "Name", "name cannot be empty")
+                );
+            }
+
+            if(College.Course != null)
+            {
+                AddNotifications(
+                    new Contract<Notification>()
+                        .Requires()
+                        .IsNotEmpty(College.Course, "Course", "Course cannot be empty")
+                );
+            }
+
+            if(College.Localization != null)
+            {
+                AddNotifications(
+                    new Contract<Notification>()
+                        .Requires()
+                        .IsNotEmpty(College.Localization, "Localization", "Localization cannot be empty")
+                );
+            }
+
+            if (College.Time != null)
+            {
+                AddNotifications(
+                    new Contract<Notification>()
+                        .Requires()
+                );
+            }
+
         }
     }
 }

@@ -39,11 +39,11 @@ namespace FatecAppBackend.Domain.Entities
 
         [ForeignKey("Event")]
         public Guid EventId { get; set; }
-        public Event Event { get; set; }
+        public virtual Event Event { get; set; }
 
         [ForeignKey("UserCollege")]
         public Guid UserCollegeId { get; set; }
-        public UserCollege UserCollege { get; set; }
+        public virtual UserCollege UserCollege { get; set; }
 
 
         /// <summary>

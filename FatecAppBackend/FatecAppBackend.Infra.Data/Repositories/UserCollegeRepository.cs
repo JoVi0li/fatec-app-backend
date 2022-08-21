@@ -38,7 +38,7 @@ namespace FatecAppBackend.Infra.Data.Repositories
 
         public UserCollege? GetByCollegeId(Guid collegeId)
         {
-            throw new NotImplementedException();
+            return _context.UserColleges.FirstOrDefault(x => x.CollegeId == collegeId);
         }
 
         public UserCollege? GetById(Guid id)
@@ -54,6 +54,7 @@ namespace FatecAppBackend.Infra.Data.Repositories
         public void Update(UserCollege userCollege)
         {
             _context.Entry(userCollege).State = EntityState.Modified;
+            _context.SaveChanges();
         }
     }
 }

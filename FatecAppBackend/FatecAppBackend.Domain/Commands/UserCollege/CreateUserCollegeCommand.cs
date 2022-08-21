@@ -11,7 +11,7 @@ namespace FatecAppBackend.Domain.Commands.UserCollege
 {
     public class CreateUserCollegeCommand : Notifiable<Notification>, ICommand
     {
-        public CreateUserCollegeCommand(Guid userId, Guid collegeId, string studentNumber, bool validatedDocument, string proofDocument, DateTime graduationDate)
+        public CreateUserCollegeCommand(Guid userId, Guid collegeId, string studentNumber, bool validatedDocument, string proofDocument, string graduationDate)
         {
             UserId = userId;
             CollegeId = collegeId;
@@ -31,7 +31,7 @@ namespace FatecAppBackend.Domain.Commands.UserCollege
 
         public string ProofDocument { get; private set; }
 
-        public DateTime GraduationDate { get; private set; }
+        public string GraduationDate { get; private set; }
 
         public void Execute()
         {
@@ -43,7 +43,7 @@ namespace FatecAppBackend.Domain.Commands.UserCollege
                     .IsNotEmpty(StudentNumber, "StudentNumber", "StudentNumber cannot be empty")
                     .IsNotNull(ValidatedDocument, "ValidatedDocument", "ValidatedDocument cannot be null")
                     .IsNotNull(ProofDocument, "ProofDocument", "ProofDocument cannot be null")
-                    .IsNotNull(GraduationDate, "GraduationDate", "GraduationDate cannot be null")
+                    .IsNotEmpty(GraduationDate, "GraduationDate", "GraduationDate cannot be empty")
             );
         }
     }

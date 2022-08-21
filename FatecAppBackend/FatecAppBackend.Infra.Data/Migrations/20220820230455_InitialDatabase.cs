@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FatecAppBackend.Infra.Data.Migrations
 {
-    public partial class Initialdatabase : Migration
+    public partial class InitialDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -51,12 +51,12 @@ namespace FatecAppBackend.Infra.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CollegeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     StudentNumber = table.Column<string>(type: "varchar(100)", nullable: false),
                     ValidatedDocument = table.Column<bool>(type: "bit", nullable: false),
                     ProofDocument = table.Column<string>(type: "varchar(1000)", maxLength: 1000, nullable: false),
                     GraduationDate = table.Column<DateTime>(type: "DateTime", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CollegeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -81,13 +81,13 @@ namespace FatecAppBackend.Infra.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    EventOwnerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     From = table.Column<string>(type: "varchar(100)", nullable: false),
                     To = table.Column<string>(type: "varchar(100)", nullable: false),
                     Route = table.Column<string>(type: "varchar(500)", nullable: false),
                     OnlyWomen = table.Column<bool>(type: "bit", nullable: false),
                     TimeToGo = table.Column<DateTime>(type: "DateTime", nullable: false),
                     Status = table.Column<string>(type: "varchar(100)", nullable: false),
+                    EventOwnerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>

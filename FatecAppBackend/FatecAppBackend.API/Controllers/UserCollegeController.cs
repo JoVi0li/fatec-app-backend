@@ -22,9 +22,9 @@ namespace FatecAppBackend.API.Controllers
 
         [Route("delete")]
         [HttpDelete("{id}")]
-        public GenericCommandsResult Delete([FromRoute] RemoveUserCollegeCommand id, [FromServices] RemoveUserCollegeHandler handler)
+        public GenericCommandsResult Delete([FromQuery] Guid id, [FromServices] RemoveUserCollegeHandler handler)
         {
-            return (GenericCommandsResult)handler.Execute(id);
+            return (GenericCommandsResult)handler.Execute(new RemoveUserCollegeCommand(id));
         }
 
         [Route("update")]
@@ -36,30 +36,30 @@ namespace FatecAppBackend.API.Controllers
 
         [Route("get")]
         [HttpGet]
-        public GenericQueryResult Get([FromRoute] GetUserCollegeQuery query, [FromServices] GetUserCollegeHandler handler)
+        public GenericQueryResult Get([FromQuery] GetUserCollegeQuery query, [FromServices] GetUserCollegeHandler handler)
         {
             return (GenericQueryResult)handler.Execute(query);
         }
 
         [Route("get/id")]
         [HttpGet("{id}")]
-        public GenericQueryResult GetById([FromRoute] GetUserCollegeByIdQuery id, [FromServices] GetUserCollegeByIdHandler handler)
+        public GenericQueryResult GetById([FromQuery] Guid id, [FromServices] GetUserCollegeByIdHandler handler)
         {
-            return (GenericQueryResult)handler.Execute(id);
+            return (GenericQueryResult)handler.Execute(new GetUserCollegeByIdQuery(id));
         }
 
         [Route("get/collegeid")]
         [HttpGet("{collegeId}")]
-        public GenericQueryResult GetByCollegeId([FromRoute] GetUserCollegeByCollegeIdQuery collegeId, [FromServices] GetUserCollegeByCollegeIdHandler handler)
+        public GenericQueryResult GetByCollegeId([FromQuery] Guid collegeId, [FromServices] GetUserCollegeByCollegeIdHandler handler)
         {
-            return (GenericQueryResult)handler.Execute(collegeId);
+            return (GenericQueryResult)handler.Execute(new GetUserCollegeByCollegeIdQuery(collegeId));
         }
 
         [Route("get/userid")]
         [HttpGet("{userId}")]
-        public GenericQueryResult GetByUserId([FromRoute] GetUserCollegeByUserIdQuery userId, [FromServices] GetUserCollegeByUserIdHandler handler)
+        public GenericQueryResult GetByUserId([FromQuery] Guid userId, [FromServices] GetUserCollegeByUserIdHandler handler)
         {
-            return (GenericQueryResult)handler.Execute(userId);
+            return (GenericQueryResult)handler.Execute(new GetUserCollegeByUserIdQuery(userId));
         }
     }
 }

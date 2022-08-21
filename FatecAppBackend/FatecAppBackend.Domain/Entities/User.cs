@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Flunt.Extensions.Br.Validations;
+using FatecAppBackend.Shared.DTOs.User;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FatecAppBackend.Domain.Entities
 {
@@ -65,6 +67,9 @@ namespace FatecAppBackend.Domain.Entities
 
         }
 
+        
+        // Props
+
         public string Name { get; private set; }
 
         public string Email { get; private set; }
@@ -83,28 +88,21 @@ namespace FatecAppBackend.Domain.Entities
 
         public bool ValidatedUser { get; private set; }
 
-        public UserCollege UserCollege { get; set; }
+
+        // Composition
+
+        public virtual UserCollege UserCollege { get; private set; }
 
 
+        // Updates
 
-        /// <summary>
-        /// Update the entity
-        /// </summary>
-        /// <param name="name">New </param>
-        /// <param name="email">New Email</param>
-        /// <param name="photo">New Photo</param>
-        /// <param name="phoneNumber">New PhoneNumber</param>
-        /// <param name="identityDocumentNumber">New IdentityDocumentNumber</param>
-        /// <param name="identityDocumentPhoto">New IdentityDocumentPhoto</param>
-        /// <param name="validatedUser">New ValidatedUser</param>
-        /// <param name="gender">New Gender</param>
-        public void Update(string? name, string? email, string? photo, string? phoneNumber, string? identityDocumentNumber, string? identityDocumentPhoto, bool? validatedUser, EnGender? gender)
+        public void Update(UpdateUserDTO updateUser)
         {
-            if(name != null)
+            if(updateUser.Name != null)
             {
-                if (name.Length > 3 && name != Name)
+                if (updateUser.Name.Length > 3 && updateUser.Name != Name)
                 {
-                    Name = name;
+                    Name = updateUser.Name;
                 }
                 else
                 {
@@ -112,18 +110,18 @@ namespace FatecAppBackend.Domain.Entities
                 }
             }
 
-            if(email != null)
+            if(updateUser.Email != null)
             {
                 AddNotifications(
                     new Contract<Notification>()
                         .Requires()
-                        .IsEmail(email, "Email", "Invalid E-mail")
-                        .Contains(email, "@fatec.sp.gov.br", "Email", "Invalid Email")
+                        .IsEmail(updateUser.Email, "Email", "Invalid E-mail")
+                        .Contains(updateUser.Email, "@fatec.sp.gov.br", "Email", "Invalid Email")
                 );
 
                 if (IsValid)
                 {
-                    Email = email;
+                    Email = updateUser.Email;
                 }
                 else
                 {
@@ -132,11 +130,11 @@ namespace FatecAppBackend.Domain.Entities
                 }
             }
 
-            if (photo != null )
+            if (updateUser.Photo != null )
             {
-                if (photo.Length > 0 && photo != Photo)
+                if (updateUser.Photo.Length > 0 && updateUser.Photo != Photo)
                 {
-                    Photo = photo;
+                    Photo = updateUser.Photo;
                 }
                 else
                 {
@@ -144,18 +142,18 @@ namespace FatecAppBackend.Domain.Entities
                 }
             }
 
-            if (phoneNumber != null)
+            if (updateUser.PhoneNumber != null)
             {
                 AddNotifications(
                     new Contract<Notification>()
                         .Requires()
-                        .IsNotNull(phoneNumber, "PhoneNumber", "PhoneNumber cannot be null")
-                        .IsPhoneNumber(phoneNumber, "PhoneNumber", "Invalid PhoneNumber")
+                        .IsNotNull(updateUser.PhoneNumber, "PhoneNumber", "PhoneNumber cannot be null")
+                        .IsPhoneNumber(updateUser.PhoneNumber, "PhoneNumber", "Invalid PhoneNumber")
                 );
 
                 if(IsValid)
                 {
-                    PhoneNumber = phoneNumber;
+                    PhoneNumber = updateUser.PhoneNumber;
                 }
                 else
                 {
@@ -163,18 +161,18 @@ namespace FatecAppBackend.Domain.Entities
                 }
             }
 
-            if(identityDocumentNumber != null)
+            if(updateUser.IdentityDocumentNumber != null)
             {
                 AddNotifications(
                     new Contract<Notification>()
                         .Requires()
-                        .IsNotNull(identityDocumentNumber, "IdentityDocumentNumber", "IdentityDocumentNumber cannot be null")
-                        .IsCpf(identityDocumentNumber, "IdentityDocumentNumber", "Invalid IdentityDocumentNumber")
+                        .IsNotNull(updateUser.IdentityDocumentNumber, "IdentityDocumentNumber", "IdentityDocumentNumber cannot be null")
+                        .IsCpf(updateUser.IdentityDocumentNumber, "IdentityDocumentNumber", "Invalid IdentityDocumentNumber")
                 );
 
                 if (IsValid)
                 {
-                    IdentityDocumentNumber = identityDocumentNumber;
+                    IdentityDocumentNumber = updateUser.IdentityDocumentNumber;
                 }
                 else
                 {
@@ -182,11 +180,11 @@ namespace FatecAppBackend.Domain.Entities
                 }
             }
 
-            if (identityDocumentPhoto != null)
+            if (updateUser.IdentityDocumentPhoto != null)
             {
-                if (identityDocumentPhoto.Length > 0 && identityDocumentNumber != IdentityDocumentPhoto)
+                if (updateUser.IdentityDocumentPhoto.Length > 0 && updateUser.IdentityDocumentPhoto != IdentityDocumentPhoto)
                 {
-                    IdentityDocumentPhoto = identityDocumentPhoto;
+                    IdentityDocumentPhoto = updateUser.IdentityDocumentPhoto;
                 }
                 else
                 {
@@ -194,11 +192,11 @@ namespace FatecAppBackend.Domain.Entities
                 }
             }
 
-            if(validatedUser != null)
+            if(updateUser.ValidatedUser != null)
             {
-                if(validatedUser != ValidatedUser)
+                if(updateUser.ValidatedUser != ValidatedUser)
                 {
-                    ValidatedUser = (bool)validatedUser;
+                    ValidatedUser = (bool)updateUser.ValidatedUser;
                 }
                 else
                 {
@@ -206,11 +204,11 @@ namespace FatecAppBackend.Domain.Entities
                 }
             }
 
-            if(gender != null)
+            if(updateUser.Gender != null)
             {
-                if(gender != Gender)
+                if(updateUser.Gender != Gender)
                 {
-                    Gender = (EnGender)gender;
+                    Gender = (EnGender)updateUser.Gender;
                 }
                 else
                 {
@@ -219,7 +217,6 @@ namespace FatecAppBackend.Domain.Entities
             }
 
         }
-
 
         public void UpdatePassword(string password)
         {

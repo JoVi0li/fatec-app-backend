@@ -56,9 +56,8 @@ namespace FatecAppBackend.Domain.Entities
 
         }
 
-        [ForeignKey("UserCollege")]
-        public Guid EventOwnerId { get; private set; }
-        public UserCollege EventOwner { get; private set; }
+        
+        // Props
 
         public string From { get; private set; }
 
@@ -72,18 +71,18 @@ namespace FatecAppBackend.Domain.Entities
 
         public EnStatus Status { get; private set; }
 
+
+        // Composition
+
+        [ForeignKey("UserCollege")]
+        public Guid EventOwnerId { get; private set; }
+        public UserCollege EventOwner { get; private set; }
+
         public virtual ICollection<Participant> Participants { get; set; }
 
 
-        /// <summary>
-        /// Update the entity
-        /// </summary>
-        /// <param name="from">New From</param>
-        /// <param name="to">New To</param>
-        /// <param name="route">New Route</param>
-        /// <param name="onlyWomen">New OnlyWomen</param>
-        /// <param name="timeToGo">New TimeToGo</param>
-        /// <param name="status">New Status</param>
+        // Update
+
         public void Update(string? from, string? to, string? route, bool? onlyWomen, DateTime? timeToGo, EnStatus? status)
         {
             if(from != null && from.Length > 0 && from != From)

@@ -36,7 +36,7 @@ namespace FatecAppBackend.Domain.Handlers.Commands.UserCollege
                 return new GenericCommandsResult(false, "UserCollege not found", "Inform another Id");
             }
 
-            userCollege.Update(command.UserCollege.CollegeId, command.UserCollege.StudentNumber, command.UserCollege.ProofDocument, command.UserCollege.GraduationDate);
+            userCollege.Update(command.UserCollege);
 
             if (!userCollege.IsValid)
             {
@@ -45,7 +45,7 @@ namespace FatecAppBackend.Domain.Handlers.Commands.UserCollege
 
             _userCollegeRepository.Update(userCollege);
 
-            return new GenericCommandsResult(true, "UserCollege updated", userCollege);
+            return new GenericCommandsResult(true, "UserCollege updated", userCollege.Id);
         }
     }
 }

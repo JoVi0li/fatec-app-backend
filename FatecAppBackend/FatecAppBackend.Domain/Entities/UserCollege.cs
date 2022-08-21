@@ -1,5 +1,6 @@
 ﻿using FatecAppBackend.Domain.Entities;
 using FatecAppBackend.Shared;
+using FatecAppBackend.Shared.DTOs.UserCollege;
 using Flunt.Notifications;
 using Flunt.Validations;
 using System;
@@ -34,7 +35,7 @@ namespace FatecAppBackend.Domain.Entities
                     .IsNotNull(collegeId, "CollegeId", "CollegeId cannnot be null")
                     .IsNotEmpty(studentNumber, "StudentNumber", "StudentNumber cannot be empty")
                     .IsNotNull(validatedDoc, "ValidatedDocument", "ValidatedDocument cannot be null")
-                    .IsNotNull(proofDoc, "ProofDocument", "ProofDocument cannot be null")
+                    .IsNotEmpty(proofDoc, "ProofDocument", "ProofDocument cannot be empty")
                     .IsNotNull(graduationDate, "GraduationDate", "GraduationDate cannot be null")
             );
 
@@ -52,13 +53,8 @@ namespace FatecAppBackend.Domain.Entities
             }
         }
 
-        [ForeignKey("User")]
-        public Guid UserId { get; private set; }
-        public User User { get; private set; }
 
-        [ForeignKey("College")]
-        public Guid CollegeId { get; private set; }
-        public College College { get; private set; }
+        //Props
 
         public string StudentNumber { get; private set; }
 
@@ -68,40 +64,95 @@ namespace FatecAppBackend.Domain.Entities
 
         public DateTime GraduationDate { get; private set; }
 
-        public ICollection<Event> Events { get; set; }
-        
+
+        // Compositions
+
+        [ForeignKey("User")]
+        public Guid UserId { get; private set; }
+        public User User { get; private set; }
+
+        [ForeignKey("College")]
+        public Guid CollegeId { get; private set; }
+        public College College { get; private set; }
+
+        public virtual ICollection<Event> Events { get; set; }
         public virtual ICollection<Participant> Participants { get; set; } 
 
-        // Updates
 
-        /// <summary>
-        /// Update the entity
-        /// </summary>
-        /// <param name="collegeId">New CollegeId</param>
-        /// <param name="studentNumber">New StudentNumber</param>
-        /// <param name="proofDoc">New ProofDocument</param>
-        /// <param name="graduationDate">New GraduationDate</param>
-        public void Update(Guid collegeId, string studentNumber, string proofDoc, DateTime graduationDate)
+        // Update
+
+        public void Update(UpdateUserCollegeDTO updateUserCollege)
         {
-            AddNotifications(
-                new Contract<Notification>()
-                    .Requires()
-                    .IsNotNull(collegeId, "CollegeId", "CollegeId cannnot be null")
-                    .IsNotEmpty(studentNumber, "StudentNumber", "StudentNumber cannot be empty")
-                    .IsNotNull(proofDoc, "ProofDocument", "ProofDocument cannot be null")
-                    .IsNotNull(graduationDate, "GraduationDate", "GraduationDate cannot be null")
-            );
-
-            if (IsValid)
+            if(updateUserCollege.CollegeId != null)
             {
-                CollegeId = collegeId;
-                StudentNumber = studentNumber;
-                ProofDocument = proofDoc;
-                GraduationDate = graduationDate;
+                if(updateUserCollege.CollegeId != CollegeId)
+                {
+                    CollegeId = (Guid)updateUserCollege.CollegeId;
+                }
+                else
+                {
+                    AddNotification("CollegeId", "Could not update, invalid value");
+                }
             }
-            else
+
+            if(updateUserCollege.StudentNumber != null)
             {
-                AddNotification("UserCollege", "Invalid UserCollege props");
+                AddNotifications(
+                    new Contract<Notification>()
+                        .Requires()
+                        .IsNotEmpty(updateUserCollege.StudentNumber, "StudentNumber", "StudentNumber cannot be empty")
+                );
+
+                if(updateUserCollege.StudentNumber != StudentNumber)
+                {
+                    StudentNumber = updateUserCollege.StudentNumber;
+                }
+                else
+                {
+                    AddNotification("StudentNumber", "Could not update, invalid value");
+                }
+            }
+
+            if(updateUserCollege.ValidatedDocument != null)
+            {
+                if(updateUserCollege.ValidatedDocument != ValidatedDocument)
+                {
+                    ValidatedDocument = (bool)updateUserCollege.ValidatedDocument;
+                }
+                else
+                {
+                    AddNotification("ValidatedDocument", "Could not update, invalid value");
+                }
+            }
+
+            if(updateUserCollege.ProofDocument != null)
+            {
+                AddNotifications(
+                    new Contract<Notification>()
+                        .Requires()
+                        .IsNotEmpty(updateUserCollege.ProofDocument, "ProofDocument", "ProofDocument cannot be empty")
+                );
+
+                if(updateUserCollege.ProofDocument != ProofDocument)
+                {
+                    ProofDocument = (string)updateUserCollege.ProofDocument;
+                }
+                else
+                {
+                    AddNotification("ProofDocument", "Could not update, invalid value");
+                }
+            }
+
+            if(updateUserCollege.GraduationDate != null)
+            {
+                if(updateUserCollege.GraduationDate != GraduationDate.ToString())
+                {
+                    GraduationDate = DateTime.Parse(updateUserCollege.GraduationDate);
+                }
+                else
+                {
+                    AddNotification("ProofDocument", "Could not update, invalid value");
+                }
             }
         }
 

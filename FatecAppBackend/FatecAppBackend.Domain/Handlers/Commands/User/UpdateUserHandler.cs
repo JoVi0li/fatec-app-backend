@@ -29,14 +29,14 @@ namespace FatecAppBackend.Domain.Handlers.Commands.User
                 return new GenericCommandsResult(false, "Invalid props", command.Notifications);
             }
 
-            var user = _userRepository.GetById(command.Id);
+            var user = _userRepository.GetById(command.UpdateUser.Id);
 
             if (user == null)
             {
                 return new GenericCommandsResult(false, "User not found", "Inform another Id");
             }
 
-            user.Update(command.Name, command.Email, command.Photo, command.PhoneNumber, command.IdentityDocumentNumber, command.IdentityDocumentPhoto, command.ValidatedUser, command.Gender);
+            user.Update(command.UpdateUser);
 
             if (!user.IsValid)
             {

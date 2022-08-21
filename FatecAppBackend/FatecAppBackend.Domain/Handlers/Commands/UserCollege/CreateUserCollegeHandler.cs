@@ -30,12 +30,12 @@ namespace FatecAppBackend.Domain.Handlers.Commands.UserCollege
             }
 
             Entities.UserCollege userCollege = new(
-            command.UserId,
-            command.CollegeId,
-            command.StudentNumber,
-            false,
-            command.ProofDocument,
-            command.GraduationDate
+                command.UserId,
+                command.CollegeId,
+                command.StudentNumber,
+                false,
+                command.ProofDocument,
+                DateTime.Parse(command.GraduationDate)
             );
 
             if (!userCollege.IsValid)

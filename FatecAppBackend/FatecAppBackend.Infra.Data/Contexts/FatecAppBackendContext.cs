@@ -38,7 +38,7 @@ namespace FatecAppBackend.Infra.Data.Contexts
             #region User mapping
             modelBuilder.Entity<User>().ToTable("Users");
             modelBuilder.Entity<User>().Property(x => x.Id);
-            modelBuilder.Entity<User>().HasOne(x => x.UserCollege).WithOne(x => x.User);
+            modelBuilder.Entity<User>().HasOne(x => x.UserCollege).WithOne(x => x.User).HasForeignKey<UserCollege>(x => x.UserId);
 
             // Name
             modelBuilder.Entity<User>().Property(x => x.Name).HasMaxLength(100);
@@ -123,6 +123,7 @@ namespace FatecAppBackend.Infra.Data.Contexts
             // GraduationDate
             modelBuilder.Entity<UserCollege>().Property(x => x.GraduationDate).HasColumnType("DateTime");
             modelBuilder.Entity<UserCollege>().Property(x => x.GraduationDate).IsRequired();
+
             #endregion
 
             #region Event mapping

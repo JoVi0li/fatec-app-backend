@@ -1,6 +1,8 @@
 ﻿using FatecAppBackend.Domain.Commands.College;
 using FatecAppBackend.Domain.Handlers.Commands.College;
+using FatecAppBackend.Domain.Handlers.Queries.College;
 using FatecAppBackend.Domain.Handlers.Queries.Event;
+using FatecAppBackend.Domain.Queries.College;
 using FatecAppBackend.Domain.Queries.Event;
 using FatecAppBackend.Shared.Commands;
 using FatecAppBackend.Shared.Queries;
@@ -22,9 +24,9 @@ namespace FatecAppBackend.API.Controllers
 
         [Route("delete")]
         [HttpDelete("{id}")]
-        public GenericCommandsResult Delete([FromRoute] RemoveCollegeCommand id, [FromServices] RemoveCollegeHandler handler)
+        public GenericCommandsResult Delete([FromQuery] Guid id, [FromServices] RemoveCollegeHandler handler)
         {
-            return (GenericCommandsResult)handler.Execute(id);
+            return (GenericCommandsResult)handler.Execute(new RemoveCollegeCommand(id));
         }
 
         [Route("update")]
@@ -36,16 +38,16 @@ namespace FatecAppBackend.API.Controllers
 
         [Route("get")]
         [HttpGet]
-        public GenericQueryResult Get([FromRoute] GetEventQuery query, [FromServices] GetEventHandler handler)
+        public GenericQueryResult Get([FromQuery] GetCollegeQuery query, [FromServices] GetCollegeHandler handler)
         {
             return (GenericQueryResult)handler.Execute(query);
         }
 
         [Route("get/id")]
         [HttpGet("{id}")]
-        public GenericQueryResult GetById([FromRoute] GetEventByIdQuery id, [FromServices] GetEventByIdHandler handler)
+        public GenericQueryResult GetById([FromQuery] Guid id, [FromServices] GetCollegeByIdHandler handler)
         {
-            return (GenericQueryResult)handler.Execute(id);
+            return (GenericQueryResult)handler.Execute(new GetCollegeByIdQuery(id));
         }
 
     }

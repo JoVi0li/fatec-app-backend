@@ -12,4 +12,9 @@
     <PackageReference Include="Flunt.Extensions.Br" Version="1.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTOs\Event\" />
+    <Folder Include="DTOs\Participant\" />
+  </ItemGroup>
+
 </Project>

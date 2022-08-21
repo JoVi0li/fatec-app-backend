@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FatecAppBackend.Infra.Data.Migrations
 {
     [DbContext(typeof(FatecAppBackendContext))]
-    [Migration("20220814232121_Initial database")]
-    partial class Initialdatabase
+    [Migration("20220820230455_InitialDatabase")]
+    partial class InitialDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
