@@ -9,65 +9,100 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FatecAppBackend.API.Controllers
 {
+    /// <summary>
+    /// User CRUD
+    /// </summary>
     [Route("api/v1/user")]
     [Produces("application/json")]
     [ApiController]
     public class UserController : ControllerBase
     {
-
-        [Route("signup")]
-        [HttpPost]
+        /// <summary>
+        /// Create new User
+        /// </summary>
+        /// <param name="command">User props</param>
+        /// <param name="handler">Handler from services</param>
+        /// <returns>Object</returns>
+        [HttpPost("signup")]
         public GenericCommandsResult Create([FromBody] CreateUserCommand command, [FromServices] CreateUserHandler handler)
         {
             return (GenericCommandsResult)handler.Execute(command);
         }
 
+        /// <summary>
+        /// Delete User
+        /// </summary>
+        /// <param name="id">User id</param>
+        /// <param name="handler">Handler from services</param>
+        /// <returns>Object</returns>
         [Authorize]
-        [Route("delete")]
-        [HttpDelete("{id}")]
-        public GenericCommandsResult Delete([FromQuery] Guid id, [FromServices] RemoveUserHandler handler)
+        [HttpDelete("delete/{id}")]
+        public GenericCommandsResult Delete([FromRoute] Guid id, [FromServices] RemoveUserHandler handler)
         {
-            var command = new RemoveUserCommand(id);
-            return (GenericCommandsResult)handler.Execute(command);
+            return (GenericCommandsResult)handler.Execute(new RemoveUserCommand(id));
         }
 
+        /// <summary>
+        /// Update User
+        /// </summary>
+        /// <param name="command">User id</param>
+        /// <param name="handler">Handler from services</param>
+        /// <returns>Object</returns>
         [Authorize]
-        [Route("update")]
-        [HttpPatch]
+        [HttpPatch("update")]
         public GenericCommandsResult Update([FromBody] UpdateUserCommand command, [FromServices] UpdateUserHandler handler)
         {
             return (GenericCommandsResult)handler.Execute(command);
         }
 
+        /// <summary>
+        /// Get all Users
+        /// </summary>
+        /// <param name="handler">Handler from services</param>
+        /// <returns>Object</returns>
         [Authorize]
-        [Route("get")]
         [HttpGet]
-        public GenericQueryResult Get([FromRoute] GetUserQuery query, [FromServices] GetUserHandler handler)
+        public GenericQueryResult Get([FromServices] GetUserHandler handler)
         {
-            return (GenericQueryResult)handler.Execute(query);
+            return (GenericQueryResult)handler.Execute(new GetUserQuery());
         }
 
+        /// <summary>
+        /// Get User by id
+        /// </summary>
+        /// <param name="id">User id</param>
+        /// <param name="handler">Handler from services</param>
+        /// <returns>Object</returns>
         [Authorize]
-        [Route("get/id")]
-        [HttpGet("{id}")]
-        public GenericQueryResult GetById([FromQuery] Guid id, [FromServices] GetUserByIdHandler handler)
+        [HttpGet("id/{id}")]
+        public GenericQueryResult GetById([FromRoute] Guid id, [FromServices] GetUserByIdHandler handler)
         {
             return (GenericQueryResult)handler.Execute(new GetUserByIdQuery(id));
         }
 
+        /// <summary>
+        /// Get User by email
+        /// </summary>
+        /// <param name="email">User email</param>
+        /// <param name="handler">Handler from services</param>
+        /// <returns>Object</returns>
         [Authorize]
-        [Route("get/email")]
-        [HttpGet("{email}")]
-        public GenericQueryResult GetByEmail([FromQuery] string email, [FromServices] GetUserByEmailHandler handler)
+        [HttpGet("email/{email}")]
+        public GenericQueryResult GetByEmail([FromRoute] string email, [FromServices] GetUserByEmailHandler handler)
         {
 
             return (GenericQueryResult)handler.Execute(new GetUserByEmailQuery(email));
         }
 
+        /// <summary>
+        /// Get User by name
+        /// </summary>
+        /// <param name="name">User name</param>
+        /// <param name="handler">Handler from services</param>
+        /// <returns>Object</returns>
         [Authorize]
-        [Route("get/name")]
-        [HttpGet("{name}")]
-        public GenericQueryResult GetByName([FromQuery] string name, [FromServices] GetUserByNameHandler handler)
+        [HttpGet("name/{name}")]
+        public GenericQueryResult GetByName([FromRoute] string name, [FromServices] GetUserByNameHandler handler)
         {
             return (GenericQueryResult)handler.Execute(new GetUserByNameQuery(name));
         }

@@ -10,43 +10,71 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FatecAppBackend.API.Controllers
 {
+    /// <summary>
+    /// Participant CRUD
+    /// </summary>
     [Route("api/v1/participant")]
     [Produces("application/json")]
     [Authorize]
     [ApiController]
     public class ParticipantController : ControllerBase
     {
-        [Route("create")]
-        [HttpPost]
+        /// <summary>
+        /// Create Participant
+        /// </summary>
+        /// <param name="command">Participant props</param>
+        /// <param name="handler">Handler from services</param>
+        /// <returns>Object</returns>
+        [HttpPost("create")]
         public GenericCommandsResult Create([FromBody] CreateParticipantCommand command, [FromServices] CreateParticipantHandler handler)
         {
             return (GenericCommandsResult)handler.Execute(command);
         }
 
-        [Route("delete")]
-        [HttpDelete("{id}")]
-        public GenericCommandsResult Delete([FromQuery] Guid id, [FromServices] RemoveParticipantHandler handler)
+        /// <summary>
+        /// Delete Participant
+        /// </summary>
+        /// <param name="id">Participant id</param>
+        /// <param name="handler">Handler from services</param>
+        /// <returns>Object</returns>
+        [HttpDelete("delete/{id}")]
+        public GenericCommandsResult Delete([FromRoute] Guid id, [FromServices] RemoveParticipantHandler handler)
         {
             return (GenericCommandsResult)handler.Execute(new RemoveParticipantCommand(id));
         }
 
-        [Route("get/id")]
-        [HttpGet("{id}")]
-        public GenericQueryResult GetById([FromQuery] Guid id, [FromServices] GetParticipantByIdHandler handler)
+        /// <summary>
+        /// Get Participant by id
+        /// </summary>
+        /// <param name="id">Participant id</param>
+        /// <param name="handler">Handler from services</param>
+        /// <returns>Object</returns>
+        [HttpGet("id/{id}")]
+        public GenericQueryResult GetById([FromRoute] Guid id, [FromServices] GetParticipantByIdHandler handler)
         {
             return (GenericQueryResult)handler.Execute(new GetParticipantByIdQuery(id));
         }
 
-        [Route("get/eventid")]
-        [HttpGet("{eventId}")]
-        public GenericQueryResult GetByEventId([FromQuery] Guid eventId, [FromServices] GetParticipantByEventIdHandler handler)
+        /// <summary>
+        /// Get Participant by Event id
+        /// </summary>
+        /// <param name="eventId">Event id</param>
+        /// <param name="handler">Handler from services</param>
+        /// <returns>Object</returns>
+        [HttpGet("eventid/{eventId}")]
+        public GenericQueryResult GetByEventId([FromRoute] Guid eventId, [FromServices] GetParticipantByEventIdHandler handler)
         {
             return (GenericQueryResult)handler.Execute(new GetParticipantByEventIdQuery(eventId));
         }
 
-        [Route("get/usercollegeid")]
-        [HttpGet("{userCollegeId}")]
-        public GenericQueryResult GetByUserCollegeId([FromQuery] Guid userCollegeId, [FromServices] GetParticipantByUserCollegeIdHandler handler)
+        /// <summary>
+        /// Get Participant by UserCollege id
+        /// </summary>
+        /// <param name="userCollegeId">UserCollege id</param>
+        /// <param name="handler">Handler from services</param>
+        /// <returns>Object</returns>
+        [HttpGet("usercollegeid/{userCollegeId}")]
+        public GenericQueryResult GetByUserCollegeId([FromRoute] Guid userCollegeId, [FromServices] GetParticipantByUserCollegeIdHandler handler)
         {
             return (GenericQueryResult)handler.Execute(new GetParticipantByUserCollegeIdQuery(userCollegeId));
         }

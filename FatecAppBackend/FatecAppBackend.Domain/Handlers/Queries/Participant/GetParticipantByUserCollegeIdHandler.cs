@@ -31,7 +31,7 @@ namespace FatecAppBackend.Domain.Handlers.Queries.Participant
                 return new GenericQueryResult(false, "Invalid props", query.Notifications);
             }
 
-            var participants = _participantRepository.GetByEventId(query.UserCollegeId);
+            var participants = _participantRepository.GetByUserCollegeId(query.UserCollegeId);
 
             if (participants == null)
             {

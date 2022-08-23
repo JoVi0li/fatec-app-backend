@@ -1,0 +1,1665 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "FatecApp API",
+    "description": "Documentation of Api's endpoints",
+    "termsOfService": "https://example.com/terms",
+    "contact": {
+      "name": "João Vitor",
+      "url": "https://github.com/JoVi0li",
+      "email": "jovioli.dev04@gmail.com"
+    },
+    "license": {
+      "name": "Nothing",
+      "url": "https://example.com/license"
+    },
+    "version": "v1"
+  },
+  "paths": {
+    "/api/v1/auth/signin": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Domain.Commands.Authentication.SignInCommand"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Commands.GenericCommandsResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/password": {
+      "patch": {
+        "tags": [
+          "Authentication"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Domain.Commands.Authentication.ChangePasswordCommand"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Commands.GenericCommandsResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/college/create": {
+      "post": {
+        "tags": [
+          "College"
+        ],
+        "summary": "Create College",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "College props",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Domain.Commands.College.CreateCollegeCommand"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Commands.GenericCommandsResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/college/delete/{id}": {
+      "delete": {
+        "tags": [
+          "College"
+        ],
+        "summary": "Delete College",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "College id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Commands.GenericCommandsResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/college/update": {
+      "patch": {
+        "tags": [
+          "College"
+        ],
+        "summary": "Update College",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "College props",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Domain.Commands.College.UpdateCollegeCommand"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Commands.GenericCommandsResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/college": {
+      "get": {
+        "tags": [
+          "College"
+        ],
+        "summary": "Get all Colleges",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Queries.GenericQueryResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/college/id/{id}": {
+      "get": {
+        "tags": [
+          "College"
+        ],
+        "summary": "Get College by id",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "College props",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Queries.GenericQueryResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/event/create": {
+      "post": {
+        "tags": [
+          "Event"
+        ],
+        "summary": "Create Event",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Event props",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Domain.Commands.Event.CreateEventCommand"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Commands.GenericCommandsResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/event/delete/{id}": {
+      "delete": {
+        "tags": [
+          "Event"
+        ],
+        "summary": "Delete Event",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Event id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Commands.GenericCommandsResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/event/update": {
+      "patch": {
+        "tags": [
+          "Event"
+        ],
+        "summary": "Update Event",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Event props",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Domain.Commands.Event.UpdateEventCommand"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Commands.GenericCommandsResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/event": {
+      "get": {
+        "tags": [
+          "Event"
+        ],
+        "summary": "Get all Events",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Queries.GenericQueryResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/event/id/{id}": {
+      "get": {
+        "tags": [
+          "Event"
+        ],
+        "summary": "Get Event by id",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Event id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Queries.GenericQueryResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/participant/create": {
+      "post": {
+        "tags": [
+          "Participant"
+        ],
+        "summary": "Create Participant",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Participant props",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Domain.Commands.Participant.CreateParticipantCommand"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Commands.GenericCommandsResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/participant/delete/{id}": {
+      "delete": {
+        "tags": [
+          "Participant"
+        ],
+        "summary": "Delete Participant",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Participant id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Commands.GenericCommandsResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/participant/id/{id}": {
+      "get": {
+        "tags": [
+          "Participant"
+        ],
+        "summary": "Get Participant by id",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Participant id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Queries.GenericQueryResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/participant/eventid/{eventId}": {
+      "get": {
+        "tags": [
+          "Participant"
+        ],
+        "summary": "Get Participant by Event id",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "eventId",
+            "description": "Event id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Queries.GenericQueryResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/participant/usercollegeid/{userCollegeId}": {
+      "get": {
+        "tags": [
+          "Participant"
+        ],
+        "summary": "Get Participant by UserCollege id",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userCollegeId",
+            "description": "UserCollege id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Queries.GenericQueryResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/signup": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Create new User",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User props",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Domain.Commands.User.CreateUserCommand"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Commands.GenericCommandsResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/delete/{id}": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Delete User",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "User id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Commands.GenericCommandsResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/update": {
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Update User",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User id",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Domain.Commands.User.UpdateUserCommand"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Commands.GenericCommandsResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get all Users",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Queries.GenericQueryResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/id/{id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get User by id",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "User id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Queries.GenericQueryResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/email/{email}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get User by email",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "email",
+            "description": "User email",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Queries.GenericQueryResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/name/{name}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get User by name",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "description": "User name",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Queries.GenericQueryResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/usercollege/create": {
+      "post": {
+        "tags": [
+          "UserCollege"
+        ],
+        "summary": "Create UserCollege",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "UserCollege props",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Domain.Commands.UserCollege.CreateUserCollegeCommand"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Commands.GenericCommandsResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/usercollege/delete/{id}": {
+      "delete": {
+        "tags": [
+          "UserCollege"
+        ],
+        "summary": "Delete UserCollege",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "UserCollege id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Commands.GenericCommandsResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/usercollege/update": {
+      "patch": {
+        "tags": [
+          "UserCollege"
+        ],
+        "summary": "Update UserCollege",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "UserCollege props",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Domain.Commands.UserCollege.UpdateUserCollegeCommand"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Commands.GenericCommandsResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/usercollege": {
+      "get": {
+        "tags": [
+          "UserCollege"
+        ],
+        "summary": "Get all UserColleges",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Queries.GenericQueryResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/usercollege/id/{id}": {
+      "get": {
+        "tags": [
+          "UserCollege"
+        ],
+        "summary": "Get UserCollege by id",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "UserCollege id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Queries.GenericQueryResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/usercollege/collegeid/{collegeId}": {
+      "get": {
+        "tags": [
+          "UserCollege"
+        ],
+        "summary": "Get UserCollege by College id",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "collegeId",
+            "description": "College id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Queries.GenericQueryResult"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/usercollege/userid/{userId}": {
+      "get": {
+        "tags": [
+          "UserCollege"
+        ],
+        "summary": "Get UserCollege by User id",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "description": "User id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/FatecAppBackend.Shared.Queries.GenericQueryResult"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "FatecAppBackend.Domain.Commands.Authentication.ChangePasswordCommand": {
+      "type": "object",
+      "properties": {
+        "notifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Flunt.Notifications.Notification"
+          },
+          "readOnly": true
+        },
+        "isValid": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "user": {
+          "$ref": "#/definitions/FatecAppBackend.Domain.Entities.User"
+        }
+      }
+    },
+    "FatecAppBackend.Domain.Commands.Authentication.SignInCommand": {
+      "type": "object",
+      "properties": {
+        "notifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Flunt.Notifications.Notification"
+          },
+          "readOnly": true
+        },
+        "isValid": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "FatecAppBackend.Domain.Commands.College.CreateCollegeCommand": {
+      "type": "object",
+      "properties": {
+        "notifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Flunt.Notifications.Notification"
+          },
+          "readOnly": true
+        },
+        "isValid": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string"
+        },
+        "course": {
+          "type": "string"
+        },
+        "time": {
+          "$ref": "#/definitions/FatecAppBackend.Shared.EnTime"
+        },
+        "localization": {
+          "type": "string"
+        }
+      }
+    },
+    "FatecAppBackend.Domain.Commands.College.UpdateCollegeCommand": {
+      "type": "object",
+      "properties": {
+        "notifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Flunt.Notifications.Notification"
+          },
+          "readOnly": true
+        },
+        "isValid": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "college": {
+          "$ref": "#/definitions/FatecAppBackend.Shared.DTOs.College.UpdateCollegeDTO"
+        }
+      }
+    },
+    "FatecAppBackend.Domain.Commands.Event.CreateEventCommand": {
+      "type": "object",
+      "properties": {
+        "notifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Flunt.Notifications.Notification"
+          },
+          "readOnly": true
+        },
+        "isValid": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "eventOwnerId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        },
+        "route": {
+          "type": "string"
+        },
+        "onlyWomen": {
+          "type": "boolean"
+        },
+        "timeToGo": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/FatecAppBackend.Shared.Enums.EnStatus"
+        }
+      }
+    },
+    "FatecAppBackend.Domain.Commands.Event.UpdateEventCommand": {
+      "type": "object",
+      "properties": {
+        "notifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Flunt.Notifications.Notification"
+          },
+          "readOnly": true
+        },
+        "isValid": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "event": {
+          "$ref": "#/definitions/FatecAppBackend.Shared.DTOs.Event.UpdateEventDTO"
+        }
+      }
+    },
+    "FatecAppBackend.Domain.Commands.Participant.CreateParticipantCommand": {
+      "type": "object",
+      "properties": {
+        "notifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Flunt.Notifications.Notification"
+          },
+          "readOnly": true
+        },
+        "isValid": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "eventId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "userCollegeId": {
+          "format": "uuid",
+          "type": "string"
+        }
+      }
+    },
+    "FatecAppBackend.Domain.Commands.User.CreateUserCommand": {
+      "type": "object",
+      "properties": {
+        "notifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Flunt.Notifications.Notification"
+          },
+          "readOnly": true
+        },
+        "isValid": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "photo": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "identityDocumentNumber": {
+          "type": "string"
+        },
+        "identityDocumentPhoto": {
+          "type": "string"
+        },
+        "gender": {
+          "$ref": "#/definitions/FatecAppBackend.Shared.EnGender"
+        },
+        "validatedUser": {
+          "type": "boolean"
+        }
+      }
+    },
+    "FatecAppBackend.Domain.Commands.User.UpdateUserCommand": {
+      "type": "object",
+      "properties": {
+        "notifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Flunt.Notifications.Notification"
+          },
+          "readOnly": true
+        },
+        "isValid": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "updateUser": {
+          "$ref": "#/definitions/FatecAppBackend.Shared.DTOs.User.UpdateUserDTO"
+        }
+      }
+    },
+    "FatecAppBackend.Domain.Commands.UserCollege.CreateUserCollegeCommand": {
+      "type": "object",
+      "properties": {
+        "notifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Flunt.Notifications.Notification"
+          },
+          "readOnly": true
+        },
+        "isValid": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "userId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "collegeId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "studentNumber": {
+          "type": "string"
+        },
+        "validatedDocument": {
+          "type": "boolean"
+        },
+        "proofDocument": {
+          "type": "string"
+        },
+        "graduationDate": {
+          "type": "string"
+        }
+      }
+    },
+    "FatecAppBackend.Domain.Commands.UserCollege.UpdateUserCollegeCommand": {
+      "type": "object",
+      "properties": {
+        "notifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Flunt.Notifications.Notification"
+          },
+          "readOnly": true
+        },
+        "isValid": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "userCollege": {
+          "$ref": "#/definitions/FatecAppBackend.Shared.DTOs.UserCollege.UpdateUserCollegeDTO"
+        }
+      }
+    },
+    "FatecAppBackend.Domain.Entities.College": {
+      "type": "object",
+      "properties": {
+        "notifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Flunt.Notifications.Notification"
+          },
+          "readOnly": true
+        },
+        "isValid": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "readOnly": true
+        },
+        "course": {
+          "type": "string",
+          "readOnly": true
+        },
+        "time": {
+          "$ref": "#/definitions/FatecAppBackend.Shared.EnTime"
+        },
+        "localization": {
+          "type": "string",
+          "readOnly": true
+        },
+        "userCollege": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FatecAppBackend.Domain.Entities.UserCollege"
+          }
+        }
+      }
+    },
+    "FatecAppBackend.Domain.Entities.Event": {
+      "type": "object",
+      "properties": {
+        "notifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Flunt.Notifications.Notification"
+          },
+          "readOnly": true
+        },
+        "isValid": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "from": {
+          "type": "string",
+          "readOnly": true
+        },
+        "to": {
+          "type": "string",
+          "readOnly": true
+        },
+        "route": {
+          "type": "string",
+          "readOnly": true
+        },
+        "onlyWomen": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "timeToGo": {
+          "format": "date-time",
+          "type": "string",
+          "readOnly": true
+        },
+        "status": {
+          "$ref": "#/definitions/FatecAppBackend.Shared.Enums.EnStatus"
+        },
+        "eventOwnerId": {
+          "format": "uuid",
+          "type": "string",
+          "readOnly": true
+        },
+        "eventOwner": {
+          "$ref": "#/definitions/FatecAppBackend.Domain.Entities.UserCollege"
+        },
+        "participants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FatecAppBackend.Domain.Entities.Participant"
+          },
+          "readOnly": true
+        }
+      }
+    },
+    "FatecAppBackend.Domain.Entities.Participant": {
+      "type": "object",
+      "properties": {
+        "notifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Flunt.Notifications.Notification"
+          },
+          "readOnly": true
+        },
+        "isValid": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "eventId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "event": {
+          "$ref": "#/definitions/FatecAppBackend.Domain.Entities.Event"
+        },
+        "userCollegeId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "userCollege": {
+          "$ref": "#/definitions/FatecAppBackend.Domain.Entities.UserCollege"
+        }
+      }
+    },
+    "FatecAppBackend.Domain.Entities.User": {
+      "type": "object",
+      "properties": {
+        "notifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Flunt.Notifications.Notification"
+          },
+          "readOnly": true
+        },
+        "isValid": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "readOnly": true
+        },
+        "email": {
+          "type": "string",
+          "readOnly": true
+        },
+        "password": {
+          "type": "string",
+          "readOnly": true
+        },
+        "photo": {
+          "type": "string",
+          "readOnly": true
+        },
+        "phoneNumber": {
+          "type": "string",
+          "readOnly": true
+        },
+        "identityDocumentNumber": {
+          "type": "string",
+          "readOnly": true
+        },
+        "identityDocumentPhoto": {
+          "type": "string",
+          "readOnly": true
+        },
+        "gender": {
+          "$ref": "#/definitions/FatecAppBackend.Shared.EnGender"
+        },
+        "validatedUser": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "userCollege": {
+          "$ref": "#/definitions/FatecAppBackend.Domain.Entities.UserCollege"
+        }
+      }
+    },
+    "FatecAppBackend.Domain.Entities.UserCollege": {
+      "type": "object",
+      "properties": {
+        "notifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Flunt.Notifications.Notification"
+          },
+          "readOnly": true
+        },
+        "isValid": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "createdAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "studentNumber": {
+          "type": "string",
+          "readOnly": true
+        },
+        "validatedDocument": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "proofDocument": {
+          "type": "string",
+          "readOnly": true
+        },
+        "graduationDate": {
+          "format": "date-time",
+          "type": "string",
+          "readOnly": true
+        },
+        "userId": {
+          "format": "uuid",
+          "type": "string",
+          "readOnly": true
+        },
+        "user": {
+          "$ref": "#/definitions/FatecAppBackend.Domain.Entities.User"
+        },
+        "collegeId": {
+          "format": "uuid",
+          "type": "string",
+          "readOnly": true
+        },
+        "college": {
+          "$ref": "#/definitions/FatecAppBackend.Domain.Entities.College"
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FatecAppBackend.Domain.Entities.Event"
+          }
+        },
+        "participants": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FatecAppBackend.Domain.Entities.Participant"
+          }
+        }
+      }
+    },
+    "FatecAppBackend.Shared.Commands.GenericCommandsResult": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": { }
+      }
+    },
+    "FatecAppBackend.Shared.DTOs.College.UpdateCollegeDTO": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "course": {
+          "type": "string"
+        },
+        "time": {
+          "$ref": "#/definitions/FatecAppBackend.Shared.EnTime"
+        },
+        "localization": {
+          "type": "string"
+        }
+      }
+    },
+    "FatecAppBackend.Shared.DTOs.Event.UpdateEventDTO": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        },
+        "route": {
+          "type": "string"
+        },
+        "onlyWomen": {
+          "type": "boolean"
+        },
+        "timeToGo": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/FatecAppBackend.Shared.Enums.EnStatus"
+        }
+      }
+    },
+    "FatecAppBackend.Shared.DTOs.User.UpdateUserDTO": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "userCollegeId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "photo": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "identityDocumentNumber": {
+          "type": "string"
+        },
+        "identityDocumentPhoto": {
+          "type": "string"
+        },
+        "gender": {
+          "$ref": "#/definitions/FatecAppBackend.Shared.EnGender"
+        },
+        "validatedUser": {
+          "type": "boolean"
+        }
+      }
+    },
+    "FatecAppBackend.Shared.DTOs.UserCollege.UpdateUserCollegeDTO": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "collegeId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "studentNumber": {
+          "type": "string"
+        },
+        "validatedDocument": {
+          "type": "boolean"
+        },
+        "proofDocument": {
+          "type": "string"
+        },
+        "graduationDate": {
+          "type": "string"
+        }
+      }
+    },
+    "FatecAppBackend.Shared.EnGender": {
+      "format": "int32",
+      "enum": [
+        0,
+        1
+      ],
+      "type": "integer"
+    },
+    "FatecAppBackend.Shared.EnTime": {
+      "format": "int32",
+      "enum": [
+        0,
+        1
+      ],
+      "type": "integer"
+    },
+    "FatecAppBackend.Shared.Enums.EnStatus": {
+      "format": "int32",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "type": "integer"
+    },
+    "FatecAppBackend.Shared.Queries.GenericQueryResult": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        },
+        "data": { }
+      }
+    },
+    "Flunt.Notifications.Notification": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -46,7 +46,7 @@ namespace FatecAppBackend.Infra.Data.Repositories
             return _context.Participants
                 .Include(x => x.UserCollege)
                 .Include(x => x.Event)
-                .Where(x => x.UserCollegeId == id).ToList();
+                .Where(x => x.UserCollege.Id == id).ToList();
         }
 
         public void Remove(Guid id)

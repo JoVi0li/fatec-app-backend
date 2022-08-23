@@ -12,43 +12,70 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FatecAppBackend.API.Controllers
 {
+    /// <summary>
+    /// College CRUD
+    /// </summary>
     [Route("api/v1/college")]
     [Produces("application/json")]
     [Authorize]
     [ApiController]
     public class CollegeController : ControllerBase
     {
-        [Route("create")]
-        [HttpPost]
+        /// <summary>
+        /// Create College
+        /// </summary>
+        /// <param name="command">College props</param>
+        /// <param name="handler">Handler from services</param>
+        /// <returns>Object</returns>
+        [HttpPost("create")]
         public GenericCommandsResult Create([FromBody] CreateCollegeCommand command, [FromServices] CreateCollegeHandler handler)
         {
             return (GenericCommandsResult)handler.Execute(command);
         }
 
-        [Route("delete")]
-        [HttpDelete("{id}")]
-        public GenericCommandsResult Delete([FromQuery] Guid id, [FromServices] RemoveCollegeHandler handler)
+        /// <summary>
+        /// Delete College
+        /// </summary>
+        /// <param name="id">College id</param>
+        /// <param name="handler">Handler from services</param>
+        /// <returns>Object</returns>
+        [HttpDelete("delete/{id}")]
+        public GenericCommandsResult Delete([FromRoute] Guid id, [FromServices] RemoveCollegeHandler handler)
         {
             return (GenericCommandsResult)handler.Execute(new RemoveCollegeCommand(id));
         }
 
-        [Route("update")]
-        [HttpPatch]
+        /// <summary>
+        /// Update College
+        /// </summary>
+        /// <param name="command">College props</param>
+        /// <param name="handler">Handler from services</param>
+        /// <returns>Object</returns>
+        [HttpPatch("update")]
         public GenericCommandsResult Update([FromBody] UpdateCollegeCommand command, [FromServices] UpdateCollegeHandler handler)
         {
             return (GenericCommandsResult)handler.Execute(command);
         }
 
-        [Route("get")]
+        /// <summary>
+        /// Get all Colleges
+        /// </summary>
+        /// <param name="handler">Handler from services</param>
+        /// <returns>Object</returns>
         [HttpGet]
-        public GenericQueryResult Get([FromQuery] GetCollegeQuery query, [FromServices] GetCollegeHandler handler)
+        public GenericQueryResult Get([FromServices] GetCollegeHandler handler)
         {
-            return (GenericQueryResult)handler.Execute(query);
+            return (GenericQueryResult)handler.Execute(new GetCollegeQuery());
         }
 
-        [Route("get/id")]
-        [HttpGet("{id}")]
-        public GenericQueryResult GetById([FromQuery] Guid id, [FromServices] GetCollegeByIdHandler handler)
+        /// <summary>
+        /// Get College by id
+        /// </summary>
+        /// <param name="id">College props</param>
+        /// <param name="handler">Handler from services</param>
+        /// <returns>Object</returns>
+        [HttpGet("id/{id}")]
+        public GenericQueryResult GetById([FromRoute] Guid id, [FromServices] GetCollegeByIdHandler handler)
         {
             return (GenericQueryResult)handler.Execute(new GetCollegeByIdQuery(id));
         }

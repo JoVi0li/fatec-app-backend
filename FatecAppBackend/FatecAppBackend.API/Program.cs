@@ -16,6 +16,8 @@ using FatecAppBackend.Infra.Data.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -23,46 +25,79 @@ var builder = WebApplication.CreateBuilder(args);
 
 #region Services
 
-    builder.Services.AddControllers()
-                    .AddJsonOptions(x =>
-                            x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+// Controllers
+builder.Services
+    .AddControllers()
+    .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
-builder.Services.AddEndpointsApiExplorer();
+builder.Services
+    .AddEndpointsApiExplorer();
 
-    builder.Services.AddSwaggerGen(c => {
+// Swagger
+builder.Services
+    .AddSwaggerGen(c =>
+    {
         c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
         c.IgnoreObsoleteActions();
         c.IgnoreObsoleteProperties();
         c.CustomSchemaIds(type => type.FullName);
-    });
-
-builder.Services.AddDbContext<FatecAppBackendContext>(
-        x => x.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
-        );
-
-    builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-        .AddJwtBearer(options =>
+        c.SwaggerDoc("v1", new OpenApiInfo
         {
-            options.TokenValidationParameters = new TokenValidationParameters
+            Version = "v1",
+            Title = "FatecApp API",
+            Description = "Documentation of Api's endpoints",
+            TermsOfService = new Uri("https://example.com/terms"),
+            Contact = new OpenApiContact
             {
-                ValidateIssuer = true,
-                ValidateAudience = true,
-                ValidateLifetime = true,
-                ValidateIssuerSigningKey = true,
-                ValidIssuer = "FatecAppBackend",
-                ValidAudience = "FatecAppMobile",
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("fatec-app-key-jwt-16-25-05-08-20-22"))
-            };
+                Name = "João Vitor",
+                Email = "jovioli.dev04@gmail.com",
+                Url = new Uri("https://github.com/JoVi0li"),
+            },
+            License = new OpenApiLicense
+            {
+                Name = "Nothing",
+                Url = new Uri("https://example.com/license"),
+            }
         });
 
-    builder.Services.AddCors(options =>
-    {
-        options.AddPolicy("CorsPolicy", 
-            builder => builder.AllowAnyOrigin()
-                                .AllowAnyMethod()
-                                .AllowAnyHeader()
-        );
+        var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+        var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+        c.IncludeXmlComments(xmlPath);
     });
+
+
+// Database
+builder.Services
+    .AddDbContext<FatecAppBackendContext>(x =>
+        x.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+    );
+
+// Authentication
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = "FatecAppBackend",
+            ValidAudience = "FatecAppMobile",
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("fatec-app-key-jwt-16-25-05-08-20-22"))
+        };
+    });
+
+// CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy",
+        builder => builder.AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+    );
+});
 
 #endregion
 
@@ -134,13 +169,6 @@ builder.Services.AddTransient<RemoveParticipantHandler, RemoveParticipantHandler
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
@@ -150,5 +178,9 @@ app.UseAuthorization();
 app.UseCors("CorsPolicy");
 
 app.MapControllers();
+
+app.UseSwagger(options => { options.SerializeAsV2 = true; });
+
+app.UseSwaggerUI();
 
 app.Run();

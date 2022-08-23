@@ -1,0 +1,236 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FatecAppBackend.API</name>
+    </assembly>
+    <members>
+        <member name="M:FatecAppBackend.API.Controllers.CollegeController.Create(FatecAppBackend.Domain.Commands.College.CreateCollegeCommand,FatecAppBackend.Domain.Handlers.Commands.College.CreateCollegeHandler)">
+            <summary>
+            Create College
+            </summary>
+            <param name="command">College props</param>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.CollegeController.Delete(System.Guid,FatecAppBackend.Domain.Handlers.Commands.College.RemoveCollegeHandler)">
+            <summary>
+            Delete College
+            </summary>
+            <param name="id">College id</param>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.CollegeController.Update(FatecAppBackend.Domain.Commands.College.UpdateCollegeCommand,FatecAppBackend.Domain.Handlers.Commands.College.UpdateCollegeHandler)">
+            <summary>
+            Update College
+            </summary>
+            <param name="command">College props</param>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.CollegeController.Get(FatecAppBackend.Domain.Handlers.Queries.College.GetCollegeHandler)">
+            <summary>
+            Get all Colleges
+            </summary>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.CollegeController.GetById(System.Guid,FatecAppBackend.Domain.Handlers.Queries.College.GetCollegeByIdHandler)">
+            <summary>
+            Get College by id
+            </summary>
+            <param name="id">College props</param>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.EventController.Create(FatecAppBackend.Domain.Commands.Event.CreateEventCommand,FatecAppBackend.Domain.Handlers.Commands.Event.CreateEventHandler)">
+            <summary>
+            Create Event
+            </summary>
+            <param name="command">Event props</param>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.EventController.Delete(System.Guid,FatecAppBackend.Domain.Handlers.Commands.Event.RemoveEventHandler)">
+            <summary>
+            Delete Event
+            </summary>
+            <param name="id">Event id</param>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.EventController.Update(FatecAppBackend.Domain.Commands.Event.UpdateEventCommand,FatecAppBackend.Domain.Handlers.Commands.Event.UpdateEventHandler)">
+            <summary>
+            Update Event
+            </summary>
+            <param name="command">Event props</param>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.EventController.Get(FatecAppBackend.Domain.Handlers.Queries.Event.GetEventHandler)">
+            <summary>
+            Get all Events
+            </summary>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.EventController.GetById(System.Guid,FatecAppBackend.Domain.Handlers.Queries.Event.GetEventByIdHandler)">
+            <summary>
+            Get Event by id
+            </summary>
+            <param name="id">Event id</param>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.ParticipantController.Create(FatecAppBackend.Domain.Commands.Participant.CreateParticipantCommand,FatecAppBackend.Domain.Handlers.Commands.Participant.CreateParticipantHandler)">
+            <summary>
+            Create Participant
+            </summary>
+            <param name="command">Participant props</param>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.ParticipantController.Delete(System.Guid,FatecAppBackend.Domain.Handlers.Commands.Participant.RemoveParticipantHandler)">
+            <summary>
+            Delete Participant
+            </summary>
+            <param name="id">Participant id</param>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.ParticipantController.GetById(System.Guid,FatecAppBackend.Domain.Handlers.Queries.Participant.GetParticipantByIdHandler)">
+            <summary>
+            Get Participant by id
+            </summary>
+            <param name="id">Participant id</param>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.ParticipantController.GetByEventId(System.Guid,FatecAppBackend.Domain.Handlers.Queries.Participant.GetParticipantByEventIdHandler)">
+            <summary>
+            Get Participant by Event id
+            </summary>
+            <param name="eventId">Event id</param>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.ParticipantController.GetByUserCollegeId(System.Guid,FatecAppBackend.Domain.Handlers.Queries.Participant.GetParticipantByUserCollegeIdHandler)">
+            <summary>
+            Get Participant by UserCollege id
+            </summary>
+            <param name="userCollegeId">UserCollege id</param>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.UserCollegeController.Create(FatecAppBackend.Domain.Commands.UserCollege.CreateUserCollegeCommand,FatecAppBackend.Domain.Handlers.Commands.UserCollege.CreateUserCollegeHandler)">
+            <summary>
+            Create UserCollege
+            </summary>
+            <param name="command">UserCollege props</param>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.UserCollegeController.Delete(System.Guid,FatecAppBackend.Domain.Handlers.Commands.UserCollege.RemoveUserCollegeHandler)">
+            <summary>
+            Delete UserCollege
+            </summary>
+            <param name="id">UserCollege id</param>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.UserCollegeController.Update(FatecAppBackend.Domain.Commands.UserCollege.UpdateUserCollegeCommand,FatecAppBackend.Domain.Handlers.Commands.UserCollege.UpdateUserCollegeHandler)">
+            <summary>
+            Update UserCollege
+            </summary>
+            <param name="command">UserCollege props</param>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.UserCollegeController.Get(FatecAppBackend.Domain.Handlers.Queries.UserCollege.GetUserCollegeHandler)">
+            <summary>
+            Get all UserColleges
+            </summary>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.UserCollegeController.GetById(System.Guid,FatecAppBackend.Domain.Handlers.Queries.UserCollege.GetUserCollegeByIdHandler)">
+            <summary>
+            Get UserCollege by id
+            </summary>
+            <param name="id">UserCollege id</param>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.UserCollegeController.GetByCollegeId(System.Guid,FatecAppBackend.Domain.Handlers.Queries.UserCollege.GetUserCollegeByCollegeIdHandler)">
+            <summary>
+            Get UserCollege by College id
+            </summary>
+            <param name="collegeId">College id</param>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.UserCollegeController.GetByUserId(System.Guid,FatecAppBackend.Domain.Handlers.Queries.UserCollege.GetUserCollegeByUserIdHandler)">
+            <summary>
+            Get UserCollege by User id
+            </summary>
+            <param name="userId">User id</param>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.UserController.Create(FatecAppBackend.Domain.Commands.User.CreateUserCommand,FatecAppBackend.Domain.Handlers.Commands.User.CreateUserHandler)">
+            <summary>
+            Create new User
+            </summary>
+            <param name="command">User props</param>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.UserController.Delete(System.Guid,FatecAppBackend.Domain.Handlers.Commands.User.RemoveUserHandler)">
+            <summary>
+            Delete User
+            </summary>
+            <param name="id">User id</param>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.UserController.Update(FatecAppBackend.Domain.Commands.User.UpdateUserCommand,FatecAppBackend.Domain.Handlers.Commands.User.UpdateUserHandler)">
+            <summary>
+            Update User
+            </summary>
+            <param name="command">User id</param>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.UserController.Get(FatecAppBackend.Domain.Handlers.Queries.User.GetUserHandler)">
+            <summary>
+            Get all Users
+            </summary>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.UserController.GetById(System.Guid,FatecAppBackend.Domain.Handlers.Queries.User.GetUserByIdHandler)">
+            <summary>
+            Get User by id
+            </summary>
+            <param name="id">User id</param>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.UserController.GetByEmail(System.String,FatecAppBackend.Domain.Handlers.Queries.User.GetUserByEmailHandler)">
+            <summary>
+            Get User by email
+            </summary>
+            <param name="email">User email</param>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.UserController.GetByName(System.String,FatecAppBackend.Domain.Handlers.Queries.User.GetUserByNameHandler)">
+            <summary>
+            Get User by name
+            </summary>
+            <param name="name">User name</param>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+    </members>
+</doc>

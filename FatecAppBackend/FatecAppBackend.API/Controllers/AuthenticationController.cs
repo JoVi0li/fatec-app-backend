@@ -12,13 +12,21 @@ using System.Text;
 
 namespace FatecAppBackend.API.Controllers
 {
+    /// <summary>
+    /// Authentication
+    /// </summary>
     [Route("api/v1/auth")]
     [Produces("application/json")]
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
-        [Route("signin")]
-        [HttpPost]
+        /// <summary>
+        /// User signIn
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="handler"></param>
+        /// <returns></returns>
+        [HttpPost("signin")]
         public GenericCommandsResult SignIn([FromBody] SignInCommand command, [FromServices] SignInHandler handler)
         {
             var result = (GenericCommandsResult)handler.Execute(command);
@@ -32,15 +40,21 @@ namespace FatecAppBackend.API.Controllers
             return new GenericCommandsResult(result.Success, result.Message, 0);
         }
 
+
+        /// <summary>
+        /// Not implemented - Update User password
+        /// </summary>
+        /// <param name="command">User password</param>
+        /// <param name="handler">Handler from services</param>
+        /// <returns>Object</returns>
         [Authorize]
-        [Route("password")]
-        [HttpPatch]
+        [HttpPatch("password")]
         public GenericCommandsResult UpdatePassword([FromBody] ChangePasswordCommand command, [FromServices] ChangePasswordHandler handler)
         {
             return (GenericCommandsResult)handler.Execute(command);
         }
 
-        private string GenerateJSONWebToken(User user)
+        private static string GenerateJSONWebToken(User user)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("fatec-app-key-jwt-16-25-05-08-20-22"));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);

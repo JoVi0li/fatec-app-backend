@@ -69,3 +69,14 @@ C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\Fate
 C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.API\obj\Debug\net6.0\FatecAppBackend.API.genruntimeconfig.cache
 C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.API\obj\Debug\net6.0\ref\FatecAppBackend.API.dll
 C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.API\bin\Debug\net6.0\BCrypt.Net-Core.dll
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.API\bin\Debug\net6.0\Namotion.Reflection.dll
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.API\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.API\bin\Debug\net6.0\NJsonSchema.dll
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.API\bin\Debug\net6.0\NJsonSchema.Yaml.dll
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.API\bin\Debug\net6.0\NSwag.Annotations.dll
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.API\bin\Debug\net6.0\NSwag.AspNetCore.dll
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.API\bin\Debug\net6.0\NSwag.Core.dll
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.API\bin\Debug\net6.0\NSwag.Core.Yaml.dll
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.API\bin\Debug\net6.0\NSwag.Generation.dll
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.API\bin\Debug\net6.0\NSwag.Generation.AspNetCore.dll
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.API\bin\Debug\net6.0\YamlDotNet.dll
