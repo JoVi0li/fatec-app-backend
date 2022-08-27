@@ -108,7 +108,7 @@ builder.Services
             ValidateIssuerSigningKey = true,
             ValidIssuer = "FatecAppBackend",
             ValidAudience = "FatecAppMobile",
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("fatec-app-key-jwt-16-25-05-08-20-22"))
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetValue<string>("TokenSigningKey")))
         };
     });
 
