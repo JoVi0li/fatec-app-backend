@@ -21,6 +21,7 @@
         "tags": [
           "Authentication"
         ],
+        "summary": "User signIn",
         "consumes": [
           "application/json",
           "text/json",
@@ -33,6 +34,7 @@
           {
             "in": "body",
             "name": "body",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/FatecAppBackend.Domain.Commands.Authentication.SignInCommand"
             }
@@ -53,6 +55,7 @@
         "tags": [
           "Authentication"
         ],
+        "summary": "Not implemented - Update User password",
         "consumes": [
           "application/json",
           "text/json",
@@ -65,6 +68,7 @@
           {
             "in": "body",
             "name": "body",
+            "description": "User password",
             "schema": {
               "$ref": "#/definitions/FatecAppBackend.Domain.Commands.Authentication.ChangePasswordCommand"
             }
@@ -1661,5 +1665,17 @@
         }
       }
     }
-  }
+  },
+  "securityDefinitions": {
+    "Bearer Token": {
+      "type": "apiKey",
+      "name": "Bearer ",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
 }
