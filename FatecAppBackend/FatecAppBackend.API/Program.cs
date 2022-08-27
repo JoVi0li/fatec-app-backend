@@ -60,6 +60,29 @@ builder.Services
             }
         });
 
+        c.AddSecurityDefinition("Bearer Token", new OpenApiSecurityScheme()
+        {
+            Name = "Bearer ",
+            Type = SecuritySchemeType.ApiKey,
+            Scheme = "Bearer",
+            BearerFormat = "JWT",
+            In = ParameterLocation.Header,
+        });
+        c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                          new OpenApiSecurityScheme
+                          {
+                              Reference = new OpenApiReference
+                              {
+                                  Type = ReferenceType.SecurityScheme,
+                                  Id = "Bearer"
+                              }
+                          },
+                         new string[] {}
+                    }
+                });
+
         var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
         var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
         c.IncludeXmlComments(xmlPath);
@@ -69,7 +92,7 @@ builder.Services
 // Database
 builder.Services
     .AddDbContext<FatecAppBackendContext>(x =>
-        x.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+        x.UseSqlServer(builder.Configuration.GetConnectionString("FatecAppDBConnection"))
     );
 
 // Authentication
