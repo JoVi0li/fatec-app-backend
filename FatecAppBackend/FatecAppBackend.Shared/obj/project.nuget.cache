@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "rOvNTRXEdg7k5St0U9Y6aNWuvDmSqKFvLyTyg9xM3O1+LP0DzLLiPIcaMcHiE21eLQpbv7m1dQTXZRLL0BUDjA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\jovio\\OneDrive\\Documentos\\github\\fatec-app-backend\\FatecAppBackend\\FatecAppBackend.Shared\\FatecAppBackend.Shared.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jovio\\.nuget\\packages\\bcrypt.net-core\\1.6.0\\bcrypt.net-core.1.6.0.nupkg.sha512",
+    "C:\\Users\\jovio\\.nuget\\packages\\flunt\\2.0.5\\flunt.2.0.5.nupkg.sha512",
+    "C:\\Users\\jovio\\.nuget\\packages\\flunt.extensions.br\\1.0.1\\flunt.extensions.br.1.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

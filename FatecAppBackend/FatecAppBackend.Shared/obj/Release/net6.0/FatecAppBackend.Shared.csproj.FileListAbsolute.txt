@@ -1,0 +1,12 @@
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.Shared\bin\Release\net6.0\FatecAppBackend.Shared.deps.json
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.Shared\bin\Release\net6.0\FatecAppBackend.Shared.dll
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.Shared\bin\Release\net6.0\FatecAppBackend.Shared.pdb
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.Shared\obj\Release\net6.0\FatecAppBackend.Shared.csproj.AssemblyReference.cache
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.Shared\obj\Release\net6.0\FatecAppBackend.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.Shared\obj\Release\net6.0\FatecAppBackend.Shared.AssemblyInfoInputs.cache
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.Shared\obj\Release\net6.0\FatecAppBackend.Shared.AssemblyInfo.cs
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.Shared\obj\Release\net6.0\FatecAppBackend.Shared.csproj.CoreCompileInputs.cache
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.Shared\obj\Release\net6.0\FatecAppBackend.Shared.dll
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.Shared\obj\Release\net6.0\refint\FatecAppBackend.Shared.dll
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.Shared\obj\Release\net6.0\FatecAppBackend.Shared.pdb
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.Shared\obj\Release\net6.0\ref\FatecAppBackend.Shared.dll

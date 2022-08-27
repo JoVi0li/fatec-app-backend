@@ -1,0 +1,15 @@
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.Domain\bin\Debug\net6.0\FatecAppBackend.Domain.deps.json
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.Domain\bin\Debug\net6.0\FatecAppBackend.Domain.dll
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.Domain\bin\Debug\net6.0\FatecAppBackend.Domain.pdb
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.Domain\bin\Debug\net6.0\FatecAppBackend.Shared.dll
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.Domain\bin\Debug\net6.0\FatecAppBackend.Shared.pdb
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.Domain\obj\Debug\net6.0\FatecAppBackend.Domain.csproj.AssemblyReference.cache
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.Domain\obj\Debug\net6.0\FatecAppBackend.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.Domain\obj\Debug\net6.0\FatecAppBackend.Domain.AssemblyInfoInputs.cache
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.Domain\obj\Debug\net6.0\FatecAppBackend.Domain.AssemblyInfo.cs
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.Domain\obj\Debug\net6.0\FatecAppBackend.Domain.csproj.CoreCompileInputs.cache
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.Domain\obj\Debug\net6.0\FatecAppBackend.Domain.csproj.CopyComplete
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.Domain\obj\Debug\net6.0\FatecAppBackend.Domain.dll
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.Domain\obj\Debug\net6.0\refint\FatecAppBackend.Domain.dll
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.Domain\obj\Debug\net6.0\FatecAppBackend.Domain.pdb
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.Domain\obj\Debug\net6.0\ref\FatecAppBackend.Domain.dll
