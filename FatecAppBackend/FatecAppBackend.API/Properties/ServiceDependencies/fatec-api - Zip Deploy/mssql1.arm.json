@@ -36,7 +36,7 @@
     },
     {
       "type": "Microsoft.Resources/deployments",
-      "name": "[concat(parameters('resourceGroupName'), 'Deployment', uniqueString(concat('fatec-app-database', subscription().subscriptionId)))]",
+      "name": "[concat(parameters('resourceGroupName'), 'Deployment', uniqueString(concat('FatecAppDatabase', subscription().subscriptionId)))]",
       "resourceGroup": "[parameters('resourceGroupName')]",
       "apiVersion": "2019-10-01",
       "dependsOn": [
@@ -51,24 +51,23 @@
             {
               "kind": "v12.0",
               "location": "[parameters('resourceLocation')]",
-              "name": "fatec-app",
+              "name": "fatec-app-database-server",
               "type": "Microsoft.Sql/servers",
               "apiVersion": "2017-10-01-preview"
             },
             {
               "sku": {
-                "name": "GP_Gen5",
-                "tier": "GeneralPurpose",
-                "family": "Gen5",
-                "capacity": 2
+                "name": "Basic",
+                "tier": "Basic",
+                "capacity": 5
               },
-              "kind": "v12.0,user,vcore",
+              "kind": "v12.0,user",
               "location": "[parameters('resourceLocation')]",
-              "name": "fatec-app/fatec-app-database",
+              "name": "fatec-app-database-server/FatecAppDatabase",
               "type": "Microsoft.Sql/servers/databases",
               "apiVersion": "2017-10-01-preview",
               "dependsOn": [
-                "fatec-app"
+                "fatec-app-database-server"
               ]
             }
           ]

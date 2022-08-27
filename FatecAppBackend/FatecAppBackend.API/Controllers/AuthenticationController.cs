@@ -3,7 +3,6 @@ using FatecAppBackend.Domain.Entities;
 using FatecAppBackend.Domain.Handlers.Commands.Authentication;
 using FatecAppBackend.Shared.Commands;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -56,7 +55,11 @@ namespace FatecAppBackend.API.Controllers
 
         private static string GenerateJSONWebToken(User user)
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("fatec-app-key-jwt-16-25-05-08-20-22"));
+            var app = WebApplication.CreateBuilder().Build();
+
+            var tokensigning = app.Configuration.GetValue<string>("TokenSigningKey");
+
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokensigning));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new[]

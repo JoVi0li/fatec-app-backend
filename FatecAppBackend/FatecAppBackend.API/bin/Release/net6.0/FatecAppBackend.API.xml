@@ -4,6 +4,32 @@
         <name>FatecAppBackend.API</name>
     </assembly>
     <members>
+        <member name="T:FatecAppBackend.API.Controllers.AuthenticationController">
+            <summary>
+            Authentication
+            </summary>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.AuthenticationController.SignIn(FatecAppBackend.Domain.Commands.Authentication.SignInCommand,FatecAppBackend.Domain.Handlers.Commands.Authentication.SignInHandler)">
+            <summary>
+            User signIn
+            </summary>
+            <param name="command"></param>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.AuthenticationController.UpdatePassword(FatecAppBackend.Domain.Commands.Authentication.ChangePasswordCommand,FatecAppBackend.Domain.Handlers.Commands.Authentication.ChangePasswordHandler)">
+            <summary>
+            Not implemented - Update User password
+            </summary>
+            <param name="command">User password</param>
+            <param name="handler">Handler from services</param>
+            <returns>Object</returns>
+        </member>
+        <member name="T:FatecAppBackend.API.Controllers.CollegeController">
+            <summary>
+            College CRUD
+            </summary>
+        </member>
         <member name="M:FatecAppBackend.API.Controllers.CollegeController.Create(FatecAppBackend.Domain.Commands.College.CreateCollegeCommand,FatecAppBackend.Domain.Handlers.Commands.College.CreateCollegeHandler)">
             <summary>
             Create College
@@ -42,6 +68,11 @@
             <param name="id">College props</param>
             <param name="handler">Handler from services</param>
             <returns>Object</returns>
+        </member>
+        <member name="T:FatecAppBackend.API.Controllers.EventController">
+            <summary>
+            Event CRUD
+            </summary>
         </member>
         <member name="M:FatecAppBackend.API.Controllers.EventController.Create(FatecAppBackend.Domain.Commands.Event.CreateEventCommand,FatecAppBackend.Domain.Handlers.Commands.Event.CreateEventHandler)">
             <summary>
@@ -82,6 +113,11 @@
             <param name="handler">Handler from services</param>
             <returns>Object</returns>
         </member>
+        <member name="T:FatecAppBackend.API.Controllers.ParticipantController">
+            <summary>
+            Participant CRUD
+            </summary>
+        </member>
         <member name="M:FatecAppBackend.API.Controllers.ParticipantController.Create(FatecAppBackend.Domain.Commands.Participant.CreateParticipantCommand,FatecAppBackend.Domain.Handlers.Commands.Participant.CreateParticipantHandler)">
             <summary>
             Create Participant
@@ -121,6 +157,11 @@
             <param name="userCollegeId">UserCollege id</param>
             <param name="handler">Handler from services</param>
             <returns>Object</returns>
+        </member>
+        <member name="T:FatecAppBackend.API.Controllers.UserCollegeController">
+            <summary>
+            UserCollege CRUD
+            </summary>
         </member>
         <member name="M:FatecAppBackend.API.Controllers.UserCollegeController.Create(FatecAppBackend.Domain.Commands.UserCollege.CreateUserCollegeCommand,FatecAppBackend.Domain.Handlers.Commands.UserCollege.CreateUserCollegeHandler)">
             <summary>
@@ -176,6 +217,11 @@
             <param name="userId">User id</param>
             <param name="handler">Handler from services</param>
             <returns>Object</returns>
+        </member>
+        <member name="T:FatecAppBackend.API.Controllers.UserController">
+            <summary>
+            User CRUD
+            </summary>
         </member>
         <member name="M:FatecAppBackend.API.Controllers.UserController.Create(FatecAppBackend.Domain.Commands.User.CreateUserCommand,FatecAppBackend.Domain.Handlers.Commands.User.CreateUserHandler)">
             <summary>

@@ -49,17 +49,17 @@
           "contentVersion": "1.0.0.0",
           "resources": [
             {
-              "name": "FatecAppBackendAPIManagementService",
+              "name": "FatecAppBackendAPIManagement",
               "type": "Microsoft.ApiManagement/service",
               "location": "[parameters('resourceLocation')]",
               "properties": {
-                "publisherEmail": "joao.silva624@fatec.sp.gov.br",
-                "publisherName": "JOAO VITOR DE OLIVEIRA DA SILVA",
+                "publisherEmail": "00001079768828SP@aluno.educacao.sp.gov.br",
+                "publisherName": "João Vitor De Oliveira Da Silva",
                 "notificationSenderEmail": "apimgmt-noreply@mail.windowsazure.com",
                 "hostnameConfigurations": [
                   {
                     "type": "Proxy",
-                    "hostName": "fatecappbackendapimanagementservice.azure-api.net",
+                    "hostName": "fatecappbackendapimanagement.azure-api.net",
                     "encodedCertificate": null,
                     "keyVaultId": null,
                     "certificatePassword": null,
@@ -94,7 +94,7 @@
             },
             {
               "type": "Microsoft.ApiManagement/service/apis",
-              "name": "FatecAppBackendAPIManagementService/FatecAppBackendAPI",
+              "name": "FatecAppBackendAPIManagement/FatecAppBackendAPI",
               "properties": {
                 "displayName": "FatecAppBackendAPI",
                 "apiRevision": "1",
@@ -117,7 +117,7 @@
               },
               "apiVersion": "2019-12-01",
               "dependsOn": [
-                "FatecAppBackendAPIManagementService"
+                "FatecAppBackendAPIManagement"
               ]
             }
           ]
