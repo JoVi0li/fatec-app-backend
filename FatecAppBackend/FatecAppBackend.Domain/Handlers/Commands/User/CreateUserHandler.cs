@@ -1,5 +1,6 @@
 ﻿using FatecAppBackend.Domain.Commands.User;
 using FatecAppBackend.Domain.Repositories;
+using FatecAppBackend.Domain.Services;
 using FatecAppBackend.Shared.Commands;
 using FatecAppBackend.Shared.Handlers.Contracts;
 using FatecAppBackend.Shared.Utils;
@@ -15,10 +16,12 @@ namespace FatecAppBackend.Domain.Handlers.Commands.User
     public class CreateUserHandler : Notifiable<Notification>, IHandlerCommand<CreateUserCommand>
     {
         private readonly IUserRepository _userRepository;
+        private readonly IFileService _fileService;
 
-        public CreateUserHandler(IUserRepository userRepository)
+        public CreateUserHandler(IUserRepository userRepository, IFileService fileService)
         {
             _userRepository = userRepository;
+            _fileService = fileService;
         }
 
         public ICommandResult Execute(CreateUserCommand command)
@@ -38,6 +41,8 @@ namespace FatecAppBackend.Domain.Handlers.Commands.User
             }
 
             command.Password = PasswordEncryption.Encrypt(command.Password);
+
+            command.Photo = _fileService.UploadFile(command.Photo, "fatec-app-images", "");
 
             Entities.User newUser = new(
                 command.Name,
