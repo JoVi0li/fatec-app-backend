@@ -8,8 +8,8 @@ namespace FatecAppBackend.Domain.Services
 {
     public interface IFileService
     {
-        string UploadFile(string base64file, string container, string connection);
+        string UploadFile(string base64file, string fileName);
 
-        string DownloadFile(string path);
+        string DownloadFile(string fileName);
     }
 }

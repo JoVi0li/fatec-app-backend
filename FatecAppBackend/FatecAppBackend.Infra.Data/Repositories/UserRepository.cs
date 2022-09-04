@@ -52,6 +52,13 @@ namespace FatecAppBackend.Infra.Data.Repositories
                 .FirstOrDefault(x => x.Id == id);
         }
 
+        public User? GetByIdentityDocumentNumber(string identityDocNumber)
+        {
+            return _context.Users
+                .Include(x => x.UserCollege)
+                .FirstOrDefault(x => x.IdentityDocumentNumber == identityDocNumber);
+        }
+
         public ICollection<User> GetByName(string name)
         {
             return _context.Users

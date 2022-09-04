@@ -34,7 +34,12 @@ namespace FatecAppBackend.Domain.Handlers.Commands.Authentication
 
             if(user == null)
             {
-                return new GenericCommandsResult(false, "Invalid props", 0);
+                return new GenericCommandsResult(false, "Invalid email & password", 0);
+            }
+
+            if(!PasswordEncryption.IsValid(command.Password, user.Password))
+            {
+                return new GenericCommandsResult(false, "Invalid password", 0);
             }
 
             if (!user.IsValid)
@@ -42,9 +47,9 @@ namespace FatecAppBackend.Domain.Handlers.Commands.Authentication
                 return new GenericCommandsResult(false, "Invalid user", 0);
             }
 
-            if(!PasswordEncryption.IsValid(command.Password, user.Password))
+            if (!user.ValidatedUser)
             {
-                return new GenericCommandsResult(false, "Invalid props", 0);
+                return new GenericCommandsResult(false, "Invalid user", 0);
             }
 
             return new GenericCommandsResult(true, "Authenticated", user);

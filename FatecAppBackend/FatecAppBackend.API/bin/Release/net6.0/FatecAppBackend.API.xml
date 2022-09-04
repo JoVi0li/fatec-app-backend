@@ -9,6 +9,12 @@
             Authentication
             </summary>
         </member>
+        <member name="M:FatecAppBackend.API.Controllers.AuthenticationController.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Constructor method
+            </summary>
+            <param name="configuration"></param>
+        </member>
         <member name="M:FatecAppBackend.API.Controllers.AuthenticationController.SignIn(FatecAppBackend.Domain.Commands.Authentication.SignInCommand,FatecAppBackend.Domain.Handlers.Commands.Authentication.SignInHandler)">
             <summary>
             User signIn
@@ -222,6 +228,12 @@
             <summary>
             User CRUD
             </summary>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.UserController.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Constructor method
+            </summary>
+            <param name="configuration"></param>
         </member>
         <member name="M:FatecAppBackend.API.Controllers.UserController.Create(FatecAppBackend.Domain.Commands.User.CreateUserCommand,FatecAppBackend.Domain.Handlers.Commands.User.CreateUserHandler)">
             <summary>

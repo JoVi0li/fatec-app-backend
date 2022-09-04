@@ -9,6 +9,7 @@ namespace FatecAppBackend.Shared.Handlers.Contracts
 {
     public interface IHandlerCommand<T> where T : ICommand
     {
-        ICommandResult Execute(T command);
+        ICommandResult Execute( T command);
+
     }
 }

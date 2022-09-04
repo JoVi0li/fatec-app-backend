@@ -1,4 +1,5 @@
 
+using Azure.Storage.Blobs;
 using FatecAppBackend.Domain.Handlers.Commands.Authentication;
 using FatecAppBackend.Domain.Handlers.Commands.College;
 using FatecAppBackend.Domain.Handlers.Commands.Event;
@@ -11,8 +12,10 @@ using FatecAppBackend.Domain.Handlers.Queries.Participant;
 using FatecAppBackend.Domain.Handlers.Queries.User;
 using FatecAppBackend.Domain.Handlers.Queries.UserCollege;
 using FatecAppBackend.Domain.Repositories;
+using FatecAppBackend.Domain.Services;
 using FatecAppBackend.Infra.Data.Contexts;
 using FatecAppBackend.Infra.Data.Repositories;
+using FatecAppBackend.Infra.Data.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -136,9 +139,12 @@ builder.Services.AddTransient<IAuthRepository, AuthRepository>();
 
 #endregion
 
+#region Services
+builder.Services.AddTransient<IFileService, FileService>();
+#endregion
+
 #region Authentication
 builder.Services.AddTransient<SignInHandler, SignInHandler>();
-
 #endregion
 
 #region User handlers

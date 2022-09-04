@@ -1,4 +1,5 @@
-﻿using FatecAppBackend.Domain.Commands.User;
+﻿using Azure.Storage.Blobs;
+using FatecAppBackend.Domain.Commands.User;
 using FatecAppBackend.Domain.Handlers.Commands.User;
 using FatecAppBackend.Domain.Handlers.Queries.User;
 using FatecAppBackend.Domain.Queries.User;
@@ -17,6 +18,17 @@ namespace FatecAppBackend.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+       private readonly IConfiguration _configuration;
+
+        /// <summary>
+        /// Constructor method
+        /// </summary>
+        /// <param name="configuration"></param>
+        public UserController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         /// <summary>
         /// Create new User
         /// </summary>
