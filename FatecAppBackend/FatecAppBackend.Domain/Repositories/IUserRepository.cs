@@ -43,6 +43,13 @@ namespace FatecAppBackend.Domain.Repositories
         ICollection<User> GetByName(string name);
 
         /// <summary>
+        /// Search an User by IdentityDocumentNumber
+        /// </summary>
+        /// <param name="identityDocNumber">User IdentityDocumentNumber</param>
+        /// <returns>An User</returns>
+        User? GetByIdentityDocumentNumber(string identityDocNumber);
+
+        /// <summary>
         /// Delete an user with the Id
         /// </summary>
         /// <param name="id">User Id</param>

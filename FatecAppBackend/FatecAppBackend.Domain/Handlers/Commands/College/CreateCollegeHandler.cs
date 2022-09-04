@@ -13,7 +13,7 @@ namespace FatecAppBackend.Domain.Handlers.Commands.College
 {
     public class CreateCollegeHandler : Notifiable<Notification>, IHandlerCommand<CreateCollegeCommand>
     {
-        private ICollegeRepository _collegeRepository;
+        private readonly ICollegeRepository _collegeRepository;
 
         public CreateCollegeHandler(ICollegeRepository collegeRepository)
         {

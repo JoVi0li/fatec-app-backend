@@ -82,3 +82,9 @@ C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\Fate
 C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.API\bin\Release\net6.0\YamlDotNet.dll
 C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.API\bin\Release\net6.0\FatecAppBackend.API.xml
 C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.API\obj\Release\net6.0\FatecAppBackend.API.xml
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.API\bin\Release\net6.0\Azure.Core.dll
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.API\bin\Release\net6.0\Azure.Storage.Blobs.dll
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.API\bin\Release\net6.0\Azure.Storage.Common.dll
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.API\bin\Release\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.API\bin\Release\net6.0\System.IO.Hashing.dll
+C:\Users\jovio\OneDrive\Documentos\github\fatec-app-backend\FatecAppBackend\FatecAppBackend.API\bin\Release\net6.0\System.Memory.Data.dll

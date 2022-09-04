@@ -19,6 +19,17 @@ namespace FatecAppBackend.API.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
+        private readonly IConfiguration _configuration;
+
+        /// <summary>
+        /// Constructor method
+        /// </summary>
+        /// <param name="configuration"></param>
+        public AuthenticationController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         /// <summary>
         /// User signIn
         /// </summary>
@@ -53,11 +64,10 @@ namespace FatecAppBackend.API.Controllers
             return (GenericCommandsResult)handler.Execute(command);
         }
 
-        private static string GenerateJSONWebToken(User user)
+        private string GenerateJSONWebToken(User user)
         {
-            var app = WebApplication.CreateBuilder().Build();
 
-            var tokensigning = app.Configuration.GetValue<string>("TokenSigningKey");
+            var tokensigning = _configuration["TokenSigningKey"];
 
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokensigning));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
