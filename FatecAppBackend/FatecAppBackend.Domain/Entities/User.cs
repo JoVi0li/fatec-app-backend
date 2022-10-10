@@ -26,7 +26,8 @@ namespace FatecAppBackend.Domain.Entities
             string photo,
             string phoneNumber,
             string identityDocNumber,
-            string identityDocPhoto,
+            string identityDocPhotoFront,
+            string identityDocPhotoBack,
             EnGender gender,
             bool validatedUser
            )
@@ -43,7 +44,8 @@ namespace FatecAppBackend.Domain.Entities
                     .IsPhoneNumber(phoneNumber, "PhoneNumber", "Invalid PhoneNumber")
                     .IsNotNull(identityDocNumber, "IdentityDocumentNumber", "IdentityDocumentNumber cannot be null")
                     .IsCpf(identityDocNumber, "IdentityDocumentNumber", "Invalid IdentityDocumentNumber")
-                    .IsNotNull(identityDocPhoto, "IdentityDocumentPhoto", "IdentityDocumentPhoto cannot be null")
+                    .IsNotEmpty(identityDocPhotoFront, "IdentityDocumentPhotoFront", "IdentityDocumentPhotoFront cannot be empty")
+                    .IsNotEmpty(identityDocPhotoBack, "IdentityDocumentPhotoBack", "IdentityDocumentPhotoBack cannot be empty")
                     .IsNotNull(gender, "Gender", "Gender cannot be null")
                     .IsNotNull(validatedUser, "ValidatedUser", "ValidatedUser cannot be null")
             );
@@ -56,7 +58,8 @@ namespace FatecAppBackend.Domain.Entities
                 Photo = photo;
                 PhoneNumber = phoneNumber;
                 IdentityDocumentNumber = identityDocNumber;
-                IdentityDocumentPhoto = identityDocPhoto;
+                IdentityDocumentPhotoFront = identityDocPhotoFront;
+                IdentityDocumentPhotoBack = identityDocPhotoBack;
                 Gender = gender;
                 ValidatedUser = validatedUser;
             }
@@ -82,7 +85,9 @@ namespace FatecAppBackend.Domain.Entities
 
         public string IdentityDocumentNumber { get; private set; }
 
-        public string IdentityDocumentPhoto { get; private set; }
+        public string IdentityDocumentPhotoFront { get; private set; }
+
+        public string IdentityDocumentPhotoBack { get; private set; }
 
         public EnGender Gender { get; private set; }
 
@@ -180,19 +185,31 @@ namespace FatecAppBackend.Domain.Entities
                 }
             }
 
-            if (updateUser.IdentityDocumentPhoto != null)
+            if (updateUser.IdentityDocumentPhotoFront != null)
             {
-                if (updateUser.IdentityDocumentPhoto.Length > 0 && updateUser.IdentityDocumentPhoto != IdentityDocumentPhoto)
+                if (updateUser.IdentityDocumentPhotoFront.Length > 0 && updateUser.IdentityDocumentPhotoFront != IdentityDocumentPhotoFront)
                 {
-                    IdentityDocumentPhoto = updateUser.IdentityDocumentPhoto;
+                    IdentityDocumentPhotoFront = updateUser.IdentityDocumentPhotoFront;
                 }
                 else
                 {
-                    AddNotification("IdentityDocumentPhoto", "Could not update, invalid value");
+                    AddNotification("IdentityDocumentPhotoFront", "Could not update, invalid value");
                 }
             }
 
-            if(updateUser.ValidatedUser != null)
+            if (updateUser.IdentityDocumentPhotoBack != null)
+            {
+                if (updateUser.IdentityDocumentPhotoBack.Length > 0 && updateUser.IdentityDocumentPhotoBack != IdentityDocumentPhotoBack)
+                {
+                    IdentityDocumentPhotoBack = updateUser.IdentityDocumentPhotoBack;
+                }
+                else
+                {
+                    AddNotification("IdentityDocumentPhotoBack", "Could not update, invalid value");
+                }
+            }
+
+            if (updateUser.ValidatedUser != null)
             {
                 if(updateUser.ValidatedUser != ValidatedUser)
                 {

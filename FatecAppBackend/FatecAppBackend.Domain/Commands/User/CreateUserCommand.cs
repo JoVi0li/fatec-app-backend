@@ -12,7 +12,7 @@ namespace FatecAppBackend.Domain.Commands.User
 {
     public class CreateUserCommand : Notifiable<Notification>, ICommand
     {
-        public CreateUserCommand(string name, string email, string password, string photo, string phoneNumber, string identityDocumentNumber, string identityDocumentPhoto, EnGender gender, bool validatedUser)
+        public CreateUserCommand(string name, string email, string password, string photo, string phoneNumber, string identityDocumentNumber, string identityDocPhotoFront, string identityDocPhotoBack, EnGender gender, bool validatedUser)
         {
             Name = name;
             Email = email;
@@ -20,28 +20,31 @@ namespace FatecAppBackend.Domain.Commands.User
             Photo = photo;
             PhoneNumber = phoneNumber;
             IdentityDocumentNumber = identityDocumentNumber;
-            IdentityDocumentPhoto = identityDocumentPhoto;
+            IdentityDocumentPhotoFront = identityDocPhotoFront;
+            IdentityDocumentPhotoBack = identityDocPhotoBack;
             Gender = gender;
             ValidatedUser = validatedUser;
         }
 
-        public string Name { get;  set; }
+        public string Name { get; set; }
 
-        public string Email { get;  set; }
+        public string Email { get; set; }
 
-        public string Password { get;  set; }
+        public string Password { get; set; }
 
-        public string Photo { get;  set; }
+        public string Photo { get; set; }
 
-        public string PhoneNumber { get;  set; }
+        public string PhoneNumber { get; set; }
 
-        public string IdentityDocumentNumber { get;  set; }
+        public string IdentityDocumentNumber { get; set; }
 
-        public string IdentityDocumentPhoto { get;  set; }
+        public string IdentityDocumentPhotoFront { get; set; }
 
-        public EnGender Gender { get;  set; }
+        public string IdentityDocumentPhotoBack { get; set; }
 
-        public bool ValidatedUser { get;  set; }
+        public EnGender Gender { get; set; }
+
+        public bool ValidatedUser { get; set; }
 
         public void Execute()
         {
@@ -55,7 +58,8 @@ namespace FatecAppBackend.Domain.Commands.User
                     .IsNotNull(Photo, "Photo", "Photo cannot be null")
                     .IsNotNull(PhoneNumber, "PhoneNumber", "PhoneNumber cannot be null")
                     .IsNotNull(IdentityDocumentNumber, "IdentityDocumentNumber", "IdentityDocumentNumber cannot be null")
-                    .IsNotNull(IdentityDocumentPhoto, "IdentityDocumentPhoto", "IdentityDocumentPhoto cannot be null")
+                    .IsNotEmpty(IdentityDocumentPhotoFront, "IdentityDocumentPhotoFront", "IdentityDocumentPhotoFront cannot be empty")
+                    .IsNotEmpty(IdentityDocumentPhotoBack, "IdentityDocumentPhotoBack", "IdentityDocumentPhotoBack cannot be empty")
                     .IsNotNull(Gender, "Gender", "Gender cannot be null")
                     .IsNotNull(ValidatedUser, "ValidatedUser", "ValidatedUser cannot be null")
             );

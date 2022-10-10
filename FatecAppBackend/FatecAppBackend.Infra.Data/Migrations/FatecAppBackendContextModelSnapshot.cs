@@ -17,7 +17,7 @@ namespace FatecAppBackend.Infra.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.7")
+                .HasAnnotation("ProductVersion", "6.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -142,7 +142,12 @@ namespace FatecAppBackend.Infra.Data.Migrations
                         .HasMaxLength(11)
                         .HasColumnType("varchar(11)");
 
-                    b.Property<string>("IdentityDocumentPhoto")
+                    b.Property<string>("IdentityDocumentPhotoBack")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType(" varchar(1000)");
+
+                    b.Property<string>("IdentityDocumentPhotoFront")
                         .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType(" varchar(1000)");

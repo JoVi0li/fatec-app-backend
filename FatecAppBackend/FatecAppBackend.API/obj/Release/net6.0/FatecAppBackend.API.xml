@@ -290,5 +290,22 @@
             <param name="handler">Handler from services</param>
             <returns>Object</returns>
         </member>
+        <member name="T:FatecAppBackend.API.Controllers.ValidationController">
+            <summary>
+            Authentication
+            </summary>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.ValidationController.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Constructor method
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:FatecAppBackend.API.Controllers.ValidationController.ExtractText(System.Collections.Generic.List{System.String})">
+            <summary>
+            Extract text from image
+            </summary>
+            <returns></returns>
+        </member>
     </members>
 </doc>

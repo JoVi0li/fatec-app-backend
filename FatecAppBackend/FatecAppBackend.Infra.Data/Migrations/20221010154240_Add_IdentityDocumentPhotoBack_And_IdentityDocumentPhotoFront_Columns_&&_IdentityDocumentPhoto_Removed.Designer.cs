@@ -12,14 +12,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FatecAppBackend.Infra.Data.Migrations
 {
     [DbContext(typeof(FatecAppBackendContext))]
-    [Migration("20220820230455_InitialDatabase")]
-    partial class InitialDatabase
+    [Migration("20221010154240_Add_IdentityDocumentPhotoBack_And_IdentityDocumentPhotoFront_Columns_&&_IdentityDocumentPhoto_Removed")]
+    partial class Add_IdentityDocumentPhotoBack_And_IdentityDocumentPhotoFront_Columns__IdentityDocumentPhoto_Removed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.7")
+                .HasAnnotation("ProductVersion", "6.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -144,7 +144,12 @@ namespace FatecAppBackend.Infra.Data.Migrations
                         .HasMaxLength(11)
                         .HasColumnType("varchar(11)");
 
-                    b.Property<string>("IdentityDocumentPhoto")
+                    b.Property<string>("IdentityDocumentPhotoBack")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType(" varchar(1000)");
+
+                    b.Property<string>("IdentityDocumentPhotoFront")
                         .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType(" varchar(1000)");

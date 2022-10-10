@@ -8,7 +8,7 @@ namespace FatecAppBackend.Shared.DTOs.User
 {
     public class UpdateUserDTO
     {
-        public UpdateUserDTO(Guid id, Guid userCollegeId, string? name, string? email, string? photo, string? phoneNumber, string? identityDocumentNumber, string? identityDocumentPhoto, bool? validatedUser, EnGender? gender)
+        public UpdateUserDTO(Guid id, Guid userCollegeId, string? name, string? email, string? photo, string? phoneNumber, string? identityDocumentNumber, string? identityDocPhotoFront, string? identityDocPhotoBack, bool? validatedUser, EnGender? gender)
         {
             Id = id;
             UserCollegeId = userCollegeId;
@@ -17,7 +17,8 @@ namespace FatecAppBackend.Shared.DTOs.User
             Photo = photo;
             PhoneNumber = phoneNumber;
             IdentityDocumentNumber = identityDocumentNumber;
-            IdentityDocumentPhoto = identityDocumentPhoto;
+            IdentityDocumentPhotoFront = identityDocPhotoFront;
+            IdentityDocumentPhotoBack = identityDocPhotoBack;
             Gender = gender;
             ValidatedUser = validatedUser;
         }
@@ -36,7 +37,9 @@ namespace FatecAppBackend.Shared.DTOs.User
 
         public string? IdentityDocumentNumber { get; private set; }
 
-        public string? IdentityDocumentPhoto { get; private set; }
+        public string? IdentityDocumentPhotoFront { get; private set; }
+
+        public string? IdentityDocumentPhotoBack { get; private set; }
 
         public EnGender? Gender { get; private set; }
 

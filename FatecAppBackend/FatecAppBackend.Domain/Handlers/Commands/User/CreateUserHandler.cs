@@ -62,12 +62,22 @@ namespace FatecAppBackend.Domain.Handlers.Commands.User
 
             try
             {
-                var userIdentityDocPhotoName = "user-identity-doc-photo" + command.IdentityDocumentNumber + "-" + Guid.NewGuid();
-                command.IdentityDocumentPhoto = _fileService.UploadFile(command.IdentityDocumentPhoto, userIdentityDocPhotoName);
+                var userIdentityDocPhotoName = "user-identity-doc-photo-front" + command.IdentityDocumentNumber + "-" + Guid.NewGuid();
+                command.IdentityDocumentPhotoFront = _fileService.UploadFile(command.IdentityDocumentPhotoFront, userIdentityDocPhotoName);
             }
             catch (Exception e)
             {
-                return new GenericCommandsResult(false, "Could not upload the user identity document photo", e);
+                return new GenericCommandsResult(false, "Could not upload the user identity document photo front", e);
+            }
+
+            try
+            {
+                var userIdentityDocPhotoName = "user-identity-doc-photo-back" + command.IdentityDocumentNumber + "-" + Guid.NewGuid();
+                command.IdentityDocumentPhotoBack = _fileService.UploadFile(command.IdentityDocumentPhotoBack, userIdentityDocPhotoName);
+            }
+            catch (Exception e)
+            {
+                return new GenericCommandsResult(false, "Could not upload the user identity document photo back", e);
             }
 
             Entities.User newUser = new(
@@ -77,7 +87,8 @@ namespace FatecAppBackend.Domain.Handlers.Commands.User
                 command.Photo,
                 command.PhoneNumber,
                 command.IdentityDocumentNumber,
-                command.IdentityDocumentPhoto,
+                command.IdentityDocumentPhotoFront,
+                command.IdentityDocumentPhotoBack,
                 command.Gender,
                 false
             );
@@ -89,7 +100,7 @@ namespace FatecAppBackend.Domain.Handlers.Commands.User
 
             _userRepository.Create(newUser);
 
-            return new GenericCommandsResult(true, "User created", "Token");
+            return new GenericCommandsResult(true, "User created", newUser.Id);
         }
     }
 }

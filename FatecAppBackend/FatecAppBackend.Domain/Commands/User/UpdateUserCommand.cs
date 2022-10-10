@@ -73,16 +73,25 @@ namespace FatecAppBackend.Domain.Commands.User
                 );
             }
 
-            if(UpdateUser.IdentityDocumentPhoto != null)
+            if(UpdateUser.IdentityDocumentPhotoFront != null)
             {
                 AddNotifications(
                     new Contract<Notification>()
                         .Requires()
-                        .IsNotEmpty(UpdateUser.IdentityDocumentPhoto, "IdentityDocumentPhoto", "IdentityDocumentPhoto cannot be empty")
+                        .IsNotEmpty(UpdateUser.IdentityDocumentPhotoFront, "IdentityDocumentPhotoFront", "IdentityDocumentPhotoFront cannot be empty")
                 );
             }
 
-            if(UpdateUser.Gender != null)
+            if (UpdateUser.IdentityDocumentPhotoBack != null)
+            {
+                AddNotifications(
+                    new Contract<Notification>()
+                        .Requires()
+                        .IsNotEmpty(UpdateUser.IdentityDocumentPhotoBack, "IdentityDocumentPhotoBack", "IdentityDocumentPhotoBack cannot be empty")
+                );
+            }
+
+            if (UpdateUser.Gender != null)
             {
                 AddNotifications(
                     new Contract<Notification>()

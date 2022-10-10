@@ -17,7 +17,6 @@ namespace FatecAppBackend.API.Controllers
     /// </summary>
     [Route("api/v1/college")]
     [Produces("application/json")]
-    [Authorize]
     [ApiController]
     public class CollegeController : ControllerBase
     {
@@ -27,6 +26,7 @@ namespace FatecAppBackend.API.Controllers
         /// <param name="command">College props</param>
         /// <param name="handler">Handler from services</param>
         /// <returns>Object</returns>
+        [Authorize]
         [HttpPost("create")]
         public GenericCommandsResult Create([FromBody] CreateCollegeCommand command, [FromServices] CreateCollegeHandler handler)
         {
@@ -39,6 +39,7 @@ namespace FatecAppBackend.API.Controllers
         /// <param name="id">College id</param>
         /// <param name="handler">Handler from services</param>
         /// <returns>Object</returns>
+        [Authorize]
         [HttpDelete("delete/{id}")]
         public GenericCommandsResult Delete([FromRoute] Guid id, [FromServices] RemoveCollegeHandler handler)
         {
@@ -51,6 +52,7 @@ namespace FatecAppBackend.API.Controllers
         /// <param name="command">College props</param>
         /// <param name="handler">Handler from services</param>
         /// <returns>Object</returns>
+        [Authorize]
         [HttpPatch("update")]
         public GenericCommandsResult Update([FromBody] UpdateCollegeCommand command, [FromServices] UpdateCollegeHandler handler)
         {
@@ -74,6 +76,7 @@ namespace FatecAppBackend.API.Controllers
         /// <param name="id">College props</param>
         /// <param name="handler">Handler from services</param>
         /// <returns>Object</returns>
+        [Authorize]
         [HttpGet("id/{id}")]
         public GenericQueryResult GetById([FromRoute] Guid id, [FromServices] GetCollegeByIdHandler handler)
         {

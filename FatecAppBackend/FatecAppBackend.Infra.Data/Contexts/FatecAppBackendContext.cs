@@ -71,10 +71,15 @@ namespace FatecAppBackend.Infra.Data.Contexts
             modelBuilder.Entity<User>().Property(x => x.IdentityDocumentNumber).HasColumnType("varchar(11)");
             modelBuilder.Entity<User>().Property(x => x.IdentityDocumentNumber).IsRequired();
 
-            // IdentityDocumentPhoto
-            modelBuilder.Entity<User>().Property(x => x.IdentityDocumentPhoto).HasMaxLength(1000);
-            modelBuilder.Entity<User>().Property(x => x.IdentityDocumentPhoto).HasColumnType(" varchar(1000)");
-            modelBuilder.Entity<User>().Property(x => x.IdentityDocumentPhoto).IsRequired();
+            // IdentityDocumentPhotoFront
+            modelBuilder.Entity<User>().Property(x => x.IdentityDocumentPhotoFront).HasMaxLength(1000);
+            modelBuilder.Entity<User>().Property(x => x.IdentityDocumentPhotoFront).HasColumnType(" varchar(1000)");
+            modelBuilder.Entity<User>().Property(x => x.IdentityDocumentPhotoFront).IsRequired();
+
+            // IdentityDocumentPhotoBack
+            modelBuilder.Entity<User>().Property(x => x.IdentityDocumentPhotoBack).HasMaxLength(1000);
+            modelBuilder.Entity<User>().Property(x => x.IdentityDocumentPhotoBack).HasColumnType(" varchar(1000)");
+            modelBuilder.Entity<User>().Property(x => x.IdentityDocumentPhotoBack).IsRequired();
 
             // Gender
             modelBuilder.Entity<User>().Property(x => x.Gender).HasColumnType("varchar(100) CHECK(Gender IN ('Male', 'Female'))");

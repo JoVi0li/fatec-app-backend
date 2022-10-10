@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FatecAppBackend.Infra.Data.Migrations
 {
-    public partial class InitialDatabase : Migration
+    public partial class Add_IdentityDocumentPhotoBack_And_IdentityDocumentPhotoFront_Columns__IdentityDocumentPhoto_Removed : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -36,7 +36,8 @@ namespace FatecAppBackend.Infra.Data.Migrations
                     Photo = table.Column<string>(type: "varchar(1000)", maxLength: 1000, nullable: false),
                     PhoneNumber = table.Column<string>(type: "varchar(12)", maxLength: 12, nullable: false),
                     IdentityDocumentNumber = table.Column<string>(type: "varchar(11)", maxLength: 11, nullable: false),
-                    IdentityDocumentPhoto = table.Column<string>(type: " varchar(1000)", maxLength: 1000, nullable: false),
+                    IdentityDocumentPhotoFront = table.Column<string>(type: " varchar(1000)", maxLength: 1000, nullable: false),
+                    IdentityDocumentPhotoBack = table.Column<string>(type: " varchar(1000)", maxLength: 1000, nullable: false),
                     Gender = table.Column<string>(type: "varchar(100)", nullable: false),
                     ValidatedUser = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "DateTime", nullable: false, defaultValueSql: "getdate()")
