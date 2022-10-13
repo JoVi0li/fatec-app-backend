@@ -2,7 +2,6 @@
 using FatecAppBackend.Domain.Repositories;
 using FatecAppBackend.Domain.Services;
 using FatecAppBackend.Shared.Commands;
-using FatecAppBackend.Shared.DTOs.User;
 using FatecAppBackend.Shared.Handlers.Contracts;
 using FatecAppBackend.Shared.Utils;
 using Flunt.Notifications;
@@ -57,7 +56,7 @@ namespace FatecAppBackend.Domain.Handlers.Commands.User
             }
             catch (Exception e)
             {
-                return new GenericCommandsResult(false, "Could not upload the user photo", e);
+                return new GenericCommandsResult(false, "Could not upload the user photo", e.Message);
             }
 
             try
@@ -67,7 +66,7 @@ namespace FatecAppBackend.Domain.Handlers.Commands.User
             }
             catch (Exception e)
             {
-                return new GenericCommandsResult(false, "Could not upload the user identity document photo front", e);
+                return new GenericCommandsResult(false, "Could not upload the user identity document photo front", e.Message);
             }
 
             try
@@ -77,7 +76,7 @@ namespace FatecAppBackend.Domain.Handlers.Commands.User
             }
             catch (Exception e)
             {
-                return new GenericCommandsResult(false, "Could not upload the user identity document photo back", e);
+                return new GenericCommandsResult(false, "Could not upload the user identity document photo back", e.Message);
             }
 
             Entities.User newUser = new(

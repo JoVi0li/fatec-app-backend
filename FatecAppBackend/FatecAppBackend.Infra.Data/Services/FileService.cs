@@ -14,9 +14,9 @@ namespace FatecAppBackend.Infra.Data.Services
     {
         private readonly IConfiguration _configuration;
 
-        private string Connection { get; set; }
+        private string Connection { get; }
 
-        private string Container { get; set; }
+        private string Container { get; }
 
         public FileService(IConfiguration configuration)
         {

@@ -1,28 +1,27 @@
 
-using Azure.Storage.Blobs;
 using FatecAppBackend.Domain.Handlers.Commands.Authentication;
-using FatecAppBackend.Domain.Handlers.Commands.College;
-using FatecAppBackend.Domain.Handlers.Commands.Event;
 using FatecAppBackend.Domain.Handlers.Commands.Participant;
-using FatecAppBackend.Domain.Handlers.Commands.User;
 using FatecAppBackend.Domain.Handlers.Commands.UserCollege;
-using FatecAppBackend.Domain.Handlers.Queries.College;
-using FatecAppBackend.Domain.Handlers.Queries.Event;
 using FatecAppBackend.Domain.Handlers.Queries.Participant;
-using FatecAppBackend.Domain.Handlers.Queries.User;
 using FatecAppBackend.Domain.Handlers.Queries.UserCollege;
-using FatecAppBackend.Domain.Repositories;
-using FatecAppBackend.Domain.Services;
-using FatecAppBackend.Infra.Data.Contexts;
-using FatecAppBackend.Infra.Data.Repositories;
-using FatecAppBackend.Infra.Data.Services;
+using FatecAppBackend.Domain.Handlers.Commands.College;
+using FatecAppBackend.Domain.Handlers.Queries.College;
+using FatecAppBackend.Domain.Handlers.Commands.Event;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
+using FatecAppBackend.Domain.Handlers.Commands.User;
+using FatecAppBackend.Domain.Handlers.Queries.Event;
+using FatecAppBackend.Domain.Handlers.Queries.User;
+using FatecAppBackend.Infra.Data.Repositories;
+using FatecAppBackend.Domain.Repositories;
+using FatecAppBackend.Infra.Data.Contexts;
+using FatecAppBackend.Infra.Data.Services;
+using FatecAppBackend.Domain.Services;
+using System.Text.Json.Serialization;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Text;
-using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,7 +30,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Controllers
 builder.Services
     .AddControllers()
-    .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+    .AddJsonOptions(x => { 
+        x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    });
 
 builder.Services
     .AddEndpointsApiExplorer();

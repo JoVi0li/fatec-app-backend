@@ -12,7 +12,7 @@ namespace FatecAppBackend.Domain.Commands.User
 {
     public class CreateUserCommand : Notifiable<Notification>, ICommand
     {
-        public CreateUserCommand(string name, string email, string password, string photo, string phoneNumber, string identityDocumentNumber, string identityDocPhotoFront, string identityDocPhotoBack, EnGender gender, bool validatedUser)
+        public CreateUserCommand(string name, string email, string password, string photo, string phoneNumber, string identityDocumentNumber, string identityDocumentPhotoFront, string identityDocumentPhotoBack, EnGender gender, bool validatedUser)
         {
             Name = name;
             Email = email;
@@ -20,8 +20,8 @@ namespace FatecAppBackend.Domain.Commands.User
             Photo = photo;
             PhoneNumber = phoneNumber;
             IdentityDocumentNumber = identityDocumentNumber;
-            IdentityDocumentPhotoFront = identityDocPhotoFront;
-            IdentityDocumentPhotoBack = identityDocPhotoBack;
+            IdentityDocumentPhotoFront = identityDocumentPhotoFront;
+            IdentityDocumentPhotoBack = identityDocumentPhotoBack;
             Gender = gender;
             ValidatedUser = validatedUser;
         }

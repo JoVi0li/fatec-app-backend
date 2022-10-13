@@ -1,5 +1,5 @@
-﻿using FatecAppBackend.Shared;
-using FatecAppBackend.Shared.DTOs.Event;
+﻿using FatecAppBackend.Domain.Commands.Event;
+using FatecAppBackend.Shared;
 using FatecAppBackend.Shared.Enums;
 using Flunt.Notifications;
 using Flunt.Validations;
@@ -84,7 +84,7 @@ namespace FatecAppBackend.Domain.Entities
 
         // Update
 
-        public void Update(UpdateEventDTO @event)
+        public void Update(UpdateEventCommand @event)
         {
             if(@event.From != null)
             {

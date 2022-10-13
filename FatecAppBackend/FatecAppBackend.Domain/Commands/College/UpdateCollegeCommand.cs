@@ -1,5 +1,5 @@
-﻿using FatecAppBackend.Shared.Commands;
-using FatecAppBackend.Shared.DTOs.College;
+﻿using FatecAppBackend.Shared;
+using FatecAppBackend.Shared.Commands;
 using Flunt.Notifications;
 using Flunt.Validations;
 using System;
@@ -12,48 +12,62 @@ namespace FatecAppBackend.Domain.Commands.College
 {
     public class UpdateCollegeCommand : Notifiable<Notification>, ICommand
     {
-        public UpdateCollegeCommand(UpdateCollegeDTO college)
+        public UpdateCollegeCommand(Guid id, string? name, string? course, EnTime? time, string? localization)
         {
-            College = college;
+            Id = id;
+            Name = name;
+            Course = course;
+            Time = time;
+            Localization = localization;
         }
 
-        public UpdateCollegeDTO College { get; set; }
+        public Guid Id { get; private set; }
+
+        public string? Name { get; private set; }
+
+        public string? Course { get; private set; }
+
+        public EnTime? Time { get; private set; }
+
+        public string? Localization { get; private set; }
+
 
         public void Execute()
         {
 
-            if(College.Name != null)
+            if(Name != null)
             {
                 AddNotifications(
                     new Contract<Notification>()
                         .Requires()
-                        .IsNotEmpty(College.Name, "Name", "name cannot be empty")
+                        .IsNotEmpty(Name, "Name", "name cannot be empty")
                 );
             }
 
-            if(College.Course != null)
+            if(Course != null)
             {
                 AddNotifications(
                     new Contract<Notification>()
                         .Requires()
-                        .IsNotEmpty(College.Course, "Course", "Course cannot be empty")
+                        .IsNotEmpty(Course, "Course", "Course cannot be empty")
                 );
             }
 
-            if(College.Localization != null)
+            if(Localization != null)
             {
                 AddNotifications(
                     new Contract<Notification>()
                         .Requires()
-                        .IsNotEmpty(College.Localization, "Localization", "Localization cannot be empty")
+                        .IsNotEmpty(Localization, "Localization", "Localization cannot be empty")
                 );
             }
 
-            if (College.Time != null)
+            if (Time != null)
             {
                 AddNotifications(
                     new Contract<Notification>()
                         .Requires()
+                        .IsNotNull(Time, "Time", "Time cannot be null")
                 );
             }
 

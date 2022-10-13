@@ -29,14 +29,14 @@ namespace FatecAppBackend.Domain.Handlers.Commands.College
                 return new GenericCommandsResult(false, "Invalid props", command.Notifications);
             }
 
-            var college = _collegeRepository.GetById(command.College.Id);
+            var college = _collegeRepository.GetById(command.Id);
 
             if(college == null)
             {
                 return new GenericCommandsResult(false, "College not found", "Inform another Id");
             }
 
-            college.Update(command.College);
+            college.Update(command);
 
             if (!college.IsValid)
             {

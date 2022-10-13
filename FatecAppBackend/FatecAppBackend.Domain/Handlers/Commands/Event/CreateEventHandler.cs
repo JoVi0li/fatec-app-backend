@@ -38,6 +38,13 @@ namespace FatecAppBackend.Domain.Handlers.Commands.Event
                 return new GenericCommandsResult(false, "EventOwner not exists", "Inform another EventOwnerId");
             }
 
+            var eventOwnerIsValid = eventOwnerExists.ValidatedDocument;
+
+            if (!eventOwnerIsValid)
+            {
+                return new GenericCommandsResult(false, "EventOwner is not valid", "Inform another EventOwner valid");
+            }
+
             Entities.Event @event = new(
                 command.EventOwnerId,
                 command.From, 

@@ -1,5 +1,5 @@
 ﻿using FatecAppBackend.Shared.Commands;
-using FatecAppBackend.Shared.DTOs.Event;
+using FatecAppBackend.Shared.Enums;
 using Flunt.Notifications;
 using Flunt.Validations;
 using System;
@@ -12,67 +12,85 @@ namespace FatecAppBackend.Domain.Commands.Event
 {
     public class UpdateEventCommand : Notifiable<Notification>, ICommand
     {
-        public UpdateEventCommand(UpdateEventDTO @event)
+        public UpdateEventCommand(Guid id, string? from, string? to, string? route, bool? onlyWomen, DateTime? timeToGo, EnStatus? status)
         {
-            Event = @event;
+            Id = id;
+            From = from;
+            To = to;
+            Route = route;
+            OnlyWomen = onlyWomen;
+            TimeToGo = timeToGo;
+            Status = status;
         }
 
-        public UpdateEventDTO Event { get; set; }
+        public Guid Id { get; private set; }
+
+        public string? From { get; private set; }
+
+        public string? To { get; private set; }
+
+        public string? Route { get; private set; }
+
+        public bool? OnlyWomen { get; private set; }
+
+        public DateTime? TimeToGo { get; private set; }
+
+        public EnStatus? Status { get; private set; }
 
         public void Execute()
         {
-            if(Event.From != null)
+            if(From != null)
             {
                 AddNotifications(
                     new Contract<Notification>()
                         .Requires()
-                        .IsNotEmpty(Event.From, "From", "From cannot be empty")
+                        .IsNotEmpty(From, "From", "From cannot be empty")
                 );
             }
 
-            if(Event.To != null)
+            if(To != null)
             {
                 AddNotifications(
                     new Contract<Notification>()
                         .Requires()
-                        .IsNotEmpty(Event.To, "To", "To cannot be empty")
+                        .IsNotEmpty(To, "To", "To cannot be empty")
                 );
             }
 
-            if (Event.Route != null)
+            if (Route != null)
             {
                 AddNotifications(
                     new Contract<Notification>()
                         .Requires()
-                        .IsNotEmpty(Event.Route, "Route", "Route cannot be empty")
+                        .IsNotEmpty(Route, "Route", "Route cannot be empty")
                 );
             }
 
 
-            if (Event.OnlyWomen != null)
+            if (OnlyWomen != null)
             {
                 AddNotifications(
                     new Contract<Notification>()
                         .Requires()
-                        .IsNotNull(Event.OnlyWomen, "OnlyWomen", "OnlyWomen cannot be null")
+                        .IsNotNull(OnlyWomen, "OnlyWomen", "OnlyWomen cannot be null")
                 );
             }
 
-            if (Event.TimeToGo != null)
+            if (TimeToGo != null)
             {
                 AddNotifications(
                     new Contract<Notification>()
                         .Requires()
-                        .IsNotNull(Event.TimeToGo, "TimeToGo", "TimeToGo cannot be null")
+                        .IsNotNull(TimeToGo, "TimeToGo", "TimeToGo cannot be null")
                 );
             }
 
-            if (Event.Status != null)
+            if (Status != null)
             {
                 AddNotifications(
                     new Contract<Notification>()
                         .Requires()
-                        .IsNotNull(Event.Status, "Status", "Status cannot be null")
+                        .IsNotNull(Status, "Status", "Status cannot be null")
                 );
             }
         }

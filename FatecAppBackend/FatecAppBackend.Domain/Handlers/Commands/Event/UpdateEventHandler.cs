@@ -29,14 +29,14 @@ namespace FatecAppBackend.Domain.Handlers.Commands.Event
                 return new GenericCommandsResult(false, "Invalid props", command.Notifications);
             }
 
-            var @event = _eventRepository.GetById(command.Event.Id);
+            var @event = _eventRepository.GetById(command.Id);
 
             if(@event == null)
             {
                 return new GenericCommandsResult(false, "Event not found", "Inform another Id");
             }
 
-            @event.Update(command.Event);
+            @event.Update(command);
 
             if (!@event.IsValid)
             {

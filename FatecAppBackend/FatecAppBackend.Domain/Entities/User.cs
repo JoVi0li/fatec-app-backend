@@ -7,8 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Flunt.Extensions.Br.Validations;
-using FatecAppBackend.Shared.DTOs.User;
-using System.ComponentModel.DataAnnotations.Schema;
+using FatecAppBackend.Domain.Commands.User;
 
 namespace FatecAppBackend.Domain.Entities
 {
@@ -101,7 +100,7 @@ namespace FatecAppBackend.Domain.Entities
 
         // Updates
 
-        public void Update(UpdateUserDTO updateUser)
+        public void Update(UpdateUserCommand updateUser)
         {
             if(updateUser.Name != null)
             {

@@ -1,5 +1,4 @@
-﻿using Azure.Storage.Blobs;
-using FatecAppBackend.Domain.Commands.User;
+﻿using FatecAppBackend.Domain.Commands.User;
 using FatecAppBackend.Domain.Handlers.Commands.User;
 using FatecAppBackend.Domain.Handlers.Queries.User;
 using FatecAppBackend.Domain.Queries.User;

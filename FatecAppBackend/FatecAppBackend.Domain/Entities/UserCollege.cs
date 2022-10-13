@@ -1,6 +1,5 @@
-﻿using FatecAppBackend.Domain.Entities;
+﻿using FatecAppBackend.Domain.Commands.UserCollege;
 using FatecAppBackend.Shared;
-using FatecAppBackend.Shared.DTOs.UserCollege;
 using Flunt.Notifications;
 using Flunt.Validations;
 using System;
@@ -81,7 +80,7 @@ namespace FatecAppBackend.Domain.Entities
 
         // Update
 
-        public void Update(UpdateUserCollegeDTO updateUserCollege)
+        public void Update(UpdateUserCollegeCommand updateUserCollege)
         {
             if(updateUserCollege.CollegeId != null)
             {

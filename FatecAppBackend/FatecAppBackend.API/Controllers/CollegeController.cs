@@ -1,13 +1,10 @@
 ﻿using FatecAppBackend.Domain.Commands.College;
 using FatecAppBackend.Domain.Handlers.Commands.College;
 using FatecAppBackend.Domain.Handlers.Queries.College;
-using FatecAppBackend.Domain.Handlers.Queries.Event;
 using FatecAppBackend.Domain.Queries.College;
-using FatecAppBackend.Domain.Queries.Event;
 using FatecAppBackend.Shared.Commands;
 using FatecAppBackend.Shared.Queries;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FatecAppBackend.API.Controllers

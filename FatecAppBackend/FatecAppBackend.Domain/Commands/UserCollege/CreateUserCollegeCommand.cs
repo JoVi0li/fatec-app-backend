@@ -21,7 +21,7 @@ namespace FatecAppBackend.Domain.Commands.UserCollege
             GraduationDate = graduationDate;
         }
 
-        public Guid UserId { get; private set; }
+        public Guid UserId { get; set; }
 
         public Guid CollegeId { get; private set; }
 
@@ -29,7 +29,7 @@ namespace FatecAppBackend.Domain.Commands.UserCollege
 
         public bool ValidatedDocument { get; private set; }
 
-        public string ProofDocument { get; private set; }
+        public string ProofDocument { get; set; }
 
         public string GraduationDate { get; private set; }
 
