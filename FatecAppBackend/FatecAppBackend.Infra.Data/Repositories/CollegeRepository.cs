@@ -41,9 +41,9 @@ namespace FatecAppBackend.Infra.Data.Repositories
             return _context.Colleges.FirstOrDefault(x => x.Id == id);
         }
 
-        public College? GetByName(string name)
+        public ICollection<College>? GetByName(string name)
         {
-            return _context.Colleges.FirstOrDefault(x => x.Name == name);
+            return _context.Colleges.Where(x => x.Name == name).ToList();
         }
 
         public void Update(College college)

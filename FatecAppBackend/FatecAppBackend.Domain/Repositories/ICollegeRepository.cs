@@ -34,7 +34,7 @@ namespace FatecAppBackend.Domain.Repositories
         /// </summary>
         /// <param name="name"></param>
         /// <returns>A list of Colleges</returns>
-        College? GetByName(string name);
+        ICollection<College>? GetByName(string name);
 
         /// <summary>
         /// Delete a College with the Id
