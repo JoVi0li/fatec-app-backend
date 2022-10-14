@@ -31,7 +31,7 @@ namespace FatecAppBackend.Domain.Handlers.Commands.College
 
             var collegeAlreadyExists = _collegeRepository.GetByName(command.Name);
 
-            if(collegeAlreadyExists != null)
+            if(collegeAlreadyExists?.Name == command.Name && collegeAlreadyExists.Course == command.Course && collegeAlreadyExists.Time == command.Time && collegeAlreadyExists.Localization == command.Localization)
             {
                 return new GenericCommandsResult(false, "College already exists", command.Notifications);
             }
