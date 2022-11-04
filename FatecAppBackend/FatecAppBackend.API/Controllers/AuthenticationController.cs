@@ -77,6 +77,7 @@ namespace FatecAppBackend.API.Controllers
                 new Claim(JwtRegisteredClaimNames.FamilyName, user.Name),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, user.Id.ToString()),
+                new Claim("Photo",user.Photo),
             };
 
             var token = new JwtSecurityToken
